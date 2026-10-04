@@ -82,12 +82,6 @@ input[type=file]{padding:10px;font-size:.85rem}
 .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .av{width:44px;height:44px;border-radius:12px;object-fit:cover;background:var(--sea-l);color:var(--sea);display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex:none}
 .av.big{width:84px;height:84px;font-size:1.8rem;border-radius:20px}
-.av-edit{position:relative;flex:none;width:84px;height:84px}
-.av-edit .av{display:flex}
-.av-cam{position:absolute;right:-5px;bottom:-5px;width:28px;height:28px;padding:0;border-radius:50%;border:2px solid var(--paper);background:var(--sea);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25)}
-.av-cam svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.av-cam:active{background:var(--sea-d)}
-.av-cam:disabled{opacity:.55;cursor:default}
 .who{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-height:48px}
 .list{display:flex;flex-direction:column;gap:8px}
 .li{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:var(--r);padding:12px;text-decoration:none;color:var(--ink);position:relative}
@@ -203,67 +197,6 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .prow .av{width:36px;height:36px;border-radius:10px;font-size:.85rem}
 .prow .body{flex:1;min-width:0}
 .prow .dot{transform:translateY(-50%)}
-
-/* ===== メッセージ一覧: 見本画像どおりの文字・アイコン配置 ===== */
-.msg-title{font-size:1.25rem;font-weight:700;letter-spacing:.02em;margin:2px 0 6px}
-.tabs button{font-size:.95rem}
-.tabs small{font-size:.75rem;opacity:1;color:var(--sub);font-weight:400}
-.tabs button.on small{color:var(--sea);font-weight:700}
-.tabs button.on::after{left:14px;right:14px}
-.pgroup .phead{gap:10px;padding:12px 14px 12px 12px;min-height:72px;align-items:center}
-.pgroup .phead .rthumb{width:48px;height:48px;border-radius:12px}
-.pgroup .phead .rthumb .kanji{font-size:1.25rem;font-weight:500;letter-spacing:0}
-.pgroup .phead .meta{font-size:12px;line-height:18px}
-.pgroup .phead b{font-size:16px;line-height:22px;margin:1px 0}
-.pgroup .phead .pill.xs{font-size:11px;line-height:17px;padding:1px 7px;border-radius:8px;margin-left:3px}
-.pgroup .phead .chev{flex:none;font-size:1.5rem;font-weight:300;color:#7d8889;margin-left:4px}
-.pgroup .prow{align-items:flex-start;gap:8px;padding:12px 30px 12px 25px}
-.pgroup .prow .av{width:22px;height:22px;border-radius:6px;font-size:.6rem}
-.pgroup .prow .phr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.pgroup .prow .pname{display:flex;align-items:center;gap:6px;min-width:0;line-height:22px}
-.pgroup .prow .pname b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pgroup .prow .pname .ptype{flex:none;height:22px;min-width:30px;padding:0 8px;border-radius:8px;vertical-align:baseline}
-.pgroup .prow .pname .pill.xs{flex:none;font-size:11px;line-height:17px;padding:2px 8px;border-radius:8px}
-.pgroup .prow .ptime{flex:none;font-size:11px;line-height:22px;color:#8a9596;white-space:nowrap}
-/* ===== 投稿詳細: 左に内容、右に投稿者と他の投稿 ===== */
-.reqtop{display:grid;grid-template-columns:minmax(0,1fr) clamp(128px,34%,168px);gap:8px;align-items:stretch;margin-bottom:8px}
-.reqtop>.box{margin:0;min-width:0}
-.rq-meta{display:flex;flex-wrap:wrap;column-gap:0;line-height:1.5}
-.rq-meta span{white-space:nowrap}
-.rside{padding:12px 12px 10px;position:relative}
-.rside .rs-top{display:flex;align-items:flex-start;justify-content:space-between;margin:-2px -6px 0 0}
-.rside .av{width:36px;height:36px;border-radius:10px;font-size:.9rem}
-.rside .rs-link{display:block;color:var(--ink);text-decoration:none}
-.rside .meta{font-size:.7rem;line-height:1.45;margin:0}
-.rside .rs-lab{margin-top:8px}
-.rside .rs-name{margin:0;display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:.92rem;line-height:1.4}
-.rside .rs-v{margin:4px 0 0}
-.rside .rs-sep{border-top:1px solid var(--line);margin:10px 0 8px}
-.rside .rs-h{margin:0 0 4px;font-size:.74rem;font-weight:700}
-.oitem{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--ink);padding:6px 0}
-.oitem + .oitem{border-top:1px solid var(--line)}
-.oitem .rthumb{width:32px;height:32px;border-radius:8px}
-.oitem .rthumb .kanji{font-size:.7rem;letter-spacing:0}
-.obody{min-width:0;flex:1}
-.otitle{margin:0;font-size:.76rem;line-height:1.35;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-all}
-.ometa{margin:0;font-size:.64rem;line-height:1.4;color:var(--sub)}
-@media (max-width:340px){.reqtop{grid-template-columns:1fr}}
-.pgroup .phead .pedit{flex:none;display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--sea);font:inherit;font-size:12px;font-weight:500;cursor:pointer}
-.pgroup .phead .pedit svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pgroup .phead .pedit:active{background:var(--sea-l)}
-/* 背景と帯を区別: カードに枠線と影。帯は 自分の投稿=青緑 / 相手の投稿=黄みのオレンジ */
-.pgroup{border:1px solid #cfd8d8;box-shadow:0 1px 4px rgba(20,50,60,.1)}
-.pgroup .phead{border-left:5px solid transparent}
-.pgroup.own .phead{background:#d3eaee;border-left-color:var(--sea);border-bottom-color:#b9d9df}
-.pgroup.other .phead{background:#fbe8cc;border-left-color:#d9892b;border-bottom-color:#efcf9f}
-.pgroup.own .phead:active{background:#c2e0e6}
-.pgroup.other .phead:active{background:#f6dab2}
-.pgroup .phead .pill.sea{background:#fff}
-.pgroup .phead .pill{background:#fff;color:var(--sub)}
-.pgroup .phead .pill.sea{color:var(--sea)}
-/* 終了した投稿は全体を暗く・色を落とす */
-.pgroup.is-closed{filter:brightness(.8) saturate(.35)}
-.pgroup .prow .plast{font-size:13px;line-height:20px;margin-top:0;color:var(--sub)}
 .qa{padding:10px 0;border-top:1px solid var(--line)}
 .qa .q{font-size:.9rem;margin:0}
 .qa .a{font-size:.9rem;margin:6px 0 0;padding:8px 10px;background:var(--sea-l);border-radius:10px}
@@ -425,7 +358,7 @@ textarea{min-height:88px}
       <a href="#post" data-p="post"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M12 8.5v7M8.5 12h7"/></svg>投稿する</a>
       <a href="#message" data-p="message"><svg viewBox="0 0 24 24"><path d="M4.5 6.5a2 2 0 012-2h11a2 2 0 012 2v8a2 2 0 01-2 2H10l-4.5 3.5z"/></svg>メッセージ<span class="badge" id="msgBadge" hidden></span></a>
       <a href="#friend" data-p="friend"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16.5 14.3c2.5.2 4.2 1.8 4.6 4.6"/></svg>友達<span class="badge" id="frBadge" hidden></span></a>
-      <a href="#info" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
+      <a href="yonabaru_info_2026-10.html" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
     </nav>
   </div>
 </header>
@@ -661,7 +594,7 @@ setInterval(() => { if(me && !document.hidden) refreshUnread(); }, 30000);
 async function render(){
   clearInterval(pollTimer);
   const [page, arg] = (location.hash.slice(1) || "top").split("/");
-  const navKey = (page === "post" && arg) ? "message" : ({ req:"top", msg:"message", user:"friend", terms:"info", facility:"top", dm:"message" }[page] || page);
+  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top", dm:"message" }[page] || page;
   document.querySelectorAll("nav a, .mylink").forEach(a => a.classList.toggle("on", a.dataset.p === navKey));
   window.scrollTo(0,0);
   if(page === "info") return pageInfo();
@@ -860,12 +793,6 @@ async function pageRequest(id){
   const { data:qs } = await sb.from("post_questions").select("*").eq("request_id", id).order("created_at");
   const pmap = await profilesById([r.requester_id, ...(qs || []).map(q => q.asker_id), ...(apps || []).map(a => a.helper_id)]);
   const p = pmap[r.requester_id] || { id:r.requester_id }, mineReq = r.requester_id === me.id, offer = r.kind === "offer";
-  let others = [];
-  try {
-    const { data:od } = await sb.from("requests").select("id,kind,category,title,status,photos,created_at")
-      .eq("requester_id", r.requester_id).neq("id", r.id).order("created_at",{ ascending:false }).limit(12);
-    others = (od || []).sort((x, y) => (y.status === "open") - (x.status === "open")).slice(0, 3);
-  } catch(e){ others = []; }
 
   let isFav = !!fav;
   const heart = el("button",{class:"heart" + (isFav ? " on" : ""), "aria-label":"お気に入り", "aria-pressed":String(isFav), onclick: async () => {
@@ -880,7 +807,7 @@ async function pageRequest(id){
       el("div",{class:"row"}, el("span",{class:"pill" + (offer ? " sea" : "")}, offer ? "お手伝い" : "お願い"), el("span",{class:"pill"}, CATS[r.category]),
         r.status !== "open" ? el("span",{class:"pill hib"},"募集終了") : null),
       mineReq ? null : heart),
-    el("p",{class:"meta rq-meta", style:"margin-top:6px"}, el("span",{}, "投稿ID " + postIdText(r)), el("span",{}, " ・ 投稿日時 " + fmtFull(r.created_at))),
+    el("p",{class:"meta", style:"margin-top:6px"}, "投稿ID " + postIdText(r) + " ・ 投稿日時 " + fmtFull(r.created_at)),
     el("h2",{style:"margin:4px 0 2px;line-height:1.5"}, typeIcon(p), " ", offer ? (r.category === "help" ? "お手伝いできます" : CATS[r.category] + "、お手伝いできます") : r.title),
     el("p",{style:"font-size:1.1rem;font-weight:700;color:var(--sea)"}, "お礼: ", rewardText(r)),
     offer ? el("div",{style:"margin-top:14px"}, el("p",{class:"meta"},"できること"),
@@ -891,33 +818,17 @@ async function pageRequest(id){
                el("dt",{},"時間帯"), el("dd",{}, (r.avail_times || []).join("、") || "相談して決める")]
             : [el("dt",{},"希望期間"), el("dd",{}, periodText(r) || "相談して決める"),
                el("dt",{},"時間帯"), el("dd",{}, r.time_note || "相談して決める")],
-      el("dt",{},"面談"), el("dd",{}, ivText(r))),
+      el("dt",{},"面談"), el("dd",{}, ivText(r)),
+      el("dt",{},"投稿日時"), el("dd",{}, fmtFull(r.created_at))),
     !offer && (r.wanted_from || r.wanted_date) ? el("a",{class:"btn line sm", style:"margin-top:12px", target:"_blank", rel:"noopener",
       href: gcalUrl("【与那原助け合い】" + r.title, (r.time_note ? "時間帯: " + r.time_note + "\n" : "") + location.href, r.area, r.wanted_from || r.wanted_date, r.wanted_date)},"📅 Googleカレンダーに追加") : null,
     r.description ? el("p",{style:"white-space:pre-wrap;margin-top:16px;font-size:.93rem"}, r.description) : null);
 
-  /* 右側: 投稿者 + この人の他の投稿(募集中を優先。足りなければ終了した投稿も) */
-  const otherItem = o => {
-    const t = el("div",{class:"rthumb c-" + o.category});
-    t.append(o.photos && o.photos[0] ? el("img",{src:o.photos[0], alt:"", loading:"lazy"}) : el("span",{class:"kanji", "aria-hidden":"true"}, KANJI[o.category]));
-    return el("a",{class:"oitem", href:"#req/" + o.id}, t,
-      el("div",{class:"obody"}, el("p",{class:"otitle"}, o.title),
-        el("p",{class:"ometa"}, (o.kind === "offer" ? "お手伝い" : "お願い") + (o.status !== "open" ? " ・ 終了" : ""))));
-  };
-  const poster = el("div",{class:"box rside"},
-    el("div",{class:"rs-top"},
-      el("a",{class:"rs-link", href:"#user/" + p.id}, avatar(p)),
-      mineReq ? null : moreBtn(() => userMenu(p.id, r.id))),
-    el("a",{class:"rs-link", href:"#user/" + p.id},
-      el("p",{class:"meta rs-lab"},"投稿者"),
-      el("p",{class:"rs-name"}, el("b",{}, nameOf(p)), typeIcon(p)),
-      el("p",{class:"meta"}, myIdText(p) ? el("span",{style:"white-space:nowrap"}, "myID " + myIdText(p)) : null,
-        p.area ? el("span",{style:"white-space:nowrap"}, (myIdText(p) ? " ・ " : "") + p.area) : null),
-      el("p",{class:"rs-v"}, vPill(p, true))),
-    el("div",{class:"rs-sep"}),
-    el("p",{class:"rs-h"},"他の投稿"),
-    others.length ? el("div",{}, others.map(otherItem)) : el("p",{class:"meta"},"他の投稿はありません"));
-  const top2 = el("div",{class:"reqtop"}, main, poster);
+  const poster = el("div",{class:"box row between", style:"padding:8px 8px 8px 16px"},
+    el("a",{class:"who", href:"#user/" + p.id, style:"flex:1;min-width:0"}, avatar(p),
+      el("div",{style:"min-width:0"}, el("p",{class:"meta", style:"margin:0"},"投稿者"), el("b",{}, nameOf(p), " ", typeIcon(p)),
+        el("div",{class:"meta"}, vPill(p), " ", myIdText(p) ? "myID " + myIdText(p) : "", " ", p.area || ""))),
+    mineReq ? null : moreBtn(() => userMenu(p.id, r.id)));
 
   /* 質問(みんなに公開) */
   const qa = el("div",{class:"box"},
@@ -993,16 +904,15 @@ async function pageRequest(id){
         }}, offer ? "お願いしたい" : "手伝えます"));
     }
   }
-  show(el("a",{class:"back", href: mineReq ? "#message" : "#top"}, mineReq ? "← メッセージ" : "← 一覧"), gallery, top2, qa, action);
+  show(el("a",{class:"back", href: mineReq ? "#message" : "#top"}, mineReq ? "← メッセージ" : "← 一覧"), gallery, main, poster, qa, action);
 }
 
 /* ===== カレンダーで期間を選ぶ =====
    押したまま終わりの日までなぞる → 期間。1回タップ → その日だけ。続けて別の日をタップ → 期間。 */
-function rangePicker(onChange, init){
+function rangePicker(onChange){
   const today = todayJST();
   let view = today.slice(0, 7);
-  let start = init && init[0] ? init[0] : null, end = init && init[0] ? (init[1] || init[0]) : null;
-  if(start && start.slice(0, 7) > view) view = start.slice(0, 7);
+  let start = null, end = null;
   let anchor = null, moved = false, dragging = false, before = null;
   const head = el("div",{class:"cal-head"});
   const grid = el("div",{class:"cal-grid", role:"group", "aria-label":"希望期間のカレンダー"});
@@ -1089,17 +999,8 @@ function ticks(name, items, selected, onchange, type){
   wrap.values = () => [...wrap.querySelectorAll("input:checked")].map(i => i.value);
   return wrap;
 }
-async function pagePost(editId){
-  /* editId があれば「自分の投稿の編集」(#post/投稿ID) */
-  let editReq = null;
-  if(editId){
-    const { data, error } = await sb.from("requests").select("*").eq("id", editId).single();
-    if(error) throw error;
-    if(data.requester_id !== me.id) throw new Error("この投稿は編集できません。");
-    editReq = data;
-  }
-  let kind = editReq ? editReq.kind : (topState.kind === "offer" ? "offer" : "ask");
-  const keptPhotos = editReq ? [...(editReq.photos || [])] : [];  // 登録済みの写真(URL)
+function pagePost(){
+  let kind = topState.kind === "offer" ? "offer" : "ask";
   const photos = [];
   const seg = el("div",{class:"seg"});
   const cat = el("select",{id:"category"}, Object.entries(CATS).map(([k,v]) => el("option",{value:k}, v)));
@@ -1108,9 +1009,7 @@ async function pagePost(editId){
   // お願い用
   const title = el("input",{id:"title", maxlength:"60", placeholder:"例: 土曜の朝、犬の散歩をお願いしたい"});
   const dFrom = { value:"" }, dTo = { value:"" };
-  const picker = rangePicker((f, t) => { dFrom.value = f || ""; dTo.value = t || ""; },
-    editReq && editReq.kind === "ask" && (editReq.wanted_from || editReq.wanted_date) ? [editReq.wanted_from || editReq.wanted_date, editReq.wanted_date || editReq.wanted_from] : null);
-  if(editReq && editReq.kind === "ask"){ dFrom.value = editReq.wanted_from || editReq.wanted_date || ""; dTo.value = editReq.wanted_date || editReq.wanted_from || ""; }
+  const picker = rangePicker((f, t) => { dFrom.value = f || ""; dTo.value = t || ""; });
   const tNote = el("input",{id:"tNote", maxlength:"60", placeholder:"例: 10:00〜13:00"});
   const askOnly = el("div",{}, el("label",{for:"title"},"タイトル"), title);
   const askDate = el("div",{},
@@ -1156,15 +1055,11 @@ async function pagePost(editId){
   const preview = el("div",{class:"photos"});
 
   function drawPhotos(){
-    preview.replaceChildren(
-      ...keptPhotos.map((u, i) => el("div",{}, el("img",{src:u, alt:""}),
-        el("button",{"aria-label":"写真を外す", onclick: () => { keptPhotos.splice(i,1); drawPhotos(); }},"✕"))),
-      ...photos.map((f, i) => el("div",{}, el("img",{src:URL.createObjectURL(f), alt:""}),
-        el("button",{"aria-label":"写真を外す", onclick: () => { photos.splice(i,1); drawPhotos(); }},"✕"))));
+    preview.replaceChildren(...photos.map((f, i) => el("div",{}, el("img",{src:URL.createObjectURL(f), alt:""}),
+      el("button",{"aria-label":"写真を外す", onclick: () => { photos.splice(i,1); drawPhotos(); }},"✕"))));
   }
-  file.onchange = () => { for(const f of file.files){ if(keptPhotos.length + photos.length < 3) photos.push(f); } file.value = ""; if(keptPhotos.length + photos.length >= 3) say("写真は3枚までです"); drawPhotos(); };
+  file.onchange = () => { for(const f of file.files){ if(photos.length < 3) photos.push(f); } file.value = ""; if(photos.length >= 3) say("写真は3枚までです"); drawPhotos(); };
   function drawKind(){
-    seg.hidden = !!editReq;
     seg.replaceChildren(...[["ask","お願いする"],["offer","お手伝い投稿"]].map(([k,v]) =>
       el("button",{class: kind === k ? "on" : "", "aria-pressed":String(kind === k), onclick: () => { kind = k; drawKind(); }}, v)));
     askOnly.hidden = askDate.hidden = kind !== "ask";
@@ -1224,34 +1119,26 @@ async function pagePost(editId){
         ["お礼", rewardText(r)]
       ];
       const postBtn = el("button",{class:"btn full", onclick: async () => {
-        postBtn.disabled = true; postBtn.textContent = editReq ? "保存中…" : "投稿中…";
+        postBtn.disabled = true; postBtn.textContent = "投稿中…";
         try {
-          const urls = [...keptPhotos];
+          const urls = [];
           for(const f of photos){
             const path = me.id + "/" + crypto.randomUUID() + ".jpg";
             const { error } = await sb.storage.from("request-photos").upload(path, await toJpeg(f, 1280), { contentType:"image/jpeg" });
             if(error) throw error;
             urls.push(sb.storage.from("request-photos").getPublicUrl(path).data.publicUrl);
           }
-          if(editReq){
-            const { requester_id, ...changes } = r;
-            const { error } = await sb.from("requests").update({ ...changes, photos:urls }).eq("id", editReq.id).eq("requester_id", me.id);
-            if(error) throw error;
-            close();
-            say("保存しました。"); location.hash = "#req/" + editReq.id;
-            return;
-          }
           const { data, error } = await sb.from("requests").insert({ ...r, photos:urls }).select("id").single();
           if(error) throw error;
           close();
           topState.kind = "all"; topState.cat = "all";
           say("投稿しました。"); location.hash = "#req/" + data.id;
-        } catch(err){ say((editReq ? "保存できませんでした: " : "投稿できませんでした: ") + err.message); postBtn.disabled = false; postBtn.textContent = editReq ? "保存する" : "投稿する"; }
-      }}, editReq ? "保存する" : "投稿する");
+        } catch(err){ say("投稿できませんでした: " + err.message); postBtn.disabled = false; postBtn.textContent = "投稿する"; }
+      }},"投稿する");
       return [
-        el("h3",{}, editReq ? "変更内容の確認" : "投稿内容の確認"),
-        el("p",{class:"meta"}, editReq ? "この内容で保存します。よろしければ「保存する」を押してください。" : "この内容で投稿します。よろしければ「投稿する」を押してください。"),
-        keptPhotos.length || photos.length ? el("div",{class:"photos"}, [...keptPhotos.map(u => el("div",{}, el("img",{src:u, alt:""}))), ...photos.map(f => el("div",{}, el("img",{src:URL.createObjectURL(f), alt:""})))]) : null,
+        el("h3",{},"投稿内容の確認"),
+        el("p",{class:"meta"},"この内容で投稿します。よろしければ「投稿する」を押してください。"),
+        photos.length ? el("div",{class:"photos"}, photos.map(f => el("div",{}, el("img",{src:URL.createObjectURL(f), alt:""})))) : null,
         el("dl",{class:"facts", style:"margin-bottom:18px"}, rows.flatMap(([k,v]) => [el("dt",{}, k), el("dd",{style:"white-space:pre-wrap"}, v)])),
         postBtn,
         el("button",{class:"btn ghost full", style:"margin-top:6px", onclick:close},"修正する")
@@ -1259,29 +1146,7 @@ async function pagePost(editId){
     });
   }
 
-  /* 編集: 今の内容を入力欄に入れる */
-  function setTicks(w, vals){ w.querySelectorAll("input").forEach(i => { i.checked = (vals || []).includes(i.value); }); }
-  function prefill(){
-    const r = editReq;
-    cat.value = r.category; drawTasks(); drawKind();
-    title.value = r.kind === "ask" ? (r.title || "") : "";
-    desc.value = r.description || "";
-    area.value = r.area || "";
-    tNote.value = r.time_note || "";
-    if(r.kind === "offer"){
-      taskGroups.forEach(t => setTicks(t, r.tasks));
-      if(r.task_other){ setTicks(taskGroups.otherFlag, ["other"]); otherText.hidden = false; otherText.value = r.task_other; }
-      setTicks(days, r.avail_days); setTicks(times, r.avail_times);
-    }
-    const iv = r.interview || [];
-    setTicks(ivMode, [iv.length ? "yes" : "none"]); ivWrap.hidden = !iv.length; if(iv.length) setTicks(ivTypes, iv);
-    const ro = (r.reward_options && r.reward_options.length) ? r.reward_options : [r.reward_type].filter(Boolean);
-    setTicks(rewards, ro); amtWrap.hidden = !ro.includes("paid");
-    if(r.reward_unit) setTicks(unit, [r.reward_unit]);
-    if(r.reward_amount) rAmt.value = r.reward_amount;
-  }
-
-  show(editReq ? el("a",{class:"back", href:"#message"},"← メッセージ") : null, el("h2",{}, editReq ? "投稿を編集" : "投稿する"), seg, el("div",{class:"box"},
+  show(el("h2",{},"投稿する"), seg, el("div",{class:"box"},
     el("label",{for:"category"},"カテゴリー"), cat, childNote,
     askOnly, offerOnly,
     el("label",{for:"photos"},"写真(3枚まで・任意)"), file, preview,
@@ -1294,11 +1159,9 @@ async function pagePost(editId){
       const r = collect();
       if(typeof r === "string") return say(r);
       confirmSheet(r);
-    }}, editReq ? "変更内容を確認する" : "投稿内容を確認する")));
+    }},"投稿内容を確認する")));
   drawTasks();
   drawKind();
-  if(editReq) prefill();
-  drawPhotos();
 }
 
 /* ===== メッセージ一覧 ===== */
@@ -1339,17 +1202,15 @@ async function pageMessages(){
     .sort((x, y) => Math.max(...negoByReq[y.id].map(a => +new Date(actAt(a)))) - Math.max(...negoByReq[x.id].map(a => +new Date(actAt(a)))));
 
   /* 投稿ごとのまとまり: 上に投稿、下にその投稿でやり取りしている人 */
-  function postGroup(r, rowsApps, sub, emptyText, editable){
+  function postGroup(r, rowsApps, sub, emptyText){
     const head = el("a",{class:"phead", href:"#req/" + r.id},
       (() => { const t = el("div",{class:"rthumb c-" + r.category, style:"width:48px;height:48px"});
-        t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:""}) : el("span",{class:"kanji"}, KANJI[r.category])); return t; })(),
+        t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:""}) : el("span",{class:"kanji", style:"font-size:1rem"}, KANJI[r.category])); return t; })(),
       el("div",{class:"body"},
         el("div",{class:"meta"}, "投稿ID " + postIdText(r) + " ・ " + (CATS[r.category] || ""), " ",
           r.status === "open" ? el("span",{class:"pill sea xs"},"募集中") : el("span",{class:"pill xs"},"終了")),
         el("b",{class:"ellipsis", style:"display:block"}, r.title),
         sub ? el("div",{class:"meta"}, sub) : null),
-      editable ? el("button",{type:"button", class:"pedit", "aria-label":"この投稿を編集", onclick: ev => { ev.preventDefault(); ev.stopPropagation(); location.hash = "#post/" + r.id; }},
-        svgIcon('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>'), "編集") : null,
       el("span",{class:"chev", "aria-hidden":"true"},"›"));
     const rows = rowsApps.length ? rowsApps.sort((x, y) => new Date(actAt(y)) - new Date(actAt(x))).map(a => {
       const pid = a.helper_id === me.id ? a.requests.requester_id : a.helper_id;
@@ -1357,14 +1218,14 @@ async function pageMessages(){
       return el("a",{class:"prow", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
         avatar(pp),
         el("div",{class:"body"},
-          el("div",{class:"phr"},
-            el("span",{class:"pname"}, el("b",{}, nameOf(pp)), typeIcon(pp),
+          el("div",{class:"row between", style:"flex-wrap:nowrap"},
+            el("span",{class:"ellipsis"}, el("b",{}, nameOf(pp)), " ", typeIcon(pp), " ",
               el("span",{class:"pill xs" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status])),
-            el("span",{class:"ptime"}, fmt(actAt(a)))),
-          el("div",{class:"ellipsis plast"}, l ? (l.sender_id === me.id ? "あなた: " : "") + l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
+            el("span",{class:"meta", style:"flex:none"}, fmt(actAt(a)))),
+          el("div",{class:"ellipsis", style:"font-size:.84rem;color:var(--sub)"}, l ? (l.sender_id === me.id ? "あなた: " : "") + l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
         unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", style:"top:50%;right:10px"}) : null);
     }) : [el("p",{class:"meta", style:"padding:8px 14px 10px;margin:0"}, emptyText)];
-    return el("div",{class:"pgroup " + (editable ? "own" : "other") + (r.status !== "open" ? " is-closed" : "")}, head, ...rows);
+    return el("div",{class:"pgroup"}, head, ...rows);
   }
 
   const TABS = [
@@ -1384,7 +1245,7 @@ async function pageMessages(){
         const as = appsByReq[r.id] || [], q = qByReq[r.id] || [];
         const waitA = as.filter(a => a.status === "pending").length, waitQ = q.filter(x => !x.answer).length;
         const sub = "DM " + as.length + "人" + (waitA ? "(返事待ち" + waitA + ")" : "") + " ・ 質問 " + q.length + "件" + (waitQ ? "(未回答" + waitQ + ")" : "");
-        return postGroup({ ...r }, as.map(a => ({ ...a, requests:{ ...a.requests } })), sub, "まだDMはありません。", true);
+        return postGroup({ ...r }, as.map(a => ({ ...a, requests:{ ...a.requests } })), sub, "まだDMはありません。");
       })) : el("div",{class:"empty"},"まだ投稿していません。", el("div",{style:"margin-top:12px"}, el("a",{class:"btn sm", href:"#post"},"投稿する"))));
     } else if(msgTab === "nego"){
       list.replaceChildren(negoReqs.length ? el("div",{class:"list"}, negoReqs.map(r =>
@@ -1402,7 +1263,7 @@ async function pageMessages(){
       })) : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "友達になると、ここからメッセージを送れます。"));
     }
   }
-  show(el("h2",{class:"msg-title"},"メッセージ"), tabs, list);
+  show(el("h2",{},"メッセージ"), tabs, list);
   draw();
 }
 
@@ -1445,7 +1306,7 @@ async function pageDm(uid){
 async function pageThread(appId){
   loading();
   const { data:a, error } = await sb.from("applications")
-    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,status,kind,area,wanted_from,wanted_date,time_note,interview)").eq("id", appId).single();
+    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,status,kind,area,wanted_from,wanted_date,time_note)").eq("id", appId).single();
   if(error) throw error;
   markRead({ link:"#msg/" + a.id });
   const iAmPoster = a.requests.requester_id === me.id;
@@ -1502,7 +1363,7 @@ async function pageThread(appId){
         moreBtn(() => userMenu(pid, a.requests.id))),
       el("p",{class:"meta ellipsis", style:"margin-top:6px"}, "投稿: ", el("a",{href:"#req/" + a.requests.id}, a.requests.title)),
       el("p",{class:"meta"},"電話番号や住所は、信頼できると感じてから伝えましょう。")),
-    a.status === "declined" ? null : (iAmPoster ? meetBox(a, sendText) : meetNotice(a)), status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, iAmPoster ? meetBtn : null, body, sendBtn)));
+    a.status === "declined" ? null : meetBox(a, sendText), status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, meetBtn, body, sendBtn)));
   await loadMsgs();
   thread.lastElementChild.scrollIntoView({ block:"end" });
   pollTimer = setInterval(loadMsgs, 15000);
@@ -1549,16 +1410,9 @@ function meetBox(a, sendText){
     if(ok){ say("面談日時を送りました。"); date.value = time.value = note.value = ""; }
   };
   box.append(el("h3",{},"面談"),
-    el("p",{class:"meta"},"面談の有無・方法は投稿者が決めて、メッセージで相手に送ります。ビデオは送ったメッセージからそのまま参加できます。"),
-    a.requests.interview ? el("p",{class:"meta", style:"margin-top:4px"},"投稿時の設定: " + ivText(a.requests)) : null,
+    el("p",{class:"meta"},"方法を選ぶと、面談日時をメッセージで相手に送れます。ビデオは送ったメッセージからそのまま参加できます。"),
     el("div",{style:"margin-top:8px"}, how), detail, sendBtn);
   return box;
-}
-/* 投稿者以外には、面談の選択は出さず案内だけ表示 */
-function meetNotice(a){
-  return el("div",{class:"box"}, el("h3",{},"面談"),
-    el("p",{class:"meta"},"面談の有無・方法は投稿者が決めます。決まるとメッセージでお知らせが届きます。"),
-    a.requests.interview ? el("p",{class:"meta", style:"margin-top:4px"},"投稿時の設定: " + ivText(a.requests)) : null);
 }
 
 function meetSheet(a, sendText){
@@ -1771,35 +1625,15 @@ async function pageMy(){
   ]);
   head.after(el("p",{class:"meta", style:"margin-top:12px"}, "住所(あなたにだけ表示): ", (priv && priv.address) || "未登録"));
 
-  // アイコン: 右下の小さなカメラマークから変更
-  const iconFile = el("input",{type:"file", accept:"image/*", hidden:true, "aria-hidden":"true", tabindex:"-1"});
-  const cam = el("button",{type:"button", class:"av-cam", "aria-label":"アイコンを変更", title:"アイコンを変更", onclick: () => iconFile.click()},
-    svgIcon('<path d="M4 8.5A1.5 1.5 0 015.5 7h2l1.2-2h6.6L16.5 7h2A1.5 1.5 0 0120 8.5v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 17.5z"/><circle cx="12" cy="13" r="3.2"/>'));
-  iconFile.onchange = async () => {
-    const f = iconFile.files[0]; if(!f) return;
-    cam.disabled = true;
-    try {
-      const path = me.id + "/avatar.jpg";
-      const { error } = await sb.storage.from("avatars").upload(path, await toJpeg(f, 256, true), { upsert:true, contentType:"image/jpeg" });
-      if(error) throw error;
-      const url = sb.storage.from("avatars").getPublicUrl(path).data.publicUrl + "?v=" + Date.now();
-      const r1 = await sb.from("profiles").update({ avatar_url:url }).eq("id", me.id);
-      if(r1.error) throw r1.error;
-      say("アイコンを変更しました。"); await loadMe(); render();
-    } catch(err){ say("アイコンを変更できませんでした: " + err.message); cam.disabled = false; iconFile.value = ""; }
-  };
-  const av0 = head.firstElementChild;
-  const avWrap = el("div",{class:"av-edit"});
-  av0.replaceWith(avWrap);
-  avWrap.append(av0, cam, iconFile);
-
   // 編集
   const name = el("input",{id:"pName", maxlength:"20", value:p.display_name || ""});
   const area = el("select",{id:"pArea", value:p.area || ""}, el("option",{value:""},"選んでください"), AREAS.map(a => el("option",{value:a}, a)));
   const addr = el("input",{id:"pAddr", autocomplete:"street-address", value:(priv && priv.address) || ""});
   const pr = el("textarea",{id:"pPr", placeholder:"例: 柴犬を1匹飼っています。平日の夕方なら散歩のお手伝いができます。", value:p.pr || ""});
+  const file = el("input",{type:"file", id:"pIcon", accept:"image/*"});
   const edit = el("div",{class:"box", hidden:true},
     el("h3",{},"プロフィールを編集"),
+    el("label",{for:"pIcon"},"アイコン(正方形に切り抜かれます)"), file,
     el("label",{for:"pName"},"名前(ニックネーム可)"), name,
     el("label",{for:"pArea"},"地区(みんなに表示)"), area,
     el("label",{for:"pAddr"},"住所(あなたにだけ表示)"), addr,
@@ -1809,6 +1643,12 @@ async function pageMy(){
         const b = e.currentTarget; b.disabled = true;
         try {
           const upd = { display_name:name.value.trim() || "名無しさん", area:area.value || null, pr:pr.value.trim() || null };
+          if(file.files[0]){
+            const path = me.id + "/avatar.jpg";
+            const { error } = await sb.storage.from("avatars").upload(path, await toJpeg(file.files[0], 256, true), { upsert:true, contentType:"image/jpeg" });
+            if(error) throw error;
+            upd.avatar_url = sb.storage.from("avatars").getPublicUrl(path).data.publicUrl + "?v=" + Date.now();
+          }
           const r1 = await sb.from("profiles").update(upd).eq("id", me.id); if(r1.error) throw r1.error;
           const r2 = await sb.from("profile_private").upsert({ id:me.id, address:addr.value.trim() || null, updated_at:new Date().toISOString() }); if(r2.error) throw r2.error;
           say("保存しました。"); await loadMe(); render();
