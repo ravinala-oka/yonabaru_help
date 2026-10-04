@@ -29,7 +29,7 @@ p{margin:.25em 0}
 .site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
 .site-in{max-width:var(--w);margin:0 auto}
 .bar{display:flex;align-items:center;height:48px;padding:0 8px 0 14px}
-.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:1.02rem;letter-spacing:.08em;flex:1}
+.logo{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.98rem;letter-spacing:.06em;flex:none;white-space:nowrap}
 .logo i{width:22px;height:22px;border-radius:7px;background:var(--sea);display:inline-flex;align-items:center;justify-content:center}
 .logo i svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round}
 .iconbtn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ink);text-decoration:none;border-radius:50%}
@@ -43,7 +43,7 @@ nav a .av{width:24px;height:24px;font-size:.7rem;border-radius:6px;border:0}
 nav a.on .av{box-shadow:0 0 0 2px var(--sea)}
 .badge{position:absolute;top:4px;left:calc(50% + 5px);background:var(--hib);color:#fff;font-size:.6rem;font-weight:700;border-radius:9px;min-width:16px;padding:0 4px;line-height:16px;text-align:center}
 .iconbtn .badge{top:6px;left:24px}
-main{max-width:var(--w);margin:0 auto;padding:14px 14px calc(100px + env(safe-area-inset-bottom))}
+main{max-width:var(--w);margin:0 auto;padding:12px 14px calc(100px + env(safe-area-inset-bottom))}
 
 /* 入力とボタン */
 label{display:block;font-size:.8rem;font-weight:500;color:var(--sub);margin:16px 0 6px}
@@ -118,23 +118,27 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .rw{font-weight:700;font-size:.85rem;color:var(--sea);margin-top:auto;padding-top:4px}
 
 /* トップ(ジモティー風) */
-.areasel{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:1.05rem;border:0;background-color:transparent;padding:0 24px 0 0;min-height:40px;width:auto;box-shadow:none!important;background-position:right 4px center}
-.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 0;background:var(--paper);border-radius:var(--r);padding:12px 4px;margin-bottom:10px}
-.catgrid button{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;font:inherit;font-size:.72rem;color:var(--ink);padding:6px 0;cursor:pointer;border-radius:10px;min-height:64px}
-.catgrid button svg{width:30px;height:30px;stroke:var(--sea);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.toprow{display:flex;gap:6px;align-items:center;margin:-4px 0 10px}
+.toprow input{flex:1;min-width:0;min-height:42px;padding:8px 12px}
+.areasel{flex:none;max-width:44%;display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:.92rem;border:0;background-color:transparent;padding:0 24px 0 0;min-height:40px;width:auto;box-shadow:none!important;background-position:right 4px center}
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--paper);border-radius:12px;padding:4px;margin-bottom:6px}
+.catgrid button{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:4px;border:0;background:none;font:inherit;font-size:.72rem;color:var(--ink);padding:0 2px;cursor:pointer;border-radius:8px;min-height:34px;white-space:nowrap}
+.catgrid button svg{width:18px;height:18px;flex:none;stroke:var(--sea);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .catgrid button.on{background:var(--sea-l);font-weight:700}
-.quick{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 14px;padding:2px 14px 4px;scrollbar-width:none}
+.quick{display:flex;gap:5px;overflow-x:auto;margin:0 -14px 4px;padding:2px 14px 4px;scrollbar-width:none}
 .quick::-webkit-scrollbar{display:none}
-.quick button{flex:none;width:86px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);font:inherit;font-size:.74rem;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.25;text-align:center}
+.quick button{flex:none;display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:3px 10px 3px 4px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font:inherit;font-size:.72rem;font-weight:700;color:var(--ink);cursor:pointer;white-space:nowrap}
 .quick button.on{border-color:var(--sea);background:var(--sea-l)}
-.quick i{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:700;font-size:.85rem}
-.quick i svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.sechead{display:flex;justify-content:space-between;align-items:baseline;margin:18px 2px 8px}
+.quick i{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:700;font-size:.55rem;flex:none}
+.quick i svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;margin:12px 2px 6px}
 .sechead h3{margin:0;font-size:1.02rem}
 .sechead button{border:0;background:none;color:var(--sea);font:inherit;font-size:.82rem;cursor:pointer;padding:6px 0}
 .carousel{display:flex;gap:10px;overflow-x:auto;margin:0 -14px;padding:0 14px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
 .carousel::-webkit-scrollbar{display:none}
-.carousel .card{flex:none;width:150px;scroll-snap-align:start}
+.carousel .card{flex:none;width:118px;scroll-snap-align:start}
+.carousel .kanji{font-size:2rem}
+.carousel .cb{padding:6px 8px 8px}
 .carousel .ph .price{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-weight:700;font-size:.85rem;text-align:center}
 .feed{background:var(--paper);border-radius:var(--r);overflow:hidden}
 .ritem{display:flex;gap:12px;padding:12px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
@@ -154,10 +158,11 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .activef{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 10px}
 
 /* 日付・何の日・カウンター */
-.today{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 14px 6px;font-size:.72rem;color:var(--sub)}
-.today a{color:var(--sub);text-decoration:none;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.today{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;line-height:1.35;font-size:.64rem;color:var(--sub);padding:0 2px 0 10px}
+.today a{color:var(--sub);text-decoration:none;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .today a b{color:var(--ink);font-weight:500}
-.today span{flex:none}
+.today span{white-space:nowrap}
+@media (min-width:600px){.today{flex-direction:row;justify-content:flex-end;gap:14px;font-size:.72rem}}
 /* タブ(メッセージ・友達) */
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:0 -14px 12px;padding:0 14px;overflow-x:auto;scrollbar-width:none}
 .tabs button{flex:none;min-height:44px;padding:0 14px;border:0;background:none;font:inherit;font-size:.92rem;color:var(--sub);cursor:pointer;position:relative}
@@ -255,10 +260,10 @@ ol.steps li{margin-bottom:6px}
   <div class="site-in">
     <div class="bar">
       <a class="logo" href="#top"><i><svg viewBox="0 0 16 16"><path d="M1.5 9c2-2 3.5-2 5.5 0s3.5 2 5.5 0"/><path d="M1.5 5.5c2-2 3.5-2 5.5 0s3.5 2 5.5 0" opacity=".55"/></svg></i>与那原お助け</a>
+      <div class="today"><a href="#info" id="todayDay"></a><span id="counter"></span></div>
       <a class="iconbtn" id="adminLink" href="#admin" aria-label="運営メニュー" hidden><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg></a>
       <a class="iconbtn" href="#notice" aria-label="お知らせ"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg><span class="badge" id="bellBadge" hidden></span></a>
     </div>
-    <div class="today"><a href="#info" id="todayDay"></a><span id="counter"></span></div>
     <nav>
       <a href="#top" data-p="top"><svg viewBox="0 0 24 24"><path d="M3.5 11L12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/></svg>トップ</a>
       <a href="#info" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
@@ -523,11 +528,11 @@ const CAT_ICON = {
   info:'<path d="M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0113 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/>'
 };
 const QUICK = [
-  ["new","新着","#f08a24",'<span>NEW</span>'],
+  ["new","新着","#f08a24",'<span>N</span>'],
   ["free","無償OK","#2e9d5b",'<span>¥0</span>'],
   ["week","1週間以内","#3a86d4",'<svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>'],
   ["photo","写真あり","#8a63c9",'<svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="13" rx="3"/><circle cx="12" cy="13" r="3.4"/><path d="M9 6.5l1.3-2h3.4l1.3 2"/></svg>'],
-  ["verified","本人確認済みの人","#0f6878",'<svg viewBox="0 0 24 24"><path d="M12 3l7.5 2.8V11c0 4.4-3.2 7.9-7.5 9-4.3-1.1-7.5-4.6-7.5-9V5.8z"/><path d="M8.8 11.8l2.3 2.3 4.3-4.4"/></svg>'],
+  ["verified","本人確認済","#0f6878",'<svg viewBox="0 0 24 24"><path d="M12 3l7.5 2.8V11c0 4.4-3.2 7.9-7.5 9-4.3-1.1-7.5-4.6-7.5-9V5.8z"/><path d="M8.8 11.8l2.3 2.3 4.3-4.4"/></svg>'],
   ["video","ビデオ面談OK","#e2495e",'<svg viewBox="0 0 24 24"><rect x="3" y="7" width="12.5" height="10" rx="2.5"/><path d="M15.5 10.8l5-3v8.4l-5-3"/></svg>']
 ];
 const starSvg = () => svgIcon('<path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6-4.5-4.2 6.1-.8z"/>');
@@ -588,7 +593,8 @@ async function pageTop(){
     const kindOk = r => topState.kind === "all" || r.kind === topState.kind;
     const inArea = r => !topState.area || r.area === topState.area;
     // カテゴリー
-    const items = [...Object.keys(CATS).map(k => [k, CATS[k].replace("子どもの",""), CAT_ICON[k]]), ["offer","お手伝い",CAT_ICON.offer], ["info","町の情報",CAT_ICON.info]];
+    const SHORT = {cat:"猫の預かり",dog:"犬の散歩",cleaning:"掃除",childcare:"育児",pickup:"お迎え",other:"その他"};
+    const items = [...Object.keys(CATS).map(k => [k, SHORT[k], CAT_ICON[k]]), ["offer","お手伝い",CAT_ICON.offer], ["info","町の情報",CAT_ICON.info]];
     grid.replaceChildren(...items.map(([k, label, icon]) => {
       const on = k === "offer" ? topState.kind === "offer" : topState.cat === k;
       return el("button",{class: on ? "on" : "", "aria-pressed":String(on), onclick: () => {
@@ -616,7 +622,7 @@ async function pageTop(){
       el("div",{class:"sechead"}, el("h3",{},"新着のお手伝い"), el("button",{onclick: () => { topState.kind = "offer"; draw(); }},"もっと見る ›")),
       el("div",{class:"carousel"}, offers.map(r => { const ph = thumb(r); ph.append(el("span",{class:"price"}, rewardText(r).split(" / ")[0]));
         return el("a",{class:"card", href:"#req/" + r.id}, ph,
-          el("div",{class:"cb"}, el("p",{class:"ct clamp2", style:"font-size:.82rem"}, r.title), el("p",{class:"meta ellipsis"}, r.area || "与那原町"))); }))
+          el("div",{class:"cb"}, el("p",{class:"ct clamp2", style:"font-size:.76rem"}, r.title), el("p",{class:"meta ellipsis"}, r.area || "与那原町"))); }))
     ] : []));
     // 一覧
     const words = topState.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -638,8 +644,7 @@ async function pageTop(){
   }
   q.oninput = () => { topState.q = q.value; draw(); };
   area.onchange = () => { topState.area = area.value; draw(); };
-  show(el("div",{class:"row between", style:"margin:-4px 0 8px"}, area),
-    el("div",{style:"margin-bottom:12px"}, q),
+  show(el("div",{class:"toprow"}, area, q),
     grid, quick, active, carousel, feedHead, feed);
   draw();
 }
