@@ -29,6 +29,15 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #msg{min-height:1.5em;font-size:.9rem;color:var(--ai-d);margin:8px 0}
 .row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 [hidden]{display:none!important}
+.apps{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+.app{padding:8px 0;border-bottom:1px solid var(--line)}
+.app:last-child{border-bottom:0}
+.app p{margin:2px 0}
+.app button{margin:6px 6px 0 0;padding:6px 12px;font-size:.9rem}
+.st{display:inline-block;font-size:.78rem;border-radius:4px;padding:0 6px;border:1px solid var(--line);color:var(--sub)}
+.st.accepted{background:#e3f1e7;border-color:#9cc9a8;color:#245c34}
+.st.declined{background:#f3eeee;color:#7a5a5a}
+.done{display:inline-block;margin-top:12px;font-size:.9rem;color:var(--ai-d)}
 </style>
 </head>
 <body>
@@ -88,7 +97,6 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ★ここにPublishable keyを貼ってください(Secret keyは絶対に貼らない)
 const SUPABASE_URL = "https://twtlhfyksfxuancbipck.supabase.co";
 const SUPABASE_KEY = "sb_publishable_xTUyTf8UY60RQXsG9UsuZg_Rrs1f4Oj";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -134,10 +142,18 @@ $("postBtn").onclick = async () => {
   say("投稿しました。"); loadList();
 };
 
+const ST = {pending:"返事待ち",accepted:"お願いしました",declined:"お断りしました"};
+
 async function loadList(){
-  const { data, error } = await sb.from("requests").select("*").eq("status","open").order("created_at",{ascending:false});
-  const box = $("list"); box.textContent = "";
+  const box = $("list");
+  const [{ data, error }, appsRes] = await Promise.all([
+    sb.from("requests").select("*").eq("status","open").order("created_at",{ascending:false}),
+    sb.from("applications").select("id,request_id,helper_id,message,status,created_at,profiles(display_name)").order("created_at",{ascending:true})
+  ]);
+  box.textContent = "";
   if(error) return say("一覧を取得できませんでした: " + error.message);
+  if(appsRes.error) say("返信を取得できませんでした: " + appsRes.error.message);
+  const apps = appsRes.data || [];
   if(!data.length){ box.textContent = "まだ投稿はありません。最初のお願いを投稿してみましょう。"; return; }
   data.forEach(r => {
     const c = document.createElement("div"); c.className = "card";
@@ -147,11 +163,44 @@ async function loadList(){
     m.textContent = [r.area, r.wanted_date && ("希望日 " + r.wanted_date)].filter(Boolean).join(" / ");
     c.append(tag, h, m);
     if(r.description){ const d = document.createElement("p"); d.textContent = r.description; c.append(d); }
+    const mine = apps.filter(a => a.request_id === r.id);
     if(r.requester_id !== me.id){
-      const b = document.createElement("button"); b.textContent = "手伝えます";
-      b.onclick = () => apply(r.id); c.append(b);
+      const myApp = mine.find(a => a.helper_id === me.id);
+      if(myApp){
+        const d = document.createElement("div"); d.className = "done";
+        d.textContent = "返信済み(" + (ST[myApp.status] || myApp.status) + ")";
+        if(myApp.message){ d.textContent += " 「" + myApp.message + "」"; }
+        c.append(d);
+      } else {
+        const b = document.createElement("button"); b.textContent = "手伝えます";
+        b.onclick = () => apply(r.id); c.append(b);
+      }
     } else {
-      const own = document.createElement("div"); own.className = "meta"; own.textContent = "あなたの投稿です"; c.append(own);
+      const own = document.createElement("div"); own.className = "meta"; own.textContent = "あなたの投稿です";
+      c.append(own);
+      const wrap = document.createElement("div"); wrap.className = "apps";
+      const t = document.createElement("div"); t.className = "meta";
+      t.textContent = mine.length ? "届いた返信 " + mine.length + "件" : "まだ返信はありません";
+      wrap.append(t);
+      mine.forEach(a => {
+        const row = document.createElement("div"); row.className = "app";
+        const name = document.createElement("strong");
+        name.textContent = (a.profiles && a.profiles.display_name) || "名無しさん";
+        const st = document.createElement("span"); st.className = "st " + a.status;
+        st.textContent = ST[a.status] || a.status;
+        const head = document.createElement("p"); head.append(name, " ", st);
+        row.append(head);
+        if(a.message){ const p = document.createElement("p"); p.textContent = a.message; row.append(p); }
+        if(a.status === "pending"){
+          const ok = document.createElement("button"); ok.textContent = "お願いする";
+          ok.onclick = () => decide(a.id, "accepted");
+          const ng = document.createElement("button"); ng.className = "sub"; ng.textContent = "お断りする";
+          ng.onclick = () => decide(a.id, "declined");
+          row.append(ok, ng);
+        }
+        wrap.append(row);
+      });
+      c.append(wrap);
     }
     box.append(c);
   });
@@ -161,8 +210,14 @@ async function apply(requestId){
   const message = prompt("依頼者へのひとことを入力してください(任意)");
   if(message === null) return;
   const { error } = await sb.from("applications").insert({ request_id:requestId, helper_id:me.id, message:message || null });
-  if(error) return say(error.code === "23505" ? "すでに応募しています。" : "応募できませんでした: " + error.message);
-  say("応募しました。");
+  if(error) return say(error.code === "23505" ? "すでに返信しています。" : "返信できませんでした: " + error.message);
+  say("返信しました。"); loadList();
+}
+
+async function decide(appId, status){
+  const { error } = await sb.from("applications").update({ status }).eq("id", appId);
+  if(error) return say("更新できませんでした: " + error.message);
+  say(status === "accepted" ? "お願いしました。" : "お断りしました。"); loadList();
 }
 
 refresh();
