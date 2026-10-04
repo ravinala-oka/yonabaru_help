@@ -34,13 +34,13 @@ p{margin:.25em 0}
 .logo i svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round}
 .iconbtn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ink);text-decoration:none;border-radius:50%}
 .iconbtn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-nav{display:grid;grid-template-columns:repeat(6,1fr)}
+nav{display:grid;grid-template-columns:repeat(5,1fr)}
 nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;color:var(--sub);text-decoration:none;font-size:.62rem;line-height:1.2;white-space:nowrap;position:relative}
 nav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 nav a.on{color:var(--sea);font-weight:700}
 nav a.on::after{content:"";position:absolute;left:30%;right:30%;bottom:0;height:2px;border-radius:2px;background:var(--sea)}
-nav a .av{width:24px;height:24px;font-size:.7rem;border-radius:6px;border:0}
-nav a.on .av{box-shadow:0 0 0 2px var(--sea)}
+.mylink .av{width:30px;height:30px;font-size:.78rem;border-radius:8px}
+.mylink.on .av{box-shadow:0 0 0 2px var(--sea)}
 .badge{position:absolute;top:4px;left:calc(50% + 5px);background:var(--hib);color:#fff;font-size:.6rem;font-weight:700;border-radius:9px;min-width:16px;padding:0 4px;line-height:16px;text-align:center}
 .iconbtn .badge{top:6px;left:24px}
 main{max-width:var(--w);margin:0 auto;padding:12px 14px calc(100px + env(safe-area-inset-bottom))}
@@ -120,7 +120,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 /* トップ(ジモティー風) */
 .toprow{display:flex;gap:6px;align-items:center;margin:-4px 0 10px}
 .toprow input{flex:1;min-width:0;min-height:42px;padding:8px 12px}
-.areasel{flex:none;max-width:44%;display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:.92rem;border:0;background-color:transparent;padding:0 24px 0 0;min-height:40px;width:auto;box-shadow:none!important;background-position:right 4px center}
+.areasel{flex:none;max-width:44%;width:auto;min-height:42px;padding:6px 30px 6px 12px;border:1px solid var(--line);border-radius:999px;background-color:var(--paper);font-weight:700;font-size:.86rem;background-position:right 12px center;box-shadow:0 1px 2px rgba(20,30,34,.06)}
 .catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--paper);border-radius:12px;padding:4px;margin-bottom:6px}
 .catgrid button{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:4px;border:0;background:none;font:inherit;font-size:.72rem;color:var(--ink);padding:0 2px;cursor:pointer;border-radius:8px;min-height:34px;white-space:nowrap}
 .catgrid button svg{width:18px;height:18px;flex:none;stroke:var(--sea);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -139,7 +139,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .carousel .card{flex:none;width:118px;scroll-snap-align:start}
 .carousel .kanji{font-size:2rem}
 .carousel .cb{padding:6px 8px 8px}
-.carousel .ph .price{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-weight:700;font-size:.85rem;text-align:center}
+.carousel .ph .price{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.74rem!important;position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-weight:700;font-size:.85rem;text-align:center}
 .feed{background:var(--paper);border-radius:var(--r);overflow:hidden}
 .ritem{display:flex;gap:12px;padding:12px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
 .ritem:last-child{border-bottom:0}
@@ -153,8 +153,8 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .rprice{font-weight:700;font-size:1.02rem;margin-top:2px}
 .rfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;gap:8px}
 .star{width:36px;height:36px;border:0;background:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin:-6px -6px -6px 0;flex:none}
-.star svg{width:22px;height:22px;fill:#cfd6d7;stroke:none}
-.star.on svg{fill:#f2b33d}
+.star svg{width:22px;height:22px;fill:none;stroke:#b9c3c5;stroke-width:1.7;stroke-linejoin:round}
+.star.on svg{fill:var(--sea);stroke:var(--sea)}
 .activef{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 10px}
 
 /* 日付・何の日・カウンター */
@@ -176,6 +176,12 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .newsl li:last-child{border-bottom:0}
 .docrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .docrow img{border-radius:10px}
+
+.mapframe{display:block;width:100%;height:calc(100vh - 290px);min-height:320px;border:0;border-radius:var(--r);background:var(--paper)}
+.chips button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.period{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
+.period input{padding:10px 8px}
+.amountbox{margin-top:10px;padding:12px;background:var(--mist);border-radius:12px}
 
 /* ✓で選ぶボタン */
 .ticks{display:flex;flex-wrap:wrap;gap:6px}
@@ -247,6 +253,50 @@ ol.steps li{margin-bottom:6px}
 .terms h3{margin-top:18px}
 .terms p,.terms li{font-size:.88rem}
 
+
+/* ===== 詰め表示: 縦の余白と文字間を控えめに ===== */
+body{line-height:1.55;letter-spacing:-.04em;font-feature-settings:"palt" 1;font-kerning:normal}
+h2,h3,.logo{letter-spacing:-.02em}
+input,select,textarea,button{letter-spacing:inherit;font-feature-settings:inherit}
+h2{margin:2px 0 10px}
+main{padding-top:10px}
+.box{padding:12px 14px;margin-bottom:8px}
+label{margin:10px 0 4px}
+input,select,textarea{min-height:42px;padding:8px 12px}
+textarea{min-height:88px}
+.btn{min-height:44px}
+.btn.sm{min-height:32px}
+.list{gap:6px}
+.li{padding:10px}
+.ritem{padding:9px 10px;gap:10px}
+.rthumb{width:84px;height:84px}
+.rtitle{font-size:.9rem;line-height:1.4}
+.rprice{font-size:.95rem;margin-top:1px}
+.facts{gap:4px 12px;margin-top:10px}
+.stats{margin:10px 0}
+.seg{margin-bottom:8px}
+.seg button{min-height:36px}
+.tick{min-height:36px;padding:4px 12px 4px 8px}
+.tgroup{margin-bottom:6px}
+.empty{padding:26px 16px}
+.tabs button{min-height:40px}
+.sheet{padding-top:16px}
+/* 個人・業者アイコン */
+.ptype{display:inline-flex;align-items:center;justify-content:center;gap:3px;vertical-align:-3px;height:20px;min-width:20px;padding:0 3px;border-radius:6px;font-size:.68rem;font-weight:700;line-height:1}
+.ptype svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ptype.individual{background:var(--sea-l);color:var(--sea)}
+.ptype.business{background:#fdf1dc;color:#a0661a}
+.ptype:has(svg + *),.ptype:not(:only-child){}
+.row .ptype{padding:0 6px}
+
+/* 一覧の行: 見本画像に合わせた文字サイズと行の間隔 */
+.rbody{justify-content:flex-start;gap:0;padding-top:1px}
+.rbody p{margin:0}
+.rtitle{font-size:14px;line-height:20px}
+.rprice{font-size:13px;line-height:18px;margin:5px 0 2px;color:#53421d}
+.rbody .meta{font-size:11px;line-height:16px}
+.rfoot{margin-top:0;align-items:center}
+.rfoot .star{margin:-10px -6px -10px 0}
 @media (min-width:600px){
   nav a{font-size:.72rem}
   .grid{grid-template-columns:repeat(3,1fr)}
@@ -263,14 +313,14 @@ ol.steps li{margin-bottom:6px}
       <div class="today"><a href="#info" id="todayDay"></a><span id="counter"></span></div>
       <a class="iconbtn" id="adminLink" href="#admin" aria-label="運営メニュー" hidden><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg></a>
       <a class="iconbtn" href="#notice" aria-label="お知らせ"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg><span class="badge" id="bellBadge" hidden></span></a>
+      <a class="iconbtn mylink" href="#mypage" data-p="mypage" aria-label="マイページ"><span id="navAv"></span></a>
     </div>
     <nav>
       <a href="#top" data-p="top"><svg viewBox="0 0 24 24"><path d="M3.5 11L12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/></svg>トップ</a>
-      <a href="#info" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
       <a href="#post" data-p="post"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M12 8.5v7M8.5 12h7"/></svg>投稿する</a>
       <a href="#message" data-p="message"><svg viewBox="0 0 24 24"><path d="M4.5 6.5a2 2 0 012-2h11a2 2 0 012 2v8a2 2 0 01-2 2H10l-4.5 3.5z"/></svg>メッセージ<span class="badge" id="msgBadge" hidden></span></a>
       <a href="#friend" data-p="friend"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16.5 14.3c2.5.2 4.2 1.8 4.6 4.6"/></svg>友達<span class="badge" id="frBadge" hidden></span></a>
-      <a href="#mypage" data-p="mypage"><span id="navAv"></span>マイページ</a>
+      <a href="#info" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
     </nav>
   </div>
 </header>
@@ -309,7 +359,7 @@ const TASKS = {
 };
 const DAYS  = ["月","火","水","木","金","土","日","祝日"];
 const TIMES = ["朝(6〜9時)","午前(9〜12時)","午後(12〜17時)","夕方(17〜20時)","夜(20時以降)"];
-const REWARDS = {free:"無償でOK",thanks:"気持ち程度のお礼",paid:"金額を決める"};
+const REWARDS = {thanks:"気持ち程度のお礼",free:"相談",paid:"謝礼金"};
 const RATE  = {good:"良かった",normal:"普通",bad:"残念だった"};
 const REASONS = {spam:"宣伝・スパム",fraud:"お金・詐欺の疑い",harassment:"迷惑行為・嫌がらせ",dangerous:"危険・不適切な内容",other:"その他"};
 const $ = id => document.getElementById(id);
@@ -344,12 +394,40 @@ function avatar(p, big){
 }
 const nameOf = p => (p && p.display_name) || "名無しさん";
 const verified = p => p && p.verified ? el("span",{class:"pill ok"},"本人確認済み") : null;
+const TYPE_ICON = {
+  individual:'<circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c.7-4 3.6-6.3 7-6.3s6.3 2.3 7 6.3"/>',
+  business:'<path d="M4.5 20.5V7.5l7-3.5v16.5M11.5 9.5h8v11M2.5 20.5h19M7.5 9.5v.01M7.5 13v.01M7.5 16.5v.01M14.5 13h2M14.5 16.5h2"/>'
+};
+/* 個人(人マーク)か業者(建物マーク)のアイコン */
+function typeIcon(p, withLabel){
+  const t = (p && p.account_type) === "business" ? "business" : "individual";
+  const label = t === "business" ? "業者" : "個人";
+  return el("span",{class:"ptype " + t, title:label, "aria-label":label}, svgIcon(TYPE_ICON[t]), withLabel ? label : null);
+}
 function fmt(ts){ const d = new Date(ts); return (d.getMonth()+1) + "/" + d.getDate() + " " + d.getHours() + ":" + String(d.getMinutes()).padStart(2,"0"); }
 function dateJa(s){ if(!s) return ""; const [y,m,d] = s.split("-"); return Number(m) + "月" + Number(d) + "日"; }
 const todayJST = () => new Date().toLocaleDateString("sv-SE",{ timeZone:"Asia/Tokyo" });
 function rewardText(r){
-  const o = r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type || "free"];
-  return o.map(k => k === "paid" ? (r.reward_amount ? "¥" + Number(r.reward_amount).toLocaleString() : "お礼あり") : k === "thanks" ? "気持ち程度のお礼" : "無償OK").join(" / ");
+  const order = ["thanks","free","paid"];
+  const o = [...(r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type || "free"])].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return o.map(k => k === "paid"
+      ? ({ day:"日給 ", hour:"時給 " }[r.reward_unit] || "謝礼金 ") + (r.reward_amount ? "¥" + Number(r.reward_amount).toLocaleString() : "")
+      : k === "thanks" ? "気持ち程度のお礼" : "相談").join(" / ");
+}
+function periodText(r){
+  const f = r.wanted_from, t = r.wanted_date;
+  if(f && t && f !== t) return dateJa(f) + "〜" + dateJa(t);
+  return (t || f) ? dateJa(t || f) : "";
+}
+/* Googleカレンダーに予定を追加するリンク(終日 or 時刻つき) */
+function gcalUrl(title, details, location, from, to, time){
+  const z = d => d.replace(/-/g, "");
+  let dates;
+  if(time){ const [h, m] = time.split(":").map(Number); const pad = n => String(n).padStart(2,"0");
+    dates = z(from) + "T" + pad(h) + pad(m) + "00/" + z(from) + "T" + pad((h + 1) % 24) + pad(m) + "00"; }
+  else { const e = new Date((to || from) + "T00:00:00Z"); e.setUTCDate(e.getUTCDate() + 1); dates = z(from) + "/" + e.toISOString().slice(0,10).replace(/-/g,""); }
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&ctz=Asia/Tokyo&text=" + encodeURIComponent(title) +
+    "&dates=" + dates + "&details=" + encodeURIComponent(details || "") + "&location=" + encodeURIComponent(location || "");
 }
 function ivText(r){
   const v = r.interview || [];
@@ -363,6 +441,8 @@ function linkify(text){
     const u = m[0];
     out.push(/^https:\/\/meet\.jit\.si\//.test(u)
       ? el("a",{class:"btn sm joinbtn", href:u, target:"_blank", rel:"noopener"},"📹 ビデオ面談に参加")
+      : /^https:\/\/calendar\.google\.com\//.test(u)
+      ? el("a",{class:"btn sm joinbtn", href:u, target:"_blank", rel:"noopener"},"📅 Googleカレンダーに追加")
       : el("a",{href:u, target:"_blank", rel:"noopener"}, u));
     last = m.index + u.length;
   }
@@ -372,7 +452,7 @@ function linkify(text){
 async function profilesById(ids){
   ids = [...new Set(ids.filter(Boolean))];
   if(!ids.length) return {};
-  const { data } = await sb.from("profiles").select("id,display_name,avatar_url,verified,area").in("id", ids);
+  const { data } = await sb.from("profiles").select("id,display_name,avatar_url,verified,area,account_type").in("id", ids);
   return Object.fromEntries((data || []).map(p => [p.id, p]));
 }
 function thumb(r){
@@ -468,13 +548,14 @@ setInterval(() => { if(me && !document.hidden) refreshUnread(); }, 30000);
 async function render(){
   clearInterval(pollTimer);
   const [page, arg] = (location.hash.slice(1) || "top").split("/");
-  const navKey = { req:"top", msg:"message", user:"friend", terms:"info" }[page] || page;
-  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.p === navKey));
+  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top" }[page] || page;
+  document.querySelectorAll("nav a, .mylink").forEach(a => a.classList.toggle("on", a.dataset.p === navKey));
   window.scrollTo(0,0);
   if(page === "info") return pageInfo();
   if(page === "terms") return pageTerms();
+  if(page === "facility") return pageFacility(arg);
   if(!me) return pageLogin();
-  const pages = { top:pageTop, req:pageRequest, post:pagePost, message:pageMessages, msg:pageThread, friend:pageFriends, mypage:pageMy, user:pageUser, notice:pageNotice, admin:pageAdmin };
+  const pages = { consult:pageConsult, top:pageTop, req:pageRequest, post:pagePost, message:pageMessages, msg:pageThread, friend:pageFriends, mypage:pageMy, user:pageUser, notice:pageNotice, admin:pageAdmin };
   try { await (pages[page] || pageTop)(arg); }
   catch(e){ show(el("div",{class:"empty"},"表示できませんでした: " + e.message)); }
 }
@@ -529,13 +610,13 @@ const CAT_ICON = {
 };
 const QUICK = [
   ["new","新着","#f08a24",'<span>N</span>'],
-  ["free","無償OK","#2e9d5b",'<span>¥0</span>'],
+  ["paid","謝礼金あり","#2e9d5b",'<span>¥</span>'],
   ["week","1週間以内","#3a86d4",'<svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>'],
   ["photo","写真あり","#8a63c9",'<svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="13" rx="3"/><circle cx="12" cy="13" r="3.4"/><path d="M9 6.5l1.3-2h3.4l1.3 2"/></svg>'],
   ["verified","本人確認済","#0f6878",'<svg viewBox="0 0 24 24"><path d="M12 3l7.5 2.8V11c0 4.4-3.2 7.9-7.5 9-4.3-1.1-7.5-4.6-7.5-9V5.8z"/><path d="M8.8 11.8l2.3 2.3 4.3-4.4"/></svg>'],
   ["video","ビデオ面談OK","#e2495e",'<svg viewBox="0 0 24 24"><rect x="3" y="7" width="12.5" height="10" rx="2.5"/><path d="M15.5 10.8l5-3v8.4l-5-3"/></svg>']
 ];
-const starSvg = () => svgIcon('<path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6-4.5-4.2 6.1-.8z"/>');
+const starSvg = () => svgIcon('<path d="M7 10.5v9.5H4.2a1 1 0 01-1-1v-7.5a1 1 0 011-1zM7 10.5l3.6-6.6a1.9 1.9 0 013.4 1.5l-.8 3.6h5a2 2 0 012 2.4l-1.4 6.8a2.3 2.3 0 01-2.3 1.8H7"/>');
 
 async function pageTop(){
   loading();
@@ -543,7 +624,7 @@ async function pageTop(){
   const since = new Date(Date.now() - 30*864e5).toISOString();
   const [{ data, error }, { data:blocks }, { data:favs }] = await Promise.all([
     sb.from("requests")
-      .select("id,kind,category,title,description,area,wanted_date,reward_type,reward_amount,reward_options,tasks,task_other,avail_days,interview,photos,requester_id,created_at")
+      .select("id,kind,category,title,description,area,wanted_from,wanted_date,time_note,reward_type,reward_amount,reward_unit,reward_options,tasks,task_other,avail_days,interview,photos,requester_id,created_at")
       .eq("status","open")
       .or(`wanted_date.gte.${today},and(wanted_date.is.null,created_at.gte.${since})`)
       .order("created_at",{ ascending:false }),
@@ -558,8 +639,8 @@ async function pageTop(){
   const weekEnd = new Date(Date.now() + 9*3600e3 + 7*864e5).toISOString().slice(0,10);
   const QF = {
     new: () => true,
-    free: r => (r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type]).includes("free"),
-    week: r => r.kind === "ask" && r.wanted_date && r.wanted_date <= weekEnd,
+    paid: r => (r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type]).includes("paid"),
+    week: r => r.kind === "ask" && (r.wanted_from || r.wanted_date) && (r.wanted_from || r.wanted_date) <= weekEnd,
     photo: r => r.photos && r.photos.length > 0,
     verified: r => ps[r.requester_id] && ps[r.requester_id].verified,
     video: r => (r.interview || []).includes("video")
@@ -577,7 +658,7 @@ async function pageTop(){
 
   function star(r){
     let on = favSet.has(r.id);
-    const b = el("button",{class:"star" + (on ? " on" : ""), "aria-label":"お気に入り", "aria-pressed":String(on), onclick: async e => {
+    const b = el("button",{class:"star" + (on ? " on" : ""), "aria-label":"いいね(お気に入り)", "aria-pressed":String(on), onclick: async e => {
       e.preventDefault(); e.stopPropagation();
       on = !on; b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on));
       const { error } = on ? await sb.from("favorites").insert({ user_id:me.id, request_id:r.id }) : await sb.from("favorites").delete().eq("request_id", r.id).eq("user_id", me.id);
@@ -593,12 +674,15 @@ async function pageTop(){
     const kindOk = r => topState.kind === "all" || r.kind === topState.kind;
     const inArea = r => !topState.area || r.area === topState.area;
     // カテゴリー
-    const SHORT = {cat:"猫の預かり",dog:"犬の散歩",cleaning:"掃除",childcare:"育児",pickup:"お迎え",other:"その他"};
-    const items = [...Object.keys(CATS).map(k => [k, SHORT[k], CAT_ICON[k]]), ["offer","お手伝い",CAT_ICON.offer], ["info","町の情報",CAT_ICON.info]];
+    const items = [
+      ["offer","お手伝い",CAT_ICON.offer], ["cleaning","掃除",CAT_ICON.cleaning], ["pickup","お迎え",CAT_ICON.pickup], ["childcare","育児",CAT_ICON.childcare],
+      ["dog","犬の散歩",CAT_ICON.dog], ["cat","猫の預かり",CAT_ICON.cat], ["info","施設情報",CAT_ICON.info], ["other","その他",CAT_ICON.other]
+    ];
     grid.replaceChildren(...items.map(([k, label, icon]) => {
       const on = k === "offer" ? topState.kind === "offer" : topState.cat === k;
       return el("button",{class: on ? "on" : "", "aria-pressed":String(on), onclick: () => {
-        if(k === "info"){ location.hash = "#info"; return; }
+        if(k === "info"){ location.hash = "#facility"; return; }
+        if(k === "consult"){ location.hash = "#consult"; return; }
         if(k === "offer"){ topState.kind = topState.kind === "offer" ? "all" : "offer"; }
         else topState.cat = topState.cat === k ? "all" : k;
         draw(); feedHead.scrollIntoView({ behavior:"smooth", block:"start" });
@@ -620,9 +704,9 @@ async function pageTop(){
     const offers = all.filter(r => r.kind === "offer" && inArea(r)).slice(0, 10);
     carousel.replaceChildren(...(plain && offers.length ? [
       el("div",{class:"sechead"}, el("h3",{},"新着のお手伝い"), el("button",{onclick: () => { topState.kind = "offer"; draw(); }},"もっと見る ›")),
-      el("div",{class:"carousel"}, offers.map(r => { const ph = thumb(r); ph.append(el("span",{class:"price"}, rewardText(r).split(" / ")[0]));
+      el("div",{class:"carousel"}, offers.map(r => { const ph = thumb(r); ph.append(el("span",{class:"price"}, rewardText(r).split(" / ").map(x => x === "気持ち程度のお礼" ? "お礼あり" : x).join("・")));
         return el("a",{class:"card", href:"#req/" + r.id}, ph,
-          el("div",{class:"cb"}, el("p",{class:"ct clamp2", style:"font-size:.76rem"}, r.title), el("p",{class:"meta ellipsis"}, r.area || "与那原町"))); }))
+          el("div",{class:"cb"}, el("p",{class:"ct clamp2", style:"font-size:.76rem"}, typeIcon(ps[r.requester_id]), " ", r.title), el("p",{class:"meta ellipsis"}, r.area || "与那原町"))); }))
     ] : []));
     // 一覧
     const words = topState.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -634,9 +718,9 @@ async function pageTop(){
         t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:"", loading:"lazy"}) : el("span",{class:"kanji", "aria-hidden":"true"}, KANJI[r.category]));
         t.append(el("span",{class:"rlabel"}, r.kind === "offer" ? "お手伝い" : CATS[r.category])); return t; })(),
       el("div",{class:"rbody"},
-        el("p",{class:"rtitle clamp2"}, r.title),
+        el("p",{class:"rtitle clamp2"}, typeIcon(ps[r.requester_id]), " ", r.title),
         el("p",{class:"rprice"}, rewardText(r)),
-        el("p",{class:"meta ellipsis"}, r.kind === "offer" ? (r.avail_days && r.avail_days.length ? "可能日 " + r.avail_days.join("・") : "") : (r.wanted_date ? "希望日 " + dateJa(r.wanted_date) : "")),
+        el("p",{class:"meta ellipsis"}, r.kind === "offer" ? (r.avail_days && r.avail_days.length ? "可能日 " + r.avail_days.join("・") : "") : (periodText(r) ? "希望日 " + periodText(r) : "")),
         el("div",{class:"rfoot"}, el("span",{class:"meta ellipsis"}, r.area || "与那原町"),
           el("span",{class:"row", style:"gap:2px;flex-wrap:nowrap"}, el("span",{class:"meta"}, md(r.created_at)), r.requester_id === me.id ? null : star(r)))))))
       : el("div",{class:"empty"}, all.length ? "条件に合う投稿はありません。" : "まだ投稿はありません。",
@@ -673,7 +757,7 @@ async function pageRequest(id){
       el("div",{class:"row"}, el("span",{class:"pill" + (offer ? " sea" : "")}, offer ? "お手伝い" : "お願い"), el("span",{class:"pill"}, CATS[r.category]),
         r.status !== "open" ? el("span",{class:"pill hib"},"募集終了") : null),
       mineReq ? null : heart),
-    el("h2",{style:"margin:10px 0 4px;line-height:1.5"}, offer ? CATS[r.category] + "、お手伝いできます" : r.title),
+    el("h2",{style:"margin:8px 0 2px;line-height:1.5"}, typeIcon(p), " ", offer ? CATS[r.category] + "、お手伝いできます" : r.title),
     el("p",{style:"font-size:1.1rem;font-weight:700;color:var(--sea)"}, "お礼: ", rewardText(r)),
     offer ? el("div",{style:"margin-top:14px"}, el("p",{class:"meta"},"できること"),
       el("div",{class:"row", style:"gap:6px;margin-top:4px"}, [...(r.tasks || []), r.task_other].filter(Boolean).map(t => el("span",{class:"pill sea", style:"font-size:.8rem;padding:3px 10px"}, "✓ " + t)))) : null,
@@ -681,9 +765,12 @@ async function pageRequest(id){
       el("dt",{},"地区"), el("dd",{}, r.area || "相談して決める"),
       offer ? [el("dt",{},"可能日"), el("dd",{}, (r.avail_days || []).join("・") || "相談して決める"),
                el("dt",{},"時間帯"), el("dd",{}, (r.avail_times || []).join("、") || "相談して決める")]
-            : [el("dt",{},"希望日"), el("dd",{}, r.wanted_date ? dateJa(r.wanted_date) : "相談して決める")],
+            : [el("dt",{},"希望期間"), el("dd",{}, periodText(r) || "相談して決める"),
+               el("dt",{},"時間帯"), el("dd",{}, r.time_note || "相談して決める")],
       el("dt",{},"面談"), el("dd",{}, ivText(r)),
       el("dt",{},"投稿日"), el("dd",{}, fmt(r.created_at))),
+    !offer && (r.wanted_from || r.wanted_date) ? el("a",{class:"btn line sm", style:"margin-top:12px", target:"_blank", rel:"noopener",
+      href: gcalUrl("【与那原お助け】" + r.title, (r.time_note ? "時間帯: " + r.time_note + "\n" : "") + location.href, r.area, r.wanted_from || r.wanted_date, r.wanted_date)},"📅 Googleカレンダーに追加") : null,
     r.description ? el("p",{style:"white-space:pre-wrap;margin-top:16px;font-size:.93rem"}, r.description) : null);
 
   const poster = el("div",{class:"box row between", style:"padding:8px 8px 8px 16px"},
@@ -758,11 +845,15 @@ function pagePost(){
 
   // お願い用
   const title = el("input",{id:"title", maxlength:"60", placeholder:"例: 土曜の朝、犬の散歩をお願いしたい"});
-  const date = el("input",{id:"wanted_date", type:"date", min:todayJST()});
-  const askOnly = el("div",{},
-    el("label",{for:"title"},"タイトル"), title);
+  const dFrom = el("input",{id:"wFrom", type:"date", min:todayJST(), "aria-label":"希望期間の開始日"});
+  const dTo = el("input",{id:"wTo", type:"date", min:todayJST(), "aria-label":"希望期間の終了日"});
+  dFrom.onchange = () => { dTo.min = dFrom.value || todayJST(); if(!dTo.value || dTo.value < dFrom.value) dTo.value = dFrom.value; };
+  const tNote = el("input",{id:"tNote", maxlength:"60", placeholder:"例: 10:00〜13:00"});
+  const askOnly = el("div",{}, el("label",{for:"title"},"タイトル"), title);
   const askDate = el("div",{},
-    el("label",{for:"wanted_date"},"希望日(任意・過ぎると自動で締め切り)"), date);
+    el("label",{for:"wFrom"},"希望期間(任意・終わりの日を過ぎると自動で締め切り)"),
+    el("div",{class:"period"}, dFrom, el("span",{},"〜"), dTo),
+    el("label",{for:"tNote"},"希望時間帯(メモ)"), tNote);
 
   // お手伝い用
   const taskBox = el("div");
@@ -782,22 +873,22 @@ function pagePost(){
     otherText.value = ""; otherText.hidden = true;
   }
   const days = ticks("day", DAYS, []);
+  const times = ticks("time", TIMES, []);
+  const offerOnly = el("div",{}, el("label",{},"できること(いくつでも)"), taskBox);
+  const offerAvail = el("div",{}, el("label",{},"可能日"), days, el("label",{},"可能時間帯"), times);
+
+  // 面談
   const ivTypes = ticks("ivType", [["video","ビデオ"],["in_person","対面"]], ["video"]);
   const ivWrap = el("div",{style:"margin-top:8px", hidden:true}, el("p",{class:"tlabel"},"面談の方法(どちらでも良ければ両方)"), ivTypes);
   const ivMode = ticks("iv", [["none","面談なし"],["yes","面談あり"]], ["none"], () => { ivWrap.hidden = !ivMode.values().includes("yes"); }, "radio");
-  const times = ticks("time", TIMES, []);
-  const offerOnly = el("div",{},
-    el("label",{},"できること(いくつでも)"), taskBox);
-  const offerAvail = el("div",{},
-    el("label",{},"可能日"), days,
-    el("label",{},"可能時間帯"), times);
 
   // 共通
   const desc = el("textarea",{id:"description"});
   const area = el("select",{id:"area", value:(myProfile && AREAS.includes(myProfile.area)) ? myProfile.area : ""}, el("option",{value:""},"選んでください"), AREAS.map(a => el("option",{value:a}, a)));
-  const rAmt = el("input",{id:"amount", type:"number", inputmode:"numeric", min:"0", step:"100", placeholder:"例: 1000"});
-  const amtWrap = el("div",{class:"amount", hidden:true}, rAmt, el("span",{},"円"));
-  const rewards = ticks("reward", Object.entries(REWARDS), ["free"], () => { amtWrap.hidden = !rewards.values().includes("paid"); if(!amtWrap.hidden) rAmt.focus(); });
+  const rAmt = el("input",{id:"amount", type:"number", inputmode:"numeric", min:"0", step:"100", placeholder:"例: 1000", "aria-label":"謝礼金の金額"});
+  const unit = ticks("unit", [["hour","時給"],["day","日給"]], ["hour"], null, "radio");
+  const amtWrap = el("div",{class:"amountbox", hidden:true}, el("p",{class:"tlabel"},"謝礼金の種類と金額"), unit, el("div",{class:"amount"}, rAmt, el("span",{},"円")));
+  const rewards = ticks("reward", Object.entries(REWARDS), ["thanks"], () => { amtWrap.hidden = !rewards.values().includes("paid"); });
   const file = el("input",{type:"file", id:"photos", accept:"image/*", multiple:true});
   const preview = el("div",{class:"photos"});
 
@@ -811,10 +902,87 @@ function pagePost(){
       el("button",{class: kind === k ? "on" : "", "aria-pressed":String(kind === k), onclick: () => { kind = k; drawKind(); }}, v)));
     askOnly.hidden = askDate.hidden = kind !== "ask";
     offerOnly.hidden = offerAvail.hidden = kind !== "offer";
-    desc.placeholder = kind === "ask" ? "ペットの種類や時間帯など。住所や電話番号は書かないでください。" : "経験や、ひとことアピールなど。住所や電話番号は書かないでください。";
+    desc.placeholder = kind === "ask" ? "ペットの種類など。住所や電話番号は書かないでください。" : "経験や、ひとことアピールなど。住所や電話番号は書かないでください。";
     childNote.hidden = !(kind === "offer" && CHILD.includes(cat.value) && !(myProfile && myProfile.verified));
   }
   cat.onchange = () => { drawTasks(); drawKind(); };
+
+  /* 入力内容をまとめる(問題があればメッセージを返す) */
+  function collect(){
+    const offer = kind === "offer";
+    const tasks = offer ? taskGroups.flatMap(t => t.values()) : [];
+    const other = offer && taskGroups.otherFlag.values().length ? otherText.value.trim() : "";
+    const ropts = rewards.values();
+    let t = title.value.trim();
+    if(offer){
+      if(!tasks.length && !other) return "できることを1つ以上選んでください。";
+      t = [...tasks, other].filter(Boolean).join("・").slice(0, 60);
+    } else if(!t) return "タイトルを入力してください。";
+    if(!childNote.hidden) return "本人確認が必要なカテゴリーです。";
+    const wantIv = ivMode.values().includes("yes");
+    if(wantIv && !ivTypes.values().length) return "面談の方法を選んでください。";
+    if(!ropts.length) return "お礼を1つ以上選んでください。";
+    if(ropts.includes("paid") && !(Number(rAmt.value) > 0)) return "謝礼金の金額を入力してください。";
+    const from = offer ? null : (dFrom.value || dTo.value || null);
+    const to = offer ? null : (dTo.value || dFrom.value || null);
+    return {
+      requester_id:me.id, kind, category:cat.value, title:t,
+      description:desc.value.trim() || null, area:area.value || null,
+      wanted_from: from, wanted_date: to,
+      time_note: offer ? null : (tNote.value.trim() || null),
+      tasks, task_other: other || null,
+      avail_days: offer ? days.values() : [], avail_times: offer ? times.values() : [],
+      interview: wantIv ? ivTypes.values() : [],
+      reward_options: ropts,
+      reward_type: ropts.includes("paid") ? "paid" : ropts.includes("thanks") ? "thanks" : "free",
+      reward_unit: ropts.includes("paid") ? unit.values()[0] : null,
+      reward_amount: ropts.includes("paid") ? Number(rAmt.value) : null
+    };
+  }
+
+  /* 投稿確認 → 投稿する */
+  function confirmSheet(r){
+    sheet(close => {
+      const offer = r.kind === "offer";
+      const rows = [
+        ["投稿者", el("span",{}, typeIcon(myProfile, true))],
+        ["種類", offer ? "お手伝い投稿" : "お願い"],
+        ["カテゴリー", CATS[r.category]],
+        offer ? ["できること", [...r.tasks, r.task_other].filter(Boolean).join("・")] : ["タイトル", r.title],
+        ["くわしい内容", r.description || "なし"],
+        ["地区", r.area || "未選択"],
+        ...(offer ? [["可能日", r.avail_days.join("・") || "相談して決める"], ["可能時間帯", r.avail_times.join("、") || "相談して決める"]]
+                  : [["希望期間", periodText(r) || "相談して決める"], ["希望時間帯", r.time_note || "相談して決める"]]),
+        ["面談", ivText(r)],
+        ["お礼", rewardText(r)]
+      ];
+      const postBtn = el("button",{class:"btn full", onclick: async () => {
+        postBtn.disabled = true; postBtn.textContent = "投稿中…";
+        try {
+          const urls = [];
+          for(const f of photos){
+            const path = me.id + "/" + crypto.randomUUID() + ".jpg";
+            const { error } = await sb.storage.from("request-photos").upload(path, await toJpeg(f, 1280), { contentType:"image/jpeg" });
+            if(error) throw error;
+            urls.push(sb.storage.from("request-photos").getPublicUrl(path).data.publicUrl);
+          }
+          const { data, error } = await sb.from("requests").insert({ ...r, photos:urls }).select("id").single();
+          if(error) throw error;
+          close();
+          topState.kind = "all"; topState.cat = "all";
+          say("投稿しました。"); location.hash = "#req/" + data.id;
+        } catch(err){ say("投稿できませんでした: " + err.message); postBtn.disabled = false; postBtn.textContent = "投稿する"; }
+      }},"投稿する");
+      return [
+        el("h3",{},"投稿内容の確認"),
+        el("p",{class:"meta"},"この内容で投稿します。よろしければ「投稿する」を押してください。"),
+        photos.length ? el("div",{class:"photos"}, photos.map(f => el("div",{}, el("img",{src:URL.createObjectURL(f), alt:""})))) : null,
+        el("dl",{class:"facts", style:"margin-bottom:18px"}, rows.flatMap(([k,v]) => [el("dt",{}, k), el("dd",{style:"white-space:pre-wrap"}, v)])),
+        postBtn,
+        el("button",{class:"btn ghost full", style:"margin-top:6px", onclick:close},"修正する")
+      ];
+    });
+  }
 
   show(el("h2",{},"投稿する"), seg, el("div",{class:"box"},
     el("label",{for:"category"},"カテゴリー"), cat, childNote,
@@ -825,47 +993,11 @@ function pagePost(){
     askDate, offerAvail,
     el("label",{},"面談"), ivMode, ivWrap,
     el("label",{},"お礼"), rewards, amtWrap,
-    el("button",{class:"btn full", style:"margin-top:24px", onclick: async e => {
-      const offer = kind === "offer";
-      const tasks = offer ? taskGroups.flatMap(t => t.values()) : [];
-      const other = offer && taskGroups.otherFlag.values().length ? otherText.value.trim() : "";
-      const ropts = rewards.values();
-      let t = title.value.trim();
-      if(offer){
-        if(!tasks.length && !other) return say("できることを1つ以上選んでください。");
-        t = [...tasks, other].filter(Boolean).join("・").slice(0, 60);
-      } else if(!t) return say("タイトルを入力してください。");
-      if(!childNote.hidden) return say("本人確認が必要なカテゴリーです。");
-      const wantIv = ivMode.values().includes("yes");
-      if(wantIv && !ivTypes.values().length) return say("面談の方法を選んでください。");
-      if(!ropts.length) return say("お礼を1つ以上選んでください。");
-      if(ropts.includes("paid") && !(Number(rAmt.value) > 0)) return say("お礼の金額を入力してください。");
-      const b = e.currentTarget; b.disabled = true; b.textContent = "投稿中…";
-      try {
-        const urls = [];
-        for(const f of photos){
-          const path = me.id + "/" + crypto.randomUUID() + ".jpg";
-          const { error } = await sb.storage.from("request-photos").upload(path, await toJpeg(f, 1280), { contentType:"image/jpeg" });
-          if(error) throw error;
-          urls.push(sb.storage.from("request-photos").getPublicUrl(path).data.publicUrl);
-        }
-        const { data, error } = await sb.from("requests").insert({
-          requester_id:me.id, kind, category:cat.value, title:t,
-          description:desc.value.trim() || null, area:area.value || null,
-          wanted_date: offer ? null : (date.value || null),
-          tasks, task_other: other || null,
-          avail_days: offer ? days.values() : [], avail_times: offer ? times.values() : [],
-          reward_options: ropts,
-          interview: wantIv ? ivTypes.values() : [],
-          reward_type: ropts.includes("paid") ? "paid" : ropts.includes("thanks") ? "thanks" : "free",
-          reward_amount: ropts.includes("paid") ? Number(rAmt.value) : null,
-          photos:urls
-        }).select("id").single();
-        if(error) throw error;
-        topState.kind = kind; topState.cat = "all";
-        say("投稿しました。"); location.hash = "#req/" + data.id;
-      } catch(err){ say("投稿できませんでした: " + err.message); b.disabled = false; b.textContent = "投稿する"; }
-    }},"投稿する")));
+    el("button",{class:"btn full", style:"margin-top:24px", onclick: () => {
+      const r = collect();
+      if(typeof r === "string") return say(r);
+      confirmSheet(r);
+    }},"投稿内容を確認する")));
   drawTasks();
   drawKind();
 }
@@ -921,7 +1053,7 @@ async function pageMessages(){
 async function pageThread(appId){
   loading();
   const { data:a, error } = await sb.from("applications")
-    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,status,kind)").eq("id", appId).single();
+    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,status,kind,area,wanted_from,wanted_date,time_note)").eq("id", appId).single();
   if(error) throw error;
   markRead({ link:"#msg/" + a.id });
   const iAmPoster = a.requests.requester_id === me.id;
@@ -944,7 +1076,8 @@ async function pageThread(appId){
       el("div",{class:"row fill", style:"margin-top:12px"},
         el("button",{class:"btn", onclick: () => decide("accepted")}, offer ? "引き受ける" : "お願いする"),
         el("button",{class:"btn line", onclick: () => decide("declined")},"お断りする")));
-  } else status.append(el("div",{class:"row"}, el("span",{class:"meta"},"状態"), el("span",{class:"pill" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status])));
+  } else status.append(el("div",{class:"row between"}, el("div",{class:"row"}, el("span",{class:"meta"},"状態"), el("span",{class:"pill" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status])),
+    a.status === "accepted" && a.requests.kind === "ask" && (a.requests.wanted_from || a.requests.wanted_date) ? el("a",{class:"btn line sm", target:"_blank", rel:"noopener", href: gcalUrl("【与那原お助け】" + a.requests.title, (a.requests.time_note ? "時間帯: " + a.requests.time_note : ""), a.requests.area, a.requests.wanted_from || a.requests.wanted_date, a.requests.wanted_date)},"📅 カレンダーに追加") : null));
   async function decide(s){
     const { error } = await sb.from("applications").update({ status:s }).eq("id", a.id);
     if(error) return say("更新できませんでした: " + error.message);
@@ -1009,6 +1142,7 @@ function meetSheet(a, sendText){
         const lines = ["📅 面談の提案", "日時: " + dateJa(d.value) + " " + t.value, "方法: " + (v === "video" ? "ビデオ面談" : "対面")];
         if(note.value.trim()) lines.push("メモ: " + note.value.trim());
         if(v === "video") lines.push(room);
+        lines.push(gcalUrl("【与那原お助け】面談", (v === "video" ? "ビデオ面談: " + room : "対面") + (note.value.trim() ? "\n" + note.value.trim() : ""), v === "video" ? "" : note.value.trim(), d.value, null, t.value));
         close(); await sendText(lines.join("\n"));
       }},"提案を送る"),
       el("button",{class:"btn ghost full", onclick:close},"閉じる")];
@@ -1064,13 +1198,15 @@ let friendTab = "friend";
 async function pageFriends(){
   loading();
   markRead({ type:"friend" });
-  const [{ data, error }, { data:apps }, { data:blocks }] = await Promise.all([
+  const [{ data, error }, { data:apps }, { data:blocks }, { data:biz }] = await Promise.all([
     sb.from("friendships").select("*").order("created_at",{ ascending:false }),
     sb.from("applications").select("id,helper_id,status,created_at,requests(requester_id,kind)").eq("status","accepted"),
-    sb.from("blocks").select("blocked_id")
+    sb.from("blocks").select("blocked_id"),
+    sb.from("profiles").select("id").eq("account_type","business").neq("id", me.id)
   ]);
   if(error) throw error;
   const blocked = new Set((blocks || []).map(b => b.blocked_id));
+  const bizIds = (biz || []).map(b => b.id).filter(id => !blocked.has(id));
   const other = f => f.requester_id === me.id ? f.addressee_id : f.requester_id;
   const fmap = Object.fromEntries(data.map(f => [other(f), f]));
 
@@ -1084,14 +1220,14 @@ async function pageFriends(){
     if(a.created_at > x.last) x.last = a.created_at;
   });
   const acqIds = Object.keys(acq).filter(id => !blocked.has(id)).sort((x, y) => acq[y].last.localeCompare(acq[x].last));
-  const ps = await profilesById([...data.map(other), ...acqIds]);
+  const ps = await profilesById([...data.map(other), ...acqIds, ...bizIds]);
 
   const incoming = data.filter(f => f.status === "pending" && f.addressee_id === me.id);
   const friends = data.filter(f => f.status === "accepted");
   const sent = data.filter(f => f.status === "pending" && f.requester_id === me.id);
   const person = (id, sub, ...actions) => { const o = ps[id]; return el("div",{class:"li"},
     el("a",{class:"who", href:"#user/" + id, style:"flex:1;min-width:0"}, avatar(o),
-      el("div",{style:"min-width:0"}, el("b",{}, nameOf(o)), el("div",{class:"meta"}, verified(o), " ", sub || (o && o.area) || ""))),
+      el("div",{style:"min-width:0"}, el("b",{}, nameOf(o), " ", typeIcon(o)), el("div",{class:"meta"}, verified(o), " ", sub || (o && o.area) || ""))),
     actions.length ? el("div",{class:"row"}, actions) : null); };
   const act = (f, accept) => async () => {
     const { error } = accept ? await sb.from("friendships").update({ status:"accepted" }).eq("id", f.id) : await sb.from("friendships").delete().eq("id", f.id);
@@ -1107,7 +1243,7 @@ async function pageFriends(){
   const tabs = el("div",{class:"tabs", role:"tablist"});
   const body = el("div");
   function draw(){
-    tabs.replaceChildren(...[["friend","友達", friends.length + incoming.length],["acq","知り合い", acqIds.length]].map(([k,v,n]) =>
+    tabs.replaceChildren(...[["friend","友達", friends.length + incoming.length],["acq","知り合い", acqIds.length],["biz","業者", bizIds.length]].map(([k,v,n]) =>
       el("button",{class: friendTab === k ? "on" : "", role:"tab", "aria-selected":String(friendTab === k), onclick: () => { friendTab = k; draw(); }}, v, el("small",{}, n))));
     if(friendTab === "friend"){
       body.replaceChildren(
@@ -1117,6 +1253,16 @@ async function pageFriends(){
           : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "「知り合い」から友達申請ができます。"),
         sent.length ? el("div",{style:"margin-top:18px"}, el("h3",{},"申請中"), el("div",{class:"list"}, sent.map(f =>
           person(other(f), null, el("button",{class:"btn ghost sm", onclick:act(f,false)},"取り消す"))))) : "");
+    } else if(friendTab === "biz"){
+      body.replaceChildren(
+        el("p",{class:"meta", style:"margin:0 2px 8px"},"「業者」として登録しているお店・事業者です。"),
+        bizIds.length ? el("div",{class:"list"}, bizIds.map(id => {
+          const f = fmap[id];
+          const btn = f && f.status === "accepted" ? el("span",{class:"pill sea"},"友達")
+            : f ? el("span",{class:"pill"},"申請中")
+            : el("button",{class:"btn line sm", onclick:addFriend(id)},"友達になる");
+          return person(id, null, btn);
+        })) : el("div",{class:"empty"},"まだ業者の登録はありません。"));
     } else {
       body.replaceChildren(
         el("p",{class:"meta", style:"margin:0 2px 10px"},"お願いやお手伝いが成立したことがある人です。"),
@@ -1149,7 +1295,7 @@ async function profileView(uid, isMe){
     el("div",{style:"min-width:0"},
       el("h2",{style:"margin:0"}, nameOf(p)),
       el("div",{class:"meta"}, p.area || "地区未設定"),
-      el("div",{style:"margin-top:6px"}, p.verified ? el("span",{class:"pill ok"},"本人確認 OK") : el("span",{class:"pill"},"本人確認 NO"))));
+      el("div",{class:"row", style:"margin-top:6px;gap:6px"}, typeIcon(p, true), p.verified ? el("span",{class:"pill ok"},"本人確認 OK") : el("span",{class:"pill"},"本人確認 NO"))));
   const card = el("div",{class:"box"}, head,
     el("div",{class:"stats"},
       el("div",{}, el("b",{}, s.helped, el("small",{},"回")), el("span",{},"手伝った")),
@@ -1180,7 +1326,7 @@ async function pageMy(){
     profileView(me.id, true),
     sb.from("profile_private").select("address").eq("id", me.id).maybeSingle(),
     sb.from("requests").select("id,title,status,kind,category").eq("requester_id", me.id).order("created_at",{ ascending:false }),
-    sb.from("favorites").select("request_id, requests(id,title,status,kind,category,photos,area,wanted_date,reward_type,reward_amount,reward_options)").order("created_at",{ ascending:false }),
+    sb.from("favorites").select("request_id, requests(id,title,status,kind,category,photos,area,wanted_date,reward_type,reward_amount,reward_unit,reward_options)").order("created_at",{ ascending:false }),
     sb.from("verification_requests").select("status,note,created_at").eq("user_id", me.id).order("created_at",{ ascending:false }).limit(1),
     sb.from("blocks").select("blocked_id")
   ]);
@@ -1220,6 +1366,14 @@ async function pageMy(){
   // 本人確認
   const last = vr && vr[0];
   const verify = el("div",{class:"box"}, el("h3",{},"本人確認"));
+  const acct = ticks("acct", [["individual","個人"],["business","業者"]], [p.account_type || "individual"], async () => {
+    const v = acct.values()[0];
+    const { error } = await sb.from("profiles").update({ account_type:v }).eq("id", me.id);
+    if(error) return say("変更できませんでした: " + error.message);
+    say(v === "business" ? "業者として登録しました" : "個人として登録しました"); await loadMe(); render();
+  }, "radio");
+  verify.append(el("p",{class:"tlabel", style:"margin-top:2px"},"登録の種類"), acct,
+    el("p",{class:"meta", style:"margin:6px 0 10px"},"お店や事業としてお手伝いする方は「業者」を選んでください。"));
   if(p.verified) verify.append(el("p",{class:"meta"},"本人確認が完了しています。"));
   else if(last && last.status === "pending") verify.append(el("p",{class:"meta"},"書類を確認中です。完了したらお知らせします。"));
   else {
@@ -1299,6 +1453,39 @@ async function pageMy(){
   if(p.display_name === "名無しさん" && !p.pr) edit.hidden = false;
 }
 
+/* ===== 相談(運営への相談窓口) ===== */
+const TOPICS = { usage:"使い方について", trouble:"トラブル・困りごと", verify:"本人確認について", other:"その他" };
+async function pageConsult(){
+  loading();
+  markRead({ type:"consult" });
+  const { data, error } = await sb.from("consultations").select("*").order("created_at",{ ascending:false });
+  if(error) throw error;
+  const topic = ticks("topic", Object.entries(TOPICS), ["usage"], null, "radio");
+  const body = el("textarea",{id:"csBody", maxlength:"2000", placeholder:"相談したい内容を書いてください。運営から返信します。"});
+  show(
+    el("h2",{},"相談"),
+    el("div",{class:"box"},
+      el("p",{style:"font-size:.9rem"},"使い方がわからない、やり取りで困っている、などのご相談を運営が受け付けます。返信はお知らせとこのページに届きます。"),
+      el("label",{},"相談の種類"), topic,
+      el("label",{for:"csBody"},"相談内容"), body,
+      el("button",{class:"btn full", style:"margin-top:14px", onclick: async e => {
+        const t = body.value.trim(); if(!t) return say("相談内容を入力してください。");
+        const b = e.currentTarget; b.disabled = true;
+        const { error } = await sb.from("consultations").insert({ user_id:me.id, topic:topic.values()[0], body:t });
+        b.disabled = false;
+        if(error) return say("送れませんでした: " + error.message);
+        say("相談を送りました。"); render();
+      }},"相談を送る"),
+      el("p",{class:"meta", style:"margin-top:10px;text-align:center"},"急ぎの場合: ", el("a",{href:"mailto:mizuno0814@gmail.com"},"mizuno0814@gmail.com"))),
+    el("div",{class:"box"}, el("h3",{},"これまでの相談"),
+      data.length ? data.map(c => el("div",{style:"padding:10px 0;border-bottom:1px solid var(--line)"},
+        el("div",{class:"row"}, el("span",{class:"pill" + (c.status === "answered" ? " ok" : "")}, c.status === "answered" ? "返信あり" : "返信待ち"), el("span",{class:"meta"}, TOPICS[c.topic] + " ・ " + fmt(c.created_at))),
+        el("p",{style:"white-space:pre-wrap;font-size:.9rem;margin-top:4px"}, c.body),
+        c.reply ? el("div",{style:"margin-top:6px;padding:8px 10px;background:var(--sea-l);border-radius:10px"},
+          el("p",{class:"meta"},"運営より ・ " + fmt(c.replied_at)), el("p",{style:"white-space:pre-wrap;font-size:.9rem"}, c.reply)) : null))
+      : el("p",{class:"meta"},"まだ相談はありません。")));
+}
+
 /* ===== お知らせ ===== */
 async function pageNotice(){
   loading();
@@ -1316,11 +1503,12 @@ async function pageNotice(){
 async function pageAdmin(){
   if(!isAdmin){ location.hash = "#top"; return; }
   loading();
-  const [{ data:vs }, { data:rps }] = await Promise.all([
+  const [{ data:vs }, { data:rps }, { data:cs }] = await Promise.all([
     sb.from("verification_requests").select("*").eq("status","pending").order("created_at"),
-    sb.from("reports").select("*").eq("status","open").order("created_at",{ ascending:false })
+    sb.from("reports").select("*").eq("status","open").order("created_at",{ ascending:false }),
+    sb.from("consultations").select("*").eq("status","open").order("created_at")
   ]);
-  const ps = await profilesById([...(vs || []).map(v => v.user_id), ...(rps || []).flatMap(r => [r.reporter_id, r.target_user_id])]);
+  const ps = await profilesById([...(vs || []).map(v => v.user_id), ...(rps || []).flatMap(r => [r.reporter_id, r.target_user_id]), ...(cs || []).map(c => c.user_id)]);
 
   const vBox = el("div",{class:"box"}, el("h3",{},"本人確認の申請 " + (vs || []).length + "件"));
   (vs || []).forEach(v => {
@@ -1367,7 +1555,51 @@ async function pageAdmin(){
         const { error } = await sb.from("reports").update({ status:"resolved" }).eq("id", r.id);
         if(error) return say("更新できませんでした。"); say("対応済みにしました。"); render(); }},"対応済み")))));
 
-  show(el("h2",{},"運営メニュー"), vBox, rBox);
+  const cBox = el("div",{class:"box"}, el("h3",{},"未返信の相談 " + (cs || []).length + "件"));
+  (cs || []).forEach(c => {
+    const reply = el("textarea",{placeholder:"返信を入力", "aria-label":"返信", style:"min-height:70px"});
+    cBox.append(el("div",{style:"padding:10px 0;border-bottom:1px solid var(--line)"},
+      el("div",{class:"row"}, el("a",{href:"#user/" + c.user_id}, nameOf(ps[c.user_id])), el("span",{class:"meta"}, TOPICS[c.topic] + " ・ " + fmt(c.created_at))),
+      el("p",{style:"white-space:pre-wrap;font-size:.9rem;margin:4px 0 6px"}, c.body),
+      reply,
+      el("button",{class:"btn sm", style:"margin-top:6px", onclick: async () => {
+        const t = reply.value.trim(); if(!t) return say("返信を入力してください。");
+        const { error } = await sb.from("consultations").update({ reply:t, status:"answered", replied_at:new Date().toISOString() }).eq("id", c.id);
+        if(error) return say("送れませんでした: " + error.message);
+        say("返信しました。"); render();
+      }},"返信する")));
+  });
+  show(el("h2",{},"運営メニュー"), cBox, vBox, rBox);
+}
+
+/* ===== 施設情報: Googleマップで与那原町内の施設を探す ===== */
+const FACILITY_CATS = ["病院","歯医者","薬局","動物病院","スーパー","コンビニ","公園","保育園","学校","役場","郵便局","銀行","ガソリンスタンド","飲食店","カフェ"];
+const TOWN = "沖縄県島尻郡与那原町";
+function pageFacility(arg){
+  let query = arg ? decodeURIComponent(arg) : "";
+  const q = el("input",{type:"search", placeholder:"施設名やジャンル(例: 動物病院)", value:query, "aria-label":"施設を検索", enterkeyhint:"search"});
+  const frame = el("iframe",{class:"mapframe", title:"与那原町の地図", loading:"lazy", referrerpolicy:"no-referrer-when-downgrade", allowfullscreen:true});
+  const openLink = el("a",{class:"btn line sm", target:"_blank", rel:"noopener"},"Googleマップで開く ↗");
+  const chips = el("div",{class:"chips", style:"margin-bottom:8px"});
+  function go(text){
+    query = (text || "").trim();
+    const full = query ? query + " " + TOWN : TOWN;
+    frame.src = "https://www.google.com/maps?q=" + encodeURIComponent(full) + "&hl=ja&z=14&output=embed";
+    openLink.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(full);
+    q.value = query;
+    chips.replaceChildren(...FACILITY_CATS.map(c => el("button",{class: c === query ? "on" : "", onclick: () => go(c === query ? "" : c)}, c)));
+    history.replaceState(null, "", "#facility" + (query ? "/" + encodeURIComponent(query) : ""));
+  }
+  q.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); q.blur(); go(q.value); } };
+  show(
+    el("h2",{},"施設情報"),
+    el("div",{class:"toprow"}, q, el("button",{class:"btn sm", style:"min-height:42px", onclick: () => go(q.value)},"検索")),
+    chips,
+    frame,
+    el("div",{class:"row between", style:"margin-top:8px"},
+      el("p",{class:"meta"},"与那原町内で検索しています。地図の結果をタップすると詳細が見られます。"),
+      openLink));
+  go(query);
 }
 
 /* ===== 町の情報 ===== */
