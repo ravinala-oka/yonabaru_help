@@ -429,7 +429,7 @@ async function pageTop(){
   const since = new Date(Date.now() - 30*864e5).toISOString();
   const [{ data, error }, { data:blocks }] = await Promise.all([
     sb.from("requests")
-      .select("id,kind,category,title,description,area,wanted_date,reward_type,reward_amount,reward_options,tasks,task_other,avail_days,avail_times,photos,requester_id,created_at,profiles!requests_requester_id_fkey(display_name,verified)")
+      .select("id,kind,category,title,description,area,wanted_date,reward_type,reward_amount,reward_options,tasks,task_other,avail_days,avail_times,photos,requester_id,created_at")
       .eq("status","open")
       .or(`wanted_date.gte.${today},and(wanted_date.is.null,created_at.gte.${since})`)
       .order("created_at",{ ascending:false }),
@@ -479,12 +479,12 @@ async function pageTop(){
 async function pageRequest(id){
   loading();
   const [{ data:r, error }, { data:apps }, { data:fav }] = await Promise.all([
-    sb.from("requests").select("*, profiles!requests_requester_id_fkey(id,display_name,avatar_url,verified,area)").eq("id", id).single(),
+    sb.from("requests").select("*").eq("id", id).single(),
     sb.from("applications").select("id,helper_id,status,message,created_at").eq("request_id", id).order("created_at"),
     sb.from("favorites").select("request_id").eq("request_id", id).maybeSingle()
   ]);
   if(error) throw error;
-  const p = r.profiles, mineReq = r.requester_id === me.id, offer = r.kind === "offer";
+  const p = (await profilesById([r.requester_id]))[r.requester_id] || { id:r.requester_id }, mineReq = r.requester_id === me.id, offer = r.kind === "offer";
 
   let isFav = !!fav;
   const heart = el("button",{class:"heart" + (isFav ? " on" : ""), "aria-label":"お気に入り", "aria-pressed":String(isFav), onclick: async () => {
@@ -858,10 +858,11 @@ async function profileView(uid, isMe){
   const [{ data:p, error }, { data:stats }, { data:reviews }] = await Promise.all([
     sb.from("profiles").select("*").eq("id", uid).single(),
     sb.rpc("profile_stats", { uid }),
-    sb.from("reviews").select("comment,created_at,reviewer:profiles!reviews_reviewer_id_fkey(display_name)")
+    sb.from("reviews").select("comment,created_at,reviewer_id")
       .eq("reviewee_id", uid).eq("rating","good").order("created_at",{ ascending:false }).limit(20)
   ]);
   if(error) throw error;
+  const rps = await profilesById((reviews || []).map(r => r.reviewer_id));
   const s = (stats && stats[0]) || { helped:0, been_helped:0, good_reviews:0 };
   const head = el("div",{class:"row", style:"gap:16px;flex-wrap:nowrap"}, avatar(p, true),
     el("div",{style:"min-width:0"},
@@ -877,7 +878,7 @@ async function profileView(uid, isMe){
     el("p",{style:"white-space:pre-wrap;font-size:.92rem;" + (p.pr ? "" : "color:var(--sub)")}, p.pr || (isMe ? "ペットの種類や、手伝ってほしいこと・手伝えることを書きましょう。" : "まだ書かれていません。")));
   const rv = el("div",{class:"box"}, el("h3",{},"良かった評価"),
     reviews && reviews.length ? reviews.map(r => el("div",{style:"padding:10px 0;border-bottom:1px solid var(--line)"},
-      el("p",{style:"font-size:.92rem"}, r.comment || "良かった"), el("div",{class:"meta"}, nameOf(r.reviewer), "さん ・ ", fmt(r.created_at))))
+      el("p",{style:"font-size:.92rem"}, r.comment || "良かった"), el("div",{class:"meta"}, nameOf(rps[r.reviewer_id]), "さん ・ ", fmt(r.created_at))))
     : el("p",{class:"meta"},"まだ評価はありません。"));
   return { p, card, head, rv };
 }
