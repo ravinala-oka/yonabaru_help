@@ -186,6 +186,40 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 
 .pill.ng{background:#f1f1f1;color:#7a7a7a}
 .pill.xs{font-size:.62rem;padding:0 6px;line-height:1.5}
+.pgroup{background:var(--paper);border-radius:var(--r);overflow:hidden}
+.phead{display:flex;gap:10px;align-items:center;padding:10px 12px;text-decoration:none;color:var(--ink);background:#f8fafa;border-bottom:1px solid var(--line)}
+.phead .body{flex:1;min-width:0}
+.phead:active,.prow:active{background:var(--sea-l)}
+.chev{color:var(--sub);font-size:1.3rem;line-height:1}
+.prow{display:flex;gap:10px;align-items:center;padding:9px 30px 9px 14px;text-decoration:none;color:var(--ink);position:relative;border-top:1px solid var(--line)}
+.prow:first-of-type{border-top:0}
+.phead + .prow{border-top:0}
+.prow .av{width:36px;height:36px;border-radius:10px;font-size:.85rem}
+.prow .body{flex:1;min-width:0}
+.prow .dot{transform:translateY(-50%)}
+
+/* ===== メッセージ一覧: 見本画像どおりの文字・アイコン配置 ===== */
+.msg-title{font-size:1.25rem;font-weight:700;letter-spacing:.02em;margin:2px 0 6px}
+.tabs button{font-size:.95rem}
+.tabs small{font-size:.75rem;opacity:1;color:var(--sub);font-weight:400}
+.tabs button.on small{color:var(--sea);font-weight:700}
+.tabs button.on::after{left:14px;right:14px}
+.pgroup .phead{gap:10px;padding:12px 14px 12px 12px;min-height:72px;align-items:center}
+.pgroup .phead .rthumb{width:48px;height:48px;border-radius:12px}
+.pgroup .phead .rthumb .kanji{font-size:1.25rem;font-weight:500;letter-spacing:0}
+.pgroup .phead .meta{font-size:12px;line-height:18px}
+.pgroup .phead b{font-size:16px;line-height:22px;margin:1px 0}
+.pgroup .phead .pill.xs{font-size:11px;line-height:17px;padding:1px 7px;border-radius:8px;margin-left:3px}
+.pgroup .phead .chev{flex:none;font-size:1.5rem;font-weight:300;color:#7d8889;margin-left:4px}
+.pgroup .prow{align-items:flex-start;gap:10px;padding:14px 30px 14px 25px}
+.pgroup .prow .av{width:36px;height:36px;border-radius:10px;font-size:.9rem}
+.pgroup .prow .phr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.pgroup .prow .pname{display:flex;align-items:center;gap:6px;min-width:0;line-height:22px}
+.pgroup .prow .pname b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pgroup .prow .pname .ptype{flex:none;height:22px;min-width:30px;padding:0 8px;border-radius:8px;vertical-align:baseline}
+.pgroup .prow .pname .pill.xs{flex:none;font-size:11px;line-height:17px;padding:2px 8px;border-radius:8px}
+.pgroup .prow .ptime{flex:none;font-size:11px;line-height:22px;color:#8a9596;white-space:nowrap}
+.pgroup .prow .plast{font-size:13px;line-height:20px;margin-top:0;color:var(--sub)}
 .qa{padding:10px 0;border-top:1px solid var(--line)}
 .qa .q{font-size:.9rem;margin:0}
 .qa .a{font-size:.9rem;margin:6px 0 0;padding:8px 10px;background:var(--sea-l);border-radius:10px}
@@ -1158,7 +1192,7 @@ let msgTab = "mine";
 async function pageMessages(){
   loading();
   const [{ data:apps, error }, { data:myReqs }, { data:frs }, { data:dms }] = await Promise.all([
-    sb.from("applications").select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,kind,category)").order("created_at",{ ascending:false }),
+    sb.from("applications").select("id,request_id,helper_id,message,status,created_at,requests(id,post_no,title,requester_id,kind,category,photos,status)").order("created_at",{ ascending:false }),
     sb.from("requests").select("id,post_no,title,kind,category,status,photos,created_at").eq("requester_id", me.id).order("created_at",{ ascending:false }),
     sb.from("friendships").select("*").eq("status","accepted"),
     sb.from("direct_messages").select("sender_id,recipient_id,body,created_at").order("created_at",{ ascending:false }).limit(500)
@@ -1178,7 +1212,44 @@ async function pageMessages(){
   const lastDm = {};
   (dms || []).forEach(m => { const o = m.sender_id === me.id ? m.recipient_id : m.sender_id; if(!lastDm[o]) lastDm[o] = m; });
   friendIds.sort((a, b) => ((lastDm[b] || {}).created_at || "").localeCompare((lastDm[a] || {}).created_at || ""));
-  const ps = await profilesById([...nego.map(a => a.requests.requester_id), ...friendIds]);
+  const appIds = (apps || []).map(a => a.id);
+  const [ps, { data:msgs }] = await Promise.all([
+    profilesById([...(apps || []).map(a => a.requests.requester_id), ...(apps || []).map(a => a.helper_id), ...friendIds]),
+    appIds.length ? sb.from("messages").select("application_id,body,created_at,sender_id").in("application_id", appIds).order("created_at",{ ascending:false }).limit(1000) : { data:[] }
+  ]);
+  const lastMsg = {}; (msgs || []).forEach(m => { if(!lastMsg[m.application_id]) lastMsg[m.application_id] = m; });
+  const actAt = a => (lastMsg[a.id] || a).created_at;
+  // 交渉中を投稿ごとにまとめる
+  const negoByReq = {}; nego.forEach(a => (negoByReq[a.request_id] = negoByReq[a.request_id] || []).push(a));
+  const negoReqs = Object.values(negoByReq).map(list => list[0].requests)
+    .sort((x, y) => Math.max(...negoByReq[y.id].map(a => +new Date(actAt(a)))) - Math.max(...negoByReq[x.id].map(a => +new Date(actAt(a)))));
+
+  /* 投稿ごとのまとまり: 上に投稿、下にその投稿でやり取りしている人 */
+  function postGroup(r, rowsApps, sub, emptyText){
+    const head = el("a",{class:"phead", href:"#req/" + r.id},
+      (() => { const t = el("div",{class:"rthumb c-" + r.category, style:"width:48px;height:48px"});
+        t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:""}) : el("span",{class:"kanji"}, KANJI[r.category])); return t; })(),
+      el("div",{class:"body"},
+        el("div",{class:"meta"}, "投稿ID " + postIdText(r) + " ・ " + (CATS[r.category] || ""), " ",
+          r.status === "open" ? el("span",{class:"pill sea xs"},"募集中") : el("span",{class:"pill xs"},"終了")),
+        el("b",{class:"ellipsis", style:"display:block"}, r.title),
+        sub ? el("div",{class:"meta"}, sub) : null),
+      el("span",{class:"chev", "aria-hidden":"true"},"›"));
+    const rows = rowsApps.length ? rowsApps.sort((x, y) => new Date(actAt(y)) - new Date(actAt(x))).map(a => {
+      const pid = a.helper_id === me.id ? a.requests.requester_id : a.helper_id;
+      const pp = ps[pid], l = lastMsg[a.id];
+      return el("a",{class:"prow", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
+        avatar(pp),
+        el("div",{class:"body"},
+          el("div",{class:"phr"},
+            el("span",{class:"pname"}, el("b",{}, nameOf(pp)), typeIcon(pp),
+              el("span",{class:"pill xs" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status])),
+            el("span",{class:"ptime"}, fmt(actAt(a)))),
+          el("div",{class:"ellipsis plast"}, l ? (l.sender_id === me.id ? "あなた: " : "") + l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
+        unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", style:"top:50%;right:10px"}) : null);
+    }) : [el("p",{class:"meta", style:"padding:8px 14px 10px;margin:0"}, emptyText)];
+    return el("div",{class:"pgroup"}, head, ...rows);
+  }
 
   const TABS = [
     ["mine","自身の投稿", (myReqs || []).length, (myReqs || []).some(r => unreadLinks.has("#req/" + r.id) || (appsByReq[r.id] || []).some(a => unreadLinks.has("#msg/" + a.id)))],
@@ -1196,27 +1267,13 @@ async function pageMessages(){
       list.replaceChildren((myReqs || []).length ? el("div",{class:"list"}, myReqs.map(r => {
         const as = appsByReq[r.id] || [], q = qByReq[r.id] || [];
         const waitA = as.filter(a => a.status === "pending").length, waitQ = q.filter(x => !x.answer).length;
-        const isUnread = unreadLinks.has("#req/" + r.id) || as.some(a => unreadLinks.has("#msg/" + a.id));
-        return el("a",{class:"li", href:"#req/" + r.id},
-          (() => { const t = el("div",{class:"rthumb c-" + r.category, style:"width:52px;height:52px"});
-            t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:""}) : el("span",{class:"kanji", style:"font-size:1.1rem"}, KANJI[r.category])); return t; })(),
-          el("div",{class:"body"},
-            el("div",{class:"meta"}, "投稿ID " + postIdText(r), " ", r.status === "open" ? el("span",{class:"pill sea xs"},"募集中") : el("span",{class:"pill xs"},"終了")),
-            el("b",{class:"ellipsis", style:"display:block;padding-right:14px"}, r.title),
-            el("div",{class:"meta"}, "DM " + as.length + "件" + (waitA ? "(返事待ち" + waitA + ")" : ""), " ・ 質問 " + q.length + "件" + (waitQ ? "(未回答" + waitQ + ")" : ""))),
-          isUnread ? dot() : null);
+        const sub = "DM " + as.length + "人" + (waitA ? "(返事待ち" + waitA + ")" : "") + " ・ 質問 " + q.length + "件" + (waitQ ? "(未回答" + waitQ + ")" : "");
+        return postGroup({ ...r }, as.map(a => ({ ...a, requests:{ ...a.requests } })), sub, "まだDMはありません。");
       })) : el("div",{class:"empty"},"まだ投稿していません。", el("div",{style:"margin-top:12px"}, el("a",{class:"btn sm", href:"#post"},"投稿する"))));
     } else if(msgTab === "nego"){
-      list.replaceChildren(nego.length ? el("div",{class:"list"}, nego.map(a => {
-        const pp = ps[a.requests.requester_id];
-        return el("a",{class:"li", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
-          avatar(pp),
-          el("div",{class:"body"},
-            el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(pp)), el("span",{class:"meta"}, fmt(a.created_at))),
-            el("div",{class:"meta ellipsis"}, el("span",{class:"pill xs" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status]), " ", a.requests.title),
-            el("div",{class:"ellipsis", style:"font-size:.85rem"}, a.message || "(ひとことなし)")),
-          unreadLinks.has("#msg/" + a.id) ? dot() : null);
-      })) : el("div",{class:"empty"},"交渉中のやり取りはありません。", el("br"), "気になる投稿から「DMでやり取りする」を送ると、ここに表示されます。"));
+      list.replaceChildren(negoReqs.length ? el("div",{class:"list"}, negoReqs.map(r =>
+        postGroup(r, negoByReq[r.id], "投稿者: " + nameOf(ps[r.requester_id]), "")))
+        : el("div",{class:"empty"},"交渉中のやり取りはありません。", el("br"), "気になる投稿から「DMでやり取りする」を送ると、ここに表示されます。"));
     } else {
       list.replaceChildren(friendIds.length ? el("div",{class:"list"}, friendIds.map(id => {
         const pp = ps[id], l = lastDm[id];
@@ -1229,7 +1286,7 @@ async function pageMessages(){
       })) : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "友達になると、ここからメッセージを送れます。"));
     }
   }
-  show(el("h2",{},"メッセージ"), tabs, list);
+  show(el("h2",{class:"msg-title"},"メッセージ"), tabs, list);
   draw();
 }
 
