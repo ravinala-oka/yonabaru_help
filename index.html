@@ -197,6 +197,12 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .prow .av{width:36px;height:36px;border-radius:10px;font-size:.85rem}
 .prow .body{flex:1;min-width:0}
 .prow .dot{transform:translateY(-50%)}
+.townlist{display:flex;flex-direction:column}
+.townitem{display:flex;align-items:center;gap:10px;min-height:52px;padding:6px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:500}
+.townitem:first-child{border-top:0}
+.townitem:active{background:var(--sea-l)}
+.townic{width:34px;height:34px;border-radius:9px;background:var(--sea-l);display:flex;align-items:center;justify-content:center;flex:none}
+.townic svg{width:20px;height:20px;stroke:var(--sea);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .qa{padding:10px 0;border-top:1px solid var(--line)}
 .qa .q{font-size:.9rem;margin:0}
 .qa .a{font-size:.9rem;margin:6px 0 0;padding:8px 10px;background:var(--sea-l);border-radius:10px}
@@ -358,7 +364,7 @@ textarea{min-height:88px}
       <a href="#post" data-p="post"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M12 8.5v7M8.5 12h7"/></svg>投稿する</a>
       <a href="#message" data-p="message"><svg viewBox="0 0 24 24"><path d="M4.5 6.5a2 2 0 012-2h11a2 2 0 012 2v8a2 2 0 01-2 2H10l-4.5 3.5z"/></svg>メッセージ<span class="badge" id="msgBadge" hidden></span></a>
       <a href="#friend" data-p="friend"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16.5 14.3c2.5.2 4.2 1.8 4.6 4.6"/></svg>友達<span class="badge" id="frBadge" hidden></span></a>
-      <a href="yonabaru_info_2026-10.html" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
+      <a href="#town" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
     </nav>
   </div>
 </header>
@@ -594,11 +600,12 @@ setInterval(() => { if(me && !document.hidden) refreshUnread(); }, 30000);
 async function render(){
   clearInterval(pollTimer);
   const [page, arg] = (location.hash.slice(1) || "top").split("/");
-  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top", dm:"message" }[page] || page;
+  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top", dm:"message", town:"info" }[page] || page;
   document.querySelectorAll("nav a, .mylink").forEach(a => a.classList.toggle("on", a.dataset.p === navKey));
   window.scrollTo(0,0);
   if(page === "info") return pageInfo();
   if(page === "terms") return pageTerms();
+  if(page === "town") return pageTown();
   if(page === "facility") return pageFacility(arg);
   if(!me) return pageLogin();
   const pages = { dm:pageDm, consult:pageConsult, top:pageTop, req:pageRequest, post:pagePost, message:pageMessages, msg:pageThread, friend:pageFriends, mypage:pageMy, user:pageUser, notice:pageNotice, admin:pageAdmin };
@@ -1863,6 +1870,26 @@ async function pageAdmin(){
       }},"返信する")));
   });
   show(el("h2",{},"運営メニュー"), cBox, vBox, rBox);
+}
+
+/* ===== 町の情報(広報誌の一覧) =====
+   新しい号を追加するときは、HTMLファイルをリポジトリに置いて、ここに1行足すだけ */
+const TOWN_INFO = [
+  { area:"与那原", items:[
+    { title:"広報よなばる 2026年8月号", file:"yonabaru_info_2026-08.html" },
+    { title:"広報よなばる 2026年9月号", file:"yonabaru_info_2026-09.html" },
+    { title:"広報よなばる 2026年10月号", file:"yonabaru_info_2026-10.html", latest:true }
+  ]}
+];
+function pageTown(){
+  show(el("h2",{},"町の情報"),
+    TOWN_INFO.map(g => el("div",{class:"box"},
+      el("h3",{}, g.area),
+      el("div",{class:"townlist"}, g.items.map(it => el("a",{class:"townitem", href:it.file, target:"_blank", rel:"noopener"},
+        el("span",{class:"townic", "aria-hidden":"true"}, svgIcon('<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4"/>')),
+        el("span",{style:"flex:1;min-width:0"}, it.title, it.latest ? el("span",{class:"pill hib xs", style:"margin-left:6px"},"最新") : null),
+        el("span",{class:"meta", style:"flex:none"},"開く ↗"))))))
+  );
 }
 
 /* ===== 施設情報: Googleマップで与那原町内の施設を探す ===== */
