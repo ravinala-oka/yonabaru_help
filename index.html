@@ -117,6 +117,61 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .ct{font-weight:700;font-size:.9rem;line-height:1.45}
 .rw{font-weight:700;font-size:.85rem;color:var(--sea);margin-top:auto;padding-top:4px}
 
+/* トップ(ジモティー風) */
+.areasel{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:1.05rem;border:0;background-color:transparent;padding:0 24px 0 0;min-height:40px;width:auto;box-shadow:none!important;background-position:right 4px center}
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 0;background:var(--paper);border-radius:var(--r);padding:12px 4px;margin-bottom:10px}
+.catgrid button{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;font:inherit;font-size:.72rem;color:var(--ink);padding:6px 0;cursor:pointer;border-radius:10px;min-height:64px}
+.catgrid button svg{width:30px;height:30px;stroke:var(--sea);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.catgrid button.on{background:var(--sea-l);font-weight:700}
+.quick{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 14px;padding:2px 14px 4px;scrollbar-width:none}
+.quick::-webkit-scrollbar{display:none}
+.quick button{flex:none;width:86px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);font:inherit;font-size:.74rem;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.25;text-align:center}
+.quick button.on{border-color:var(--sea);background:var(--sea-l)}
+.quick i{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:700;font-size:.85rem}
+.quick i svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;margin:18px 2px 8px}
+.sechead h3{margin:0;font-size:1.02rem}
+.sechead button{border:0;background:none;color:var(--sea);font:inherit;font-size:.82rem;cursor:pointer;padding:6px 0}
+.carousel{display:flex;gap:10px;overflow-x:auto;margin:0 -14px;padding:0 14px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
+.carousel::-webkit-scrollbar{display:none}
+.carousel .card{flex:none;width:150px;scroll-snap-align:start}
+.carousel .ph .price{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-weight:700;font-size:.85rem;text-align:center}
+.feed{background:var(--paper);border-radius:var(--r);overflow:hidden}
+.ritem{display:flex;gap:12px;padding:12px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.ritem:last-child{border-bottom:0}
+.ritem:active{background:var(--sea-l)}
+.rthumb{width:96px;height:96px;border-radius:10px;overflow:hidden;position:relative;flex:none;display:flex;align-items:center;justify-content:center}
+.rthumb img{width:100%;height:100%;object-fit:cover}
+.rthumb .kanji{font-size:1.7rem}
+.rlabel{position:absolute;left:0;right:0;bottom:0;background:rgba(20,30,34,.5);color:#fff;font-size:.68rem;text-align:center;padding:2px 0}
+.rbody{flex:1;min-width:0;display:flex;flex-direction:column}
+.rtitle{font-weight:700;font-size:.95rem;line-height:1.45}
+.rprice{font-weight:700;font-size:1.02rem;margin-top:2px}
+.rfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;gap:8px}
+.star{width:36px;height:36px;border:0;background:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin:-6px -6px -6px 0;flex:none}
+.star svg{width:22px;height:22px;fill:#cfd6d7;stroke:none}
+.star.on svg{fill:#f2b33d}
+.activef{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 10px}
+
+/* 日付・何の日・カウンター */
+.today{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 14px 6px;font-size:.72rem;color:var(--sub)}
+.today a{color:var(--sub);text-decoration:none;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.today a b{color:var(--ink);font-weight:500}
+.today span{flex:none}
+/* タブ(メッセージ・友達) */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:0 -14px 12px;padding:0 14px;overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:none;min-height:44px;padding:0 14px;border:0;background:none;font:inherit;font-size:.92rem;color:var(--sub);cursor:pointer;position:relative}
+.tabs button.on{color:var(--sea);font-weight:700}
+.tabs button.on::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;border-radius:2px;background:var(--sea)}
+.tabs small{margin-left:4px;font-size:.72rem;opacity:.7}
+.joinbtn{display:flex!important;margin-top:8px;background:var(--paper)!important;color:var(--sea)!important;box-shadow:inset 0 0 0 1px var(--sea)}
+.bubble.mine a:not(.btn){color:#fff}
+.newsl{list-style:none;margin:0;padding:0}
+.newsl li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.newsl li:last-child{border-bottom:0}
+.docrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.docrow img{border-radius:10px}
+
 /* ✓で選ぶボタン */
 .ticks{display:flex;flex-wrap:wrap;gap:6px}
 .tick{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:40px;margin:0;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);font-size:.88rem;font-weight:400;cursor:pointer;user-select:none}
@@ -203,6 +258,7 @@ ol.steps li{margin-bottom:6px}
       <a class="iconbtn" id="adminLink" href="#admin" aria-label="運営メニュー" hidden><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg></a>
       <a class="iconbtn" href="#notice" aria-label="お知らせ"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg><span class="badge" id="bellBadge" hidden></span></a>
     </div>
+    <div class="today"><a href="#info" id="todayDay"></a><span id="counter"></span></div>
     <nav>
       <a href="#top" data-p="top"><svg viewBox="0 0 24 24"><path d="M3.5 11L12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/></svg>トップ</a>
       <a href="#info" data-p="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/></svg>町の情報</a>
@@ -220,7 +276,17 @@ ol.steps li{margin-bottom:6px}
 <script>
 const SUPABASE_URL = "https://twtlhfyksfxuancbipck.supabase.co";
 const SUPABASE_KEY = "sb_publishable_xTUyTf8UY60RQXsG9UsuZg_Rrs1f4Oj";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+/* 自動ログイン: 「次回から自動でログイン」がオンなら端末に保存、オフならブラウザを閉じるまで */
+const REMEMBER_KEY = "otasuke_remember";
+const remember = () => { try { return localStorage.getItem(REMEMBER_KEY) !== "0"; } catch(e){ return true; } };
+const authStorage = {
+  getItem: k => { try { return (remember() ? localStorage : sessionStorage).getItem(k); } catch(e){ return null; } },
+  setItem: (k, v) => { try { (remember() ? localStorage : sessionStorage).setItem(k, v); } catch(e){} },
+  removeItem: k => { try { localStorage.removeItem(k); sessionStorage.removeItem(k); } catch(e){} }
+};
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage:authStorage }
+});
 
 /* ===== 定数 ===== */
 const CATS  = {cat:"猫の預かり",dog:"犬の散歩",cleaning:"部屋の掃除",childcare:"育児の協力",pickup:"子どものお迎え",other:"その他"};
@@ -243,7 +309,7 @@ const RATE  = {good:"良かった",normal:"普通",bad:"残念だった"};
 const REASONS = {spam:"宣伝・スパム",fraud:"お金・詐欺の疑い",harassment:"迷惑行為・嫌がらせ",dangerous:"危険・不適切な内容",other:"その他"};
 const $ = id => document.getElementById(id);
 let me = null, myProfile = null, isAdmin = false, pollTimer = null, unread = [];
-const topState = { kind:"ask", cat:"all", area:"", q:"" };
+const topState = { kind:"all", cat:"all", area:"", q:"", quick:"new" };
 
 /* ===== 共通の部品 ===== */
 function el(tag, props, ...kids){
@@ -279,6 +345,24 @@ const todayJST = () => new Date().toLocaleDateString("sv-SE",{ timeZone:"Asia/To
 function rewardText(r){
   const o = r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type || "free"];
   return o.map(k => k === "paid" ? (r.reward_amount ? "¥" + Number(r.reward_amount).toLocaleString() : "お礼あり") : k === "thanks" ? "気持ち程度のお礼" : "無償OK").join(" / ");
+}
+function ivText(r){
+  const v = r.interview || [];
+  return v.length ? "あり(" + v.map(x => x === "video" ? "ビデオ" : "対面").join("・") + ")" : "なし";
+}
+/* 文中のURLをリンクに。ビデオ面談のURLは参加ボタンにする */
+function linkify(text){
+  const out = []; let last = 0;
+  for(const m of text.matchAll(/https?:\/\/[^\s]+/g)){
+    if(m.index > last) out.push(text.slice(last, m.index));
+    const u = m[0];
+    out.push(/^https:\/\/meet\.jit\.si\//.test(u)
+      ? el("a",{class:"btn sm joinbtn", href:u, target:"_blank", rel:"noopener"},"📹 ビデオ面談に参加")
+      : el("a",{href:u, target:"_blank", rel:"noopener"}, u));
+    last = m.index + u.length;
+  }
+  out.push(text.slice(last));
+  return out;
 }
 async function profilesById(ids){
   ids = [...new Set(ids.filter(Boolean))];
@@ -396,6 +480,8 @@ function pageLogin(){
   const email = el("input",{type:"email", id:"email", autocomplete:"email", inputmode:"email"});
   const pw = el("input",{type:"password", id:"pw", autocomplete:"current-password"});
   const agree = el("input",{type:"checkbox", id:"agree"});
+  const keep = el("input",{type:"checkbox", id:"keep", checked:remember()});
+  const setKeep = () => { try { localStorage.setItem(REMEMBER_KEY, keep.checked ? "1" : "0"); } catch(e){} };
   show(
     el("div",{style:"padding:18px 4px 6px"},
       el("h2",{style:"font-size:1.35rem;margin:0 0 6px;line-height:1.5"},"ご近所で、", el("br"), "ちょっと手伝い合う。"),
@@ -403,7 +489,9 @@ function pageLogin(){
     el("div",{class:"box"},
       el("label",{for:"email"},"メールアドレス"), email,
       el("label",{for:"pw"},"パスワード(6文字以上)"), pw,
-      el("button",{class:"btn full", style:"margin-top:18px", onclick: async () => {
+      el("label",{class:"check", for:"keep"}, keep, el("span",{},"次回から自動でログインする")),
+      el("button",{class:"btn full", style:"margin-top:14px", onclick: async () => {
+        setKeep();
         const { error } = await sb.auth.signInWithPassword({ email:email.value.trim(), password:pw.value });
         if(error) return say("ログインできませんでした。メールアドレスとパスワードを確認してください。");
         await loadMe(); render();
@@ -413,6 +501,7 @@ function pageLogin(){
       el("label",{class:"check", for:"agree"}, agree, el("span",{},"18歳以上で、", el("a",{href:"#terms"},"利用規約とプライバシーポリシー"), "に同意します")),
       el("button",{class:"btn line full", style:"margin-top:10px", onclick: async () => {
         if(!agree.checked) return say("利用規約への同意が必要です。");
+        setKeep();
         const { data, error } = await sb.auth.signUp({ email:email.value.trim(), password:pw.value,
           options:{ data:{ terms_agreed_at:new Date().toISOString() }, emailRedirectTo: location.origin + location.pathname } });
         if(error) return say("登録できませんでした: " + error.message);
@@ -422,56 +511,136 @@ function pageLogin(){
     ));
 }
 
-/* ===== トップ:探す ===== */
+/* ===== トップ:探す(ジモティー風) ===== */
+const CAT_ICON = {
+  cat:'<path d="M5 10.5L5.5 4l4 3.2h5L18.5 4l.5 6.5v2.5a7 7 0 01-14 0z"/><circle cx="9.3" cy="12" r=".9" fill="#0f6878"/><circle cx="14.7" cy="12" r=".9" fill="#0f6878"/><path d="M11 15.2l1 .8 1-.8"/>',
+  dog:'<circle cx="6.5" cy="9.5" r="1.8"/><circle cx="10.2" cy="6" r="1.8"/><circle cx="14.3" cy="6" r="1.8"/><circle cx="17.8" cy="9.5" r="1.8"/><path d="M8 17.2c0-2.7 1.9-5.4 4.2-5.4s4.2 2.7 4.2 5.4c0 1.6-1.2 2.6-2.6 2.6-.9 0-1-.5-1.6-.5s-.7.5-1.6.5C9.2 19.8 8 18.8 8 17.2z"/>',
+  cleaning:'<path d="M15 3l-3.5 8.5"/><path d="M6.5 11.5h10l1.8 8.5H4.7z"/><path d="M9 15v5M12.5 15v5M15.5 15v5"/>',
+  childcare:'<rect x="8" y="8.5" width="8" height="12" rx="3"/><path d="M10 8.5V6h4v2.5M10.5 6V4h3v2M8 12.5h3M8 15.5h3"/>',
+  pickup:'<rect x="5" y="7.5" width="14" height="13" rx="3"/><path d="M9 7.5V6a3 3 0 016 0v1.5M5 13h14M11 13v2h2v-2"/>',
+  other:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.2a4.3 4.3 0 017.5 2.6C19.5 15.4 12 20 12 20z"/>',
+  offer:'<path d="M8.5 12.5V6.2a1.4 1.4 0 012.8 0v5M11.3 11V4.6a1.4 1.4 0 012.8 0V11M14.1 11V6.3a1.4 1.4 0 012.8 0v7.2c0 4-2.5 6.9-6 6.9-2.4 0-3.9-1.3-5.3-3.8l-1.7-3a1.4 1.4 0 012.3-1.5l2.3 2.3"/>',
+  info:'<path d="M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0113 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/>'
+};
+const QUICK = [
+  ["new","新着","#f08a24",'<span>NEW</span>'],
+  ["free","無償OK","#2e9d5b",'<span>¥0</span>'],
+  ["week","1週間以内","#3a86d4",'<svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>'],
+  ["photo","写真あり","#8a63c9",'<svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="13" rx="3"/><circle cx="12" cy="13" r="3.4"/><path d="M9 6.5l1.3-2h3.4l1.3 2"/></svg>'],
+  ["verified","本人確認済みの人","#0f6878",'<svg viewBox="0 0 24 24"><path d="M12 3l7.5 2.8V11c0 4.4-3.2 7.9-7.5 9-4.3-1.1-7.5-4.6-7.5-9V5.8z"/><path d="M8.8 11.8l2.3 2.3 4.3-4.4"/></svg>'],
+  ["video","ビデオ面談OK","#e2495e",'<svg viewBox="0 0 24 24"><rect x="3" y="7" width="12.5" height="10" rx="2.5"/><path d="M15.5 10.8l5-3v8.4l-5-3"/></svg>']
+];
+const starSvg = () => svgIcon('<path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6-4.5-4.2 6.1-.8z"/>');
+
 async function pageTop(){
   loading();
   const today = todayJST();
   const since = new Date(Date.now() - 30*864e5).toISOString();
-  const [{ data, error }, { data:blocks }] = await Promise.all([
+  const [{ data, error }, { data:blocks }, { data:favs }] = await Promise.all([
     sb.from("requests")
-      .select("id,kind,category,title,description,area,wanted_date,reward_type,reward_amount,reward_options,tasks,task_other,avail_days,avail_times,photos,requester_id,created_at")
+      .select("id,kind,category,title,description,area,wanted_date,reward_type,reward_amount,reward_options,tasks,task_other,avail_days,interview,photos,requester_id,created_at")
       .eq("status","open")
       .or(`wanted_date.gte.${today},and(wanted_date.is.null,created_at.gte.${since})`)
       .order("created_at",{ ascending:false }),
-    sb.from("blocks").select("blocked_id")
+    sb.from("blocks").select("blocked_id"),
+    sb.from("favorites").select("request_id")
   ]);
   if(error) throw error;
   const blocked = new Set((blocks || []).map(b => b.blocked_id));
   const all = data.filter(r => !blocked.has(r.requester_id));
+  const ps = await profilesById(all.map(r => r.requester_id));
+  const favSet = new Set((favs || []).map(f => f.request_id));
+  const weekEnd = new Date(Date.now() + 9*3600e3 + 7*864e5).toISOString().slice(0,10);
+  const QF = {
+    new: () => true,
+    free: r => (r.reward_options && r.reward_options.length ? r.reward_options : [r.reward_type]).includes("free"),
+    week: r => r.kind === "ask" && r.wanted_date && r.wanted_date <= weekEnd,
+    photo: r => r.photos && r.photos.length > 0,
+    verified: r => ps[r.requester_id] && ps[r.requester_id].verified,
+    video: r => (r.interview || []).includes("video")
+  };
 
-  const seg = el("div",{class:"seg", role:"tablist"});
+  const area = el("select",{class:"areasel", "aria-label":"地区", value:topState.area},
+    el("option",{value:""},"与那原町 全域"), AREAS.map(a => el("option",{value:a}, a)));
   const q = el("input",{type:"search", placeholder:"キーワードで探す", value:topState.q, "aria-label":"キーワード", enterkeyhint:"search"});
-  const area = el("select",{"aria-label":"地区", value:topState.area}, el("option",{value:""},"全地区"), AREAS.map(a => el("option",{value:a}, a)));
-  const chips = el("div",{class:"chips"});
-  const grid = el("div");
+  const grid = el("div",{class:"catgrid"});
+  const quick = el("div",{class:"quick"});
+  const active = el("div",{class:"activef"});
+  const carousel = el("div");
+  const feedHead = el("div",{class:"sechead"});
+  const feed = el("div");
+
+  function star(r){
+    let on = favSet.has(r.id);
+    const b = el("button",{class:"star" + (on ? " on" : ""), "aria-label":"お気に入り", "aria-pressed":String(on), onclick: async e => {
+      e.preventDefault(); e.stopPropagation();
+      on = !on; b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on));
+      const { error } = on ? await sb.from("favorites").insert({ user_id:me.id, request_id:r.id }) : await sb.from("favorites").delete().eq("request_id", r.id).eq("user_id", me.id);
+      if(error){ say("保存できませんでした"); return; }
+      on ? favSet.add(r.id) : favSet.delete(r.id);
+      say(on ? "お気に入りに追加しました" : "お気に入りから外しました");
+    }}, starSvg());
+    return b;
+  }
+  const md = ts => { const d = new Date(ts); return String(d.getMonth()+1).padStart(2,"0") + "/" + String(d.getDate()).padStart(2,"0"); };
 
   function draw(){
-    seg.replaceChildren(...[["ask","お願い"],["offer","お手伝い"]].map(([k,v]) =>
-      el("button",{class: topState.kind === k ? "on" : "", role:"tab", "aria-selected":String(topState.kind === k), onclick: () => { topState.kind = k; draw(); }}, v)));
-    const base = all.filter(r => r.kind === topState.kind && (!topState.area || r.area === topState.area));
-    const counts = { all: base.length }; base.forEach(r => counts[r.category] = (counts[r.category] || 0) + 1);
-    chips.replaceChildren(...["all", ...Object.keys(CATS)].map(k =>
-      el("button",{class: topState.cat === k ? "on" : "", "aria-pressed":String(topState.cat === k), onclick: () => { topState.cat = k; draw(); }},
-        k === "all" ? "すべて" : CATS[k], el("small",{}, counts[k] || 0))));
+    const kindOk = r => topState.kind === "all" || r.kind === topState.kind;
+    const inArea = r => !topState.area || r.area === topState.area;
+    // カテゴリー
+    const items = [...Object.keys(CATS).map(k => [k, CATS[k].replace("子どもの",""), CAT_ICON[k]]), ["offer","お手伝い",CAT_ICON.offer], ["info","町の情報",CAT_ICON.info]];
+    grid.replaceChildren(...items.map(([k, label, icon]) => {
+      const on = k === "offer" ? topState.kind === "offer" : topState.cat === k;
+      return el("button",{class: on ? "on" : "", "aria-pressed":String(on), onclick: () => {
+        if(k === "info"){ location.hash = "#info"; return; }
+        if(k === "offer"){ topState.kind = topState.kind === "offer" ? "all" : "offer"; }
+        else topState.cat = topState.cat === k ? "all" : k;
+        draw(); feedHead.scrollIntoView({ behavior:"smooth", block:"start" });
+      }}, svgIcon(icon), label);
+    }));
+    // クイック絞り込み
+    quick.replaceChildren(...QUICK.map(([k, label, color, icon]) =>
+      el("button",{class: topState.quick === k ? "on" : "", "aria-pressed":String(topState.quick === k), onclick: () => { topState.quick = topState.quick === k ? "new" : k; draw(); }},
+        (() => { const i = el("i",{style:"background:" + color}); i.innerHTML = icon; return i; })(), label)));
+    // 選択中の条件
+    const chips = [];
+    if(topState.kind === "offer") chips.push(["お手伝い投稿", () => topState.kind = "all"]);
+    if(topState.cat !== "all") chips.push([CATS[topState.cat], () => topState.cat = "all"]);
+    if(topState.quick !== "new") chips.push([QUICK.find(x => x[0] === topState.quick)[1], () => topState.quick = "new"]);
+    if(topState.q.trim()) chips.push(["「" + topState.q.trim() + "」", () => { topState.q = ""; q.value = ""; }]);
+    active.replaceChildren(...chips.map(([t, clear]) => el("button",{class:"btn line sm", onclick: () => { clear(); draw(); }}, t, " ✕")));
+    // 新着のお手伝い(条件なしのときだけ)
+    const plain = !chips.length;
+    const offers = all.filter(r => r.kind === "offer" && inArea(r)).slice(0, 10);
+    carousel.replaceChildren(...(plain && offers.length ? [
+      el("div",{class:"sechead"}, el("h3",{},"新着のお手伝い"), el("button",{onclick: () => { topState.kind = "offer"; draw(); }},"もっと見る ›")),
+      el("div",{class:"carousel"}, offers.map(r => { const ph = thumb(r); ph.append(el("span",{class:"price"}, rewardText(r).split(" / ")[0]));
+        return el("a",{class:"card", href:"#req/" + r.id}, ph,
+          el("div",{class:"cb"}, el("p",{class:"ct clamp2", style:"font-size:.82rem"}, r.title), el("p",{class:"meta ellipsis"}, r.area || "与那原町"))); }))
+    ] : []));
+    // 一覧
     const words = topState.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    const hits = base.filter(r => (topState.cat === "all" || r.category === topState.cat) &&
+    const hits = all.filter(r => kindOk(r) && inArea(r) && (topState.cat === "all" || r.category === topState.cat) && QF[topState.quick](r) &&
       words.every(w => [r.title, r.description, r.area, (r.tasks || []).join(" "), r.task_other].join(" ").toLowerCase().includes(w)));
-    if(!hits.length){
-      grid.replaceChildren(el("div",{class:"empty"},
-        all.length ? "条件に合う投稿はありません。" : "まだ投稿はありません。",
-        el("div",{style:"margin-top:14px"}, el("a",{class:"btn sm", href:"#post"}, topState.kind === "ask" ? "お願いを投稿する" : "お手伝いを投稿する"))));
-      return;
-    }
-    grid.replaceChildren(el("div",{class:"grid"}, hits.map(r => el("a",{class:"card", href:"#req/" + r.id},
-      thumb(r),
-      el("div",{class:"cb"},
-        el("p",{class:"ct clamp2"}, r.title),
-        el("p",{class:"meta ellipsis"}, [r.area, r.kind === "offer" ? (r.avail_days || []).join("・") : r.wanted_date && dateJa(r.wanted_date)].filter(Boolean).join(" ・ ") || "相談して決める"),
-        el("p",{class:"rw ellipsis"}, rewardText(r)))))));
+    feedHead.replaceChildren(el("h3",{}, plain ? "新着の投稿" : "検索結果"), el("span",{class:"meta"}, hits.length + "件"));
+    feed.replaceChildren(hits.length ? el("div",{class:"feed"}, hits.map(r => el("a",{class:"ritem", href:"#req/" + r.id},
+      (() => { const t = el("div",{class:"rthumb c-" + r.category});
+        t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:"", loading:"lazy"}) : el("span",{class:"kanji", "aria-hidden":"true"}, KANJI[r.category]));
+        t.append(el("span",{class:"rlabel"}, r.kind === "offer" ? "お手伝い" : CATS[r.category])); return t; })(),
+      el("div",{class:"rbody"},
+        el("p",{class:"rtitle clamp2"}, r.title),
+        el("p",{class:"rprice"}, rewardText(r)),
+        el("p",{class:"meta ellipsis"}, r.kind === "offer" ? (r.avail_days && r.avail_days.length ? "可能日 " + r.avail_days.join("・") : "") : (r.wanted_date ? "希望日 " + dateJa(r.wanted_date) : "")),
+        el("div",{class:"rfoot"}, el("span",{class:"meta ellipsis"}, r.area || "与那原町"),
+          el("span",{class:"row", style:"gap:2px;flex-wrap:nowrap"}, el("span",{class:"meta"}, md(r.created_at)), r.requester_id === me.id ? null : star(r)))))))
+      : el("div",{class:"empty"}, all.length ? "条件に合う投稿はありません。" : "まだ投稿はありません。",
+          el("div",{style:"margin-top:14px"}, el("a",{class:"btn sm", href:"#post"},"投稿する"))));
   }
   q.oninput = () => { topState.q = q.value; draw(); };
   area.onchange = () => { topState.area = area.value; draw(); };
-  show(seg, el("div",{class:"searchrow"}, q, area), chips, grid);
+  show(el("div",{class:"row between", style:"margin:-4px 0 8px"}, area),
+    el("div",{style:"margin-bottom:12px"}, q),
+    grid, quick, active, carousel, feedHead, feed);
   draw();
 }
 
@@ -508,6 +677,7 @@ async function pageRequest(id){
       offer ? [el("dt",{},"可能日"), el("dd",{}, (r.avail_days || []).join("・") || "相談して決める"),
                el("dt",{},"時間帯"), el("dd",{}, (r.avail_times || []).join("、") || "相談して決める")]
             : [el("dt",{},"希望日"), el("dd",{}, r.wanted_date ? dateJa(r.wanted_date) : "相談して決める")],
+      el("dt",{},"面談"), el("dd",{}, ivText(r)),
       el("dt",{},"投稿日"), el("dd",{}, fmt(r.created_at))),
     r.description ? el("p",{style:"white-space:pre-wrap;margin-top:16px;font-size:.93rem"}, r.description) : null);
 
@@ -563,11 +733,11 @@ async function pageRequest(id){
 
 /* ===== 投稿する ===== */
 /* ✓で選ぶボタン群。multi=falseなら1つだけ選べる */
-function ticks(name, items, selected, onchange){
+function ticks(name, items, selected, onchange, type){
   const wrap = el("div",{class:"ticks", role:"group"});
   items.forEach(it => {
     const [val, label] = Array.isArray(it) ? it : [it, it];
-    const inp = el("input",{type:"checkbox", name, value:val, checked:(selected || []).includes(val)});
+    const inp = el("input",{type: type || "checkbox", name, value:val, checked:(selected || []).includes(val)});
     if(onchange) inp.onchange = onchange;
     wrap.append(el("label",{class:"tick"}, inp, el("i",{"aria-hidden":"true"}), label));
   });
@@ -607,6 +777,9 @@ function pagePost(){
     otherText.value = ""; otherText.hidden = true;
   }
   const days = ticks("day", DAYS, []);
+  const ivTypes = ticks("ivType", [["video","ビデオ"],["in_person","対面"]], ["video"]);
+  const ivWrap = el("div",{style:"margin-top:8px", hidden:true}, el("p",{class:"tlabel"},"面談の方法(どちらでも良ければ両方)"), ivTypes);
+  const ivMode = ticks("iv", [["none","面談なし"],["yes","面談あり"]], ["none"], () => { ivWrap.hidden = !ivMode.values().includes("yes"); }, "radio");
   const times = ticks("time", TIMES, []);
   const offerOnly = el("div",{},
     el("label",{},"できること(いくつでも)"), taskBox);
@@ -645,6 +818,7 @@ function pagePost(){
     el("label",{for:"description"},"くわしい内容"), desc,
     el("label",{for:"area"},"地区"), area,
     askDate, offerAvail,
+    el("label",{},"面談"), ivMode, ivWrap,
     el("label",{},"お礼"), rewards, amtWrap,
     el("button",{class:"btn full", style:"margin-top:24px", onclick: async e => {
       const offer = kind === "offer";
@@ -657,6 +831,8 @@ function pagePost(){
         t = [...tasks, other].filter(Boolean).join("・").slice(0, 60);
       } else if(!t) return say("タイトルを入力してください。");
       if(!childNote.hidden) return say("本人確認が必要なカテゴリーです。");
+      const wantIv = ivMode.values().includes("yes");
+      if(wantIv && !ivTypes.values().length) return say("面談の方法を選んでください。");
       if(!ropts.length) return say("お礼を1つ以上選んでください。");
       if(ropts.includes("paid") && !(Number(rAmt.value) > 0)) return say("お礼の金額を入力してください。");
       const b = e.currentTarget; b.disabled = true; b.textContent = "投稿中…";
@@ -675,6 +851,7 @@ function pagePost(){
           tasks, task_other: other || null,
           avail_days: offer ? days.values() : [], avail_times: offer ? times.values() : [],
           reward_options: ropts,
+          interview: wantIv ? ivTypes.values() : [],
           reward_type: ropts.includes("paid") ? "paid" : ropts.includes("thanks") ? "thanks" : "free",
           reward_amount: ropts.includes("paid") ? Number(rAmt.value) : null,
           photos:urls
@@ -689,34 +866,50 @@ function pagePost(){
 }
 
 /* ===== メッセージ一覧 ===== */
+let msgTab = "nego";
 async function pageMessages(){
   loading();
   const { data:apps, error } = await sb.from("applications")
-    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,kind,category,photos)")
+    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,kind,category)")
     .order("created_at",{ ascending:false });
   if(error) throw error;
-  if(!apps.length){
-    show(el("h2",{},"メッセージ"), el("div",{class:"empty"},"まだやり取りはありません。", el("br"), "トップで投稿を探して、メッセージを送ってみましょう。"));
-    return;
-  }
   const partnerOf = a => a.helper_id === me.id ? a.requests.requester_id : a.helper_id;
+  // 手伝う側: お願い投稿なら申し出た人、お手伝い投稿なら投稿者
+  const helperOf = a => a.requests.kind === "offer" ? a.requests.requester_id : a.helper_id;
+  const tabOf = a => a.status !== "accepted" ? "nego" : (helperOf(a) === me.id ? "help" : "ask");
   const [ps, { data:msgs }] = await Promise.all([
     profilesById(apps.map(partnerOf)),
-    sb.from("messages").select("application_id,body,created_at").in("application_id", apps.map(a => a.id)).order("created_at")
+    apps.length ? sb.from("messages").select("application_id,body,created_at").in("application_id", apps.map(a => a.id)).order("created_at") : { data:[] }
   ]);
   const last = {}; (msgs || []).forEach(m => last[m.application_id] = m);
   const unreadLinks = new Set(unread.map(n => n.link));
-  apps.sort((x, y) => new Date((last[y.id] || y).created_at) - new Date((last[x.id] || x).created_at));
-  show(el("h2",{},"メッセージ"), el("div",{class:"list"}, apps.map(a => {
-    const p = ps[partnerOf(a)], l = last[a.id];
-    return el("a",{class:"li", href:"#msg/" + a.id},
-      avatar(p),
-      el("div",{class:"body"},
-        el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(p)), el("span",{class:"meta"}, fmt((l || a).created_at))),
-        el("div",{class:"meta ellipsis"}, el("span",{class:"pill" + (a.status === "accepted" ? " ok" : "")}, ST[a.status]), " ", a.requests.title),
-        el("div",{class:"ellipsis", style:"font-size:.88rem"}, l ? l.body : (a.message || "(ひとことなし)"))),
-      unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", "aria-label":"未読"}) : null);
-  })));
+  const time = a => new Date((last[a.id] || a).created_at);
+  apps.sort((x, y) => (x.status === "declined") - (y.status === "declined") || time(y) - time(x));
+  const TABS = [["nego","交渉中"],["ask","お願い"],["help","手伝い"]];
+  const tabs = el("div",{class:"tabs", role:"tablist"});
+  const list = el("div");
+  function draw(){
+    tabs.replaceChildren(...TABS.map(([k,v]) => {
+      const n = apps.filter(a => tabOf(a) === k);
+      const dot = n.some(a => unreadLinks.has("#msg/" + a.id));
+      return el("button",{class: msgTab === k ? "on" : "", role:"tab", "aria-selected":String(msgTab === k), onclick: () => { msgTab = k; draw(); }},
+        v, el("small",{}, n.length), dot ? el("span",{class:"dot", style:"top:10px;right:2px;width:7px;height:7px"}) : null);
+    }));
+    const rows = apps.filter(a => tabOf(a) === msgTab);
+    const emptyText = { nego:"交渉中のやり取りはありません。", ask:"お願いが成立した相手はまだいません。", help:"お手伝いが成立した相手はまだいません。" }[msgTab];
+    list.replaceChildren(rows.length ? el("div",{class:"list"}, rows.map(a => {
+      const p = ps[partnerOf(a)], l = last[a.id];
+      return el("a",{class:"li", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
+        avatar(p),
+        el("div",{class:"body"},
+          el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(p)), el("span",{class:"meta"}, fmt((l || a).created_at))),
+          el("div",{class:"meta ellipsis"}, a.status === "declined" ? el("span",{class:"pill hib"},"お断り") : null, " ", a.requests.title),
+          el("div",{class:"ellipsis", style:"font-size:.88rem"}, l ? l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
+        unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", "aria-label":"未読"}) : null);
+    })) : el("div",{class:"empty"}, emptyText));
+  }
+  show(el("h2",{},"メッセージ"), tabs, list);
+  draw();
 }
 
 /* ===== やり取り ===== */
@@ -736,7 +929,7 @@ async function pageThread(appId){
     const { data } = await sb.from("messages").select("*").eq("application_id", a.id).order("created_at");
     thread.replaceChildren(
       el("div",{class:"bubble" + (a.helper_id === me.id ? " mine" : "")}, el("span",{class:"meta"}, "最初のひとこと ・ " + fmt(a.created_at)), a.message || (offer ? "お願いしたいです" : "手伝えます")),
-      ...(data || []).map(m => el("div",{class:"bubble" + (m.sender_id === me.id ? " mine" : "")}, el("span",{class:"meta"}, fmt(m.created_at)), m.body)));
+      ...(data || []).map(m => el("div",{class:"bubble" + (m.sender_id === me.id ? " mine" : "")}, el("span",{class:"meta"}, fmt(m.created_at)), linkify(m.body))));
   }
 
   const status = el("div",{class:"box"});
@@ -758,14 +951,19 @@ async function pageThread(appId){
 
   const body = el("textarea",{placeholder:"メッセージを入力", "aria-label":"メッセージ", rows:"1"});
   body.oninput = () => { body.style.height = "auto"; body.style.height = Math.min(body.scrollHeight, 120) + "px"; };
+  async function sendText(t){
+    const { error } = await sb.from("messages").insert({ application_id:a.id, sender_id:me.id, body:t });
+    if(error){ say("送れませんでした。"); return false; }
+    await loadMsgs(); thread.lastElementChild.scrollIntoView({ block:"end" }); return true;
+  }
   const sendBtn = el("button",{class:"btn", onclick: async () => {
     const t = body.value.trim(); if(!t) return;
     sendBtn.disabled = true;
-    const { error } = await sb.from("messages").insert({ application_id:a.id, sender_id:me.id, body:t });
+    if(await sendText(t)){ body.value = ""; body.style.height = ""; }
     sendBtn.disabled = false;
-    if(error) return say("送れませんでした。");
-    body.value = ""; body.style.height = ""; await loadMsgs(); thread.lastElementChild.scrollIntoView({ block:"end" });
   }},"送信");
+  const meetBtn = el("button",{class:"iconbtn", style:"border:0;background:var(--sea-l);color:var(--sea);flex:none;cursor:pointer", "aria-label":"面談", onclick: () => meetSheet(a, sendText)},
+    svgIcon('<rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 10.5l5-3v9l-5-3"/>'));
 
   show(el("a",{class:"back", href:"#message"},"← メッセージ"),
     el("div",{class:"box", style:"padding:8px 8px 12px 16px"},
@@ -774,10 +972,42 @@ async function pageThread(appId){
         moreBtn(() => userMenu(pid, a.requests.id))),
       el("p",{class:"meta ellipsis", style:"margin-top:6px"}, "投稿: ", el("a",{href:"#req/" + a.requests.id}, a.requests.title)),
       el("p",{class:"meta"},"電話番号や住所は、信頼できると感じてから伝えましょう。")),
-    status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, body, sendBtn)));
+    status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, meetBtn, body, sendBtn)));
   await loadMsgs();
   thread.lastElementChild.scrollIntoView({ block:"end" });
   pollTimer = setInterval(loadMsgs, 15000);
+}
+
+/* 面談: 今すぐビデオ / 日時を提案 */
+function meetSheet(a, sendText){
+  const room = "https://meet.jit.si/YonabaruOtasuke-" + a.id.replace(/-/g,"").slice(0, 20);
+  sheet(close => {
+    const d = el("input",{type:"date", id:"mtDate", min:todayJST()});
+    const t = el("input",{type:"time", id:"mtTime", step:"900"});
+    const how = ticks("mtHow", [["video","ビデオ"],["in_person","対面"]], ["video"], null, "radio");
+    const note = el("input",{id:"mtNote", placeholder:"対面なら待ち合わせ場所など"});
+    return [el("h3",{},"面談"),
+      el("p",{class:"meta"},"ビデオ面談は無料の Jitsi Meet を使います。アプリなしで、スマホのブラウザから参加できます。"),
+      el("button",{class:"btn full", style:"margin-top:12px", onclick: () => {
+        window.open(room, "_blank", "noopener");
+        close(); sendText("📹 ビデオ面談を始めました。下のボタンから参加してください。\n" + room);
+      }},"今すぐビデオ面談を始める"),
+      el("hr"),
+      el("h3",{},"日時を提案する"),
+      el("label",{for:"mtDate"},"日にち"), d,
+      el("label",{for:"mtTime"},"時間"), t,
+      el("label",{},"方法"), how,
+      el("label",{for:"mtNote"},"メモ(任意)"), note,
+      el("button",{class:"btn line full", style:"margin-top:16px", onclick: async () => {
+        if(!d.value || !t.value) return say("日にちと時間を選んでください。");
+        const v = how.values()[0];
+        const lines = ["📅 面談の提案", "日時: " + dateJa(d.value) + " " + t.value, "方法: " + (v === "video" ? "ビデオ面談" : "対面")];
+        if(note.value.trim()) lines.push("メモ: " + note.value.trim());
+        if(v === "video") lines.push(room);
+        close(); await sendText(lines.join("\n"));
+      }},"提案を送る"),
+      el("button",{class:"btn ghost full", onclick:close},"閉じる")];
+  });
 }
 
 /* 成立後:評価と友達 */
@@ -825,32 +1055,78 @@ function friendButton(pid, fr){
 }
 
 /* ===== 友達 ===== */
+let friendTab = "friend";
 async function pageFriends(){
   loading();
   markRead({ type:"friend" });
-  const { data, error } = await sb.from("friendships").select("*").order("created_at",{ ascending:false });
+  const [{ data, error }, { data:apps }, { data:blocks }] = await Promise.all([
+    sb.from("friendships").select("*").order("created_at",{ ascending:false }),
+    sb.from("applications").select("id,helper_id,status,created_at,requests(requester_id,kind)").eq("status","accepted"),
+    sb.from("blocks").select("blocked_id")
+  ]);
   if(error) throw error;
+  const blocked = new Set((blocks || []).map(b => b.blocked_id));
   const other = f => f.requester_id === me.id ? f.addressee_id : f.requester_id;
-  const ps = await profilesById(data.map(other));
+  const fmap = Object.fromEntries(data.map(f => [other(f), f]));
+
+  // 知り合い: やり取りが成立したことがある人
+  const acq = {};
+  (apps || []).forEach(a => {
+    const pid = a.helper_id === me.id ? a.requests.requester_id : a.helper_id;
+    const helper = a.requests.kind === "offer" ? a.requests.requester_id : a.helper_id;
+    const x = acq[pid] || (acq[pid] = { helped:0, got:0, last:a.created_at });
+    if(helper === me.id) x.helped++; else x.got++;
+    if(a.created_at > x.last) x.last = a.created_at;
+  });
+  const acqIds = Object.keys(acq).filter(id => !blocked.has(id)).sort((x, y) => acq[y].last.localeCompare(acq[x].last));
+  const ps = await profilesById([...data.map(other), ...acqIds]);
+
   const incoming = data.filter(f => f.status === "pending" && f.addressee_id === me.id);
   const friends = data.filter(f => f.status === "accepted");
   const sent = data.filter(f => f.status === "pending" && f.requester_id === me.id);
-  const person = (f, ...actions) => { const o = ps[other(f)]; return el("div",{class:"li"},
-    el("a",{class:"who", href:"#user/" + other(f), style:"flex:1;min-width:0"}, avatar(o),
-      el("div",{style:"min-width:0"}, el("b",{}, nameOf(o)), el("div",{class:"meta"}, verified(o), " ", (o && o.area) || ""))),
+  const person = (id, sub, ...actions) => { const o = ps[id]; return el("div",{class:"li"},
+    el("a",{class:"who", href:"#user/" + id, style:"flex:1;min-width:0"}, avatar(o),
+      el("div",{style:"min-width:0"}, el("b",{}, nameOf(o)), el("div",{class:"meta"}, verified(o), " ", sub || (o && o.area) || ""))),
     actions.length ? el("div",{class:"row"}, actions) : null); };
   const act = (f, accept) => async () => {
     const { error } = accept ? await sb.from("friendships").update({ status:"accepted" }).eq("id", f.id) : await sb.from("friendships").delete().eq("id", f.id);
     if(error) return say("更新できませんでした。");
     render();
   };
-  show(el("h2",{},"友達"),
-    incoming.length ? [el("h3",{},"届いた申請"), el("div",{class:"list", style:"margin-bottom:20px"}, incoming.map(f =>
-      person(f, el("button",{class:"btn sm", onclick:act(f,true)},"承認"), el("button",{class:"btn ghost sm", onclick:act(f,false)},"削除"))))] : null,
-    friends.length ? el("div",{class:"list"}, friends.map(f => person(f)))
-      : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "やり取りが成立した相手と、メッセージ画面から友達になれます。"),
-    sent.length ? [el("h3",{style:"margin-top:20px"},"申請中"), el("div",{class:"list"}, sent.map(f =>
-      person(f, el("button",{class:"btn ghost sm", onclick:act(f,false)},"取り消す"))))] : null);
+  const addFriend = id => async () => {
+    const { error } = await sb.from("friendships").insert({ requester_id:me.id, addressee_id:id });
+    if(error) return say("申請できませんでした。");
+    say("友達申請を送りました。"); render();
+  };
+
+  const tabs = el("div",{class:"tabs", role:"tablist"});
+  const body = el("div");
+  function draw(){
+    tabs.replaceChildren(...[["friend","友達", friends.length + incoming.length],["acq","知り合い", acqIds.length]].map(([k,v,n]) =>
+      el("button",{class: friendTab === k ? "on" : "", role:"tab", "aria-selected":String(friendTab === k), onclick: () => { friendTab = k; draw(); }}, v, el("small",{}, n))));
+    if(friendTab === "friend"){
+      body.replaceChildren(
+        incoming.length ? el("div",{style:"margin-bottom:18px"}, el("h3",{},"届いた申請"), el("div",{class:"list"}, incoming.map(f =>
+          person(other(f), null, el("button",{class:"btn sm", onclick:act(f,true)},"承認"), el("button",{class:"btn ghost sm", onclick:act(f,false)},"削除"))))) : "",
+        friends.length ? el("div",{class:"list"}, friends.map(f => person(other(f))))
+          : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "「知り合い」から友達申請ができます。"),
+        sent.length ? el("div",{style:"margin-top:18px"}, el("h3",{},"申請中"), el("div",{class:"list"}, sent.map(f =>
+          person(other(f), null, el("button",{class:"btn ghost sm", onclick:act(f,false)},"取り消す"))))) : "");
+    } else {
+      body.replaceChildren(
+        el("p",{class:"meta", style:"margin:0 2px 10px"},"お願いやお手伝いが成立したことがある人です。"),
+        acqIds.length ? el("div",{class:"list"}, acqIds.map(id => {
+          const x = acq[id], f = fmap[id];
+          const sub = [x.helped ? "手伝った " + x.helped + "回" : "", x.got ? "手伝ってもらった " + x.got + "回" : ""].filter(Boolean).join(" ・ ");
+          const btn = f && f.status === "accepted" ? el("span",{class:"pill sea"},"友達")
+            : f ? el("span",{class:"pill"},"申請中")
+            : el("button",{class:"btn line sm", onclick:addFriend(id)},"友達になる");
+          return person(id, sub, btn);
+        })) : el("div",{class:"empty"},"まだ知り合いはいません。", el("br"), "お願いやお手伝いが成立すると、ここに表示されます。"));
+    }
+  }
+  show(el("h2",{},"友達"), tabs, body);
+  draw();
 }
 
 /* ===== プロフィール(自分・他人共通) ===== */
@@ -943,18 +1219,33 @@ async function pageMy(){
   else if(last && last.status === "pending") verify.append(el("p",{class:"meta"},"書類を確認中です。完了したらお知らせします。"));
   else {
     if(last && last.status === "rejected") verify.append(el("p",{class:"meta", style:"color:var(--hib)"},"前回の書類は確認できませんでした。", last.note ? "(" + last.note + ")" : ""));
-    const doc = el("input",{type:"file", id:"idDoc", accept:"image/*"});
+    const front = el("input",{type:"file", id:"idFront", accept:"image/*"});
+    const back = el("input",{type:"file", id:"idBack", accept:"image/*"});
+    const backWrap = el("div",{}, el("label",{for:"idBack"},"裏面の写真"), back);
+    const mnNote = el("p",{class:"meta", style:"margin-top:8px", hidden:true},"マイナンバーカードの裏面には個人番号(マイナンバー)が載っているため、法律上お預かりできません。表面だけ提出してください。");
+    const type = ticks("docType", [["license","運転免許証"],["mynumber","マイナンバーカード"]], ["license"], () => {
+      const mn = type.values()[0] === "mynumber"; backWrap.hidden = mn; mnNote.hidden = !mn;
+    }, "radio");
     verify.append(
-      el("p",{class:"meta"},"顔写真付きの身分証(運転免許証、マイナンバーカードの表面など)を撮影して提出してください。運営が確認したら書類の画像は削除します。"),
-      el("label",{for:"idDoc"},"身分証の写真"), doc,
-      el("button",{class:"btn line full", style:"margin-top:12px", onclick: async e => {
-        if(!doc.files[0]) return say("写真を選んでください。");
+      el("p",{class:"meta"},"提出する書類を選び、写真を撮って提出してください。運営が確認したら画像は削除します。"),
+      el("label",{},"書類の種類"), type, mnNote,
+      el("label",{for:"idFront"},"表面の写真"), front,
+      backWrap,
+      el("button",{class:"btn line full", style:"margin-top:16px", onclick: async e => {
+        const kind = type.values()[0];
+        if(!front.files[0]) return say("表面の写真を選んでください。");
+        if(kind === "license" && !back.files[0]) return say("裏面の写真を選んでください。");
         const b = e.currentTarget; b.disabled = true;
         try {
-          const path = me.id + "/" + crypto.randomUUID() + ".jpg";
-          const { error } = await sb.storage.from("id-docs").upload(path, await toJpeg(doc.files[0], 1600), { contentType:"image/jpeg" });
-          if(error) throw error;
-          const r = await sb.from("verification_requests").insert({ user_id:me.id, doc_path:path });
+          const up = async f => {
+            const path = me.id + "/" + crypto.randomUUID() + ".jpg";
+            const { error } = await sb.storage.from("id-docs").upload(path, await toJpeg(f, 1600), { contentType:"image/jpeg" });
+            if(error) throw error;
+            return path;
+          };
+          const doc_path = await up(front.files[0]);
+          const doc_path_back = kind === "license" ? await up(back.files[0]) : null;
+          const r = await sb.from("verification_requests").insert({ user_id:me.id, doc_type:kind, doc_path, doc_path_back });
           if(r.error) throw r.error;
           say("提出しました。"); render();
         } catch(err){ say("提出できませんでした: " + err.message); b.disabled = false; }
@@ -1032,19 +1323,25 @@ async function pageAdmin(){
     const decide = async (status) => {
       const note = status === "rejected" ? prompt("お断りの理由(本人に表示されます)", "書類が読み取れませんでした") : null;
       if(status === "rejected" && note === null) return;
-      if(v.doc_path) await sb.storage.from("id-docs").remove([v.doc_path]);
-      const { error } = await sb.from("verification_requests").update({ status, note, reviewed_at:new Date().toISOString(), doc_path:null }).eq("id", v.id);
+      const files = [v.doc_path, v.doc_path_back].filter(Boolean);
+      if(files.length) await sb.storage.from("id-docs").remove(files);
+      const { error } = await sb.from("verification_requests").update({ status, note, reviewed_at:new Date().toISOString(), doc_path:null, doc_path_back:null }).eq("id", v.id);
       if(error) return say("更新できませんでした: " + error.message);
       say(status === "approved" ? "承認しました。" : "お断りしました。"); render();
     };
     vBox.append(el("div",{style:"padding:12px 0;border-bottom:1px solid var(--line)"},
-      el("a",{class:"who", href:"#user/" + v.user_id}, avatar(ps[v.user_id]), el("div",{}, el("b",{}, nameOf(ps[v.user_id])), el("div",{class:"meta"}, fmt(v.created_at) + " 提出"))),
+      el("a",{class:"who", href:"#user/" + v.user_id}, avatar(ps[v.user_id]), el("div",{}, el("b",{}, nameOf(ps[v.user_id])), el("div",{class:"meta"}, (v.doc_type === "mynumber" ? "マイナンバーカード" : v.doc_type === "license" ? "運転免許証" : "身分証") + " ・ " + fmt(v.created_at) + " 提出"))),
       img,
       el("div",{class:"row", style:"margin-top:8px"},
         el("button",{class:"btn line sm", onclick: async () => {
-          const { data, error } = await sb.storage.from("id-docs").createSignedUrl(v.doc_path, 300);
-          if(error) return say("書類を開けませんでした。");
-          img.replaceChildren(el("img",{src:data.signedUrl, alt:"提出された身分証", style:"border-radius:10px;margin-top:8px"}));
+          const urls = [];
+          for(const [path, label] of [[v.doc_path,"表面"],[v.doc_path_back,"裏面"]]){
+            if(!path) continue;
+            const { data, error } = await sb.storage.from("id-docs").createSignedUrl(path, 300);
+            if(error) return say("書類を開けませんでした。");
+            urls.push(el("div",{}, el("p",{class:"meta"}, label), el("img",{src:data.signedUrl, alt:"提出された身分証の" + label})));
+          }
+          img.replaceChildren(el("div",{class:"docrow", style:"margin-top:8px"}, urls));
         }},"書類を見る"),
         el("button",{class:"btn sm", onclick: () => decide("approved")},"承認"),
         el("button",{class:"btn ghost sm", onclick: () => decide("rejected")},"お断り"))));
@@ -1069,12 +1366,46 @@ async function pageAdmin(){
 }
 
 /* ===== 町の情報 ===== */
+let townInfo = null;
+function jstNow(){ const t = new Date(Date.now() + 9 * 3600e3); return { m:t.getUTCMonth() + 1, d:t.getUTCDate(), w:"日月火水木金土"[t.getUTCDay()] }; }
+function drawToday(){
+  const { m, d, w } = jstNow();
+  const day = townInfo && townInfo.days && townInfo.days[0];
+  $("todayDay").replaceChildren(m + "月" + d + "日(" + w + ")", day ? el("b",{}," ・ " + day.name) : "");
+}
+async function loadTown(){
+  drawToday();
+  try { const r = await fetch(SUPABASE_URL + "/functions/v1/town-info"); townInfo = await r.json(); }
+  catch(e){ townInfo = { days:[], notices:[], blog:[] }; }
+  drawToday();
+  if((location.hash.slice(1) || "") === "info") pageInfo();
+}
+async function loadCounter(){
+  let first = false;
+  try { first = !sessionStorage.getItem("visited"); sessionStorage.setItem("visited", "1"); } catch(e){}
+  const { data } = await sb.rpc("visit", { count_it:first });
+  const c = data && data[0];
+  if(c) $("counter").textContent = "今日 " + c.today + " ／ 累計 " + Number(c.total).toLocaleString();
+}
 function pageInfo(){
+  const { m, d, w } = jstNow();
+  const t = townInfo;
   show(
     el("h2",{},"与那原町の情報"),
     el("div",{class:"box"},
-      el("h3",{},"与那原町ってこんな町"),
-      el("p",{style:"font-size:.92rem"},"沖縄本島の南東部、中城湾に面した海辺の町です。400年以上の伝統がある「与那原大綱曳」は沖縄三大綱引きのひとつ。マリンタウンの整備も進み、天然ひじきや与那原そばが名物です。")),
+      el("h3",{}, m + "月" + d + "日(" + w + ")は何の日?"),
+      !t ? el("p",{class:"meta"},"読み込み中…")
+        : t.days && t.days.length ? el("ul",{class:"newsl"}, t.days.slice(0, 4).map(x => el("li",{}, el("b",{}, x.name), x.desc ? el("p",{class:"meta"}, x.desc) : null)))
+        : el("p",{class:"meta"},"今日の記念日を読み込めませんでした。"),
+      el("p",{class:"meta", style:"margin-top:8px;font-size:.7rem"},"出典: ウィキペディア日本語版")),
+    el("div",{class:"box"},
+      el("h3",{},"綱曳資料館からのお知らせ"),
+      !t ? el("p",{class:"meta"},"読み込み中…")
+        : t.notices && t.notices.length ? el("ul",{class:"newsl"}, t.notices.map(n => el("li",{}, n)))
+        : el("p",{class:"meta"},"お知らせを読み込めませんでした。"),
+      t && t.blog && t.blog.length ? [el("h3",{style:"margin-top:18px"},"つなかんブログ"),
+        el("ul",{class:"newsl"}, t.blog.map(b => el("li",{}, el("p",{class:"meta"}, b.date), el("a",{href:b.url, target:"_blank", rel:"noopener"}, b.title))))] : null,
+      el("a",{class:"btn line sm", style:"margin-top:12px", href:"https://ty-gakushin.jpn.org/tsunahiki/index.php", target:"_blank", rel:"noopener"},"大綱曳資料館のサイトを見る ↗")),
     el("div",{class:"links", style:"margin-bottom:12px"},
       el("a",{href:"https://www.town.yonabaru.okinawa.jp/", target:"_blank", rel:"noopener"},
         el("b",{},"与那原町 公式ホームページ ↗"), el("div",{class:"meta"},"役場の手続き、ごみの出し方、子育て支援、防災情報など")),
@@ -1086,7 +1417,7 @@ function pageInfo(){
       el("ol",{class:"steps", style:"font-size:.92rem"},
         el("li",{},"マイページで名前・地区・自己PRを登録します。"),
         el("li",{},"困りごとは「お願い」、手伝えることは「お手伝い投稿」として投稿します。"),
-        el("li",{},"気になる投稿にメッセージを送り、日時や内容を相談します。"),
+        el("li",{},"気になる投稿にメッセージを送り、必要なら面談をして内容を相談します。"),
         el("li",{},"成立したらお手伝い。終わったら評価をつけ、よければ友達になりましょう。"))),
     el("div",{class:"box"},
       el("h3",{},"安心して使うために"),
@@ -1129,7 +1460,14 @@ function pageTerms(){
 }
 
 /* ===== 起動 ===== */
-loadMe().then(render);
+let booted = false;
+sb.auth.onAuthStateChange(ev => {
+  // 確認メールのリンクから戻ったときなど、後からログインが完了した場合に画面を更新
+  if(booted && ev === "SIGNED_IN" && !me) loadMe().then(render);
+});
+loadTown();
+loadCounter();
+loadMe().then(() => { booted = true; render(); });
 </script>
 </body>
 </html>
