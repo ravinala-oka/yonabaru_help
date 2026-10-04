@@ -217,8 +217,8 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .pgroup .phead b{font-size:16px;line-height:22px;margin:1px 0}
 .pgroup .phead .pill.xs{font-size:11px;line-height:17px;padding:1px 7px;border-radius:8px;margin-left:3px}
 .pgroup .phead .chev{flex:none;font-size:1.5rem;font-weight:300;color:#7d8889;margin-left:4px}
-.pgroup .prow{align-items:flex-start;gap:10px;padding:14px 30px 14px 25px}
-.pgroup .prow .av{width:36px;height:36px;border-radius:10px;font-size:.9rem}
+.pgroup .prow{align-items:flex-start;gap:8px;padding:12px 30px 12px 25px}
+.pgroup .prow .av{width:22px;height:22px;border-radius:6px;font-size:.6rem}
 .pgroup .prow .phr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .pgroup .prow .pname{display:flex;align-items:center;gap:6px;min-width:0;line-height:22px}
 .pgroup .prow .pname b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -251,6 +251,18 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .pgroup .phead .pedit{flex:none;display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--sea);font:inherit;font-size:12px;font-weight:500;cursor:pointer}
 .pgroup .phead .pedit svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pgroup .phead .pedit:active{background:var(--sea-l)}
+/* 背景と帯を区別: カードに枠線と影。帯は 自分の投稿=青緑 / 相手の投稿=黄みのオレンジ */
+.pgroup{border:1px solid #cfd8d8;box-shadow:0 1px 4px rgba(20,50,60,.1)}
+.pgroup .phead{border-left:5px solid transparent}
+.pgroup.own .phead{background:#d3eaee;border-left-color:var(--sea);border-bottom-color:#b9d9df}
+.pgroup.other .phead{background:#fbe8cc;border-left-color:#d9892b;border-bottom-color:#efcf9f}
+.pgroup.own .phead:active{background:#c2e0e6}
+.pgroup.other .phead:active{background:#f6dab2}
+.pgroup .phead .pill.sea{background:#fff}
+.pgroup .phead .pill{background:#fff;color:var(--sub)}
+.pgroup .phead .pill.sea{color:var(--sea)}
+/* 終了した投稿は全体を暗く・色を落とす */
+.pgroup.is-closed{filter:brightness(.8) saturate(.35)}
 .pgroup .prow .plast{font-size:13px;line-height:20px;margin-top:0;color:var(--sub)}
 .qa{padding:10px 0;border-top:1px solid var(--line)}
 .qa .q{font-size:.9rem;margin:0}
@@ -1352,7 +1364,7 @@ async function pageMessages(){
           el("div",{class:"ellipsis plast"}, l ? (l.sender_id === me.id ? "あなた: " : "") + l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
         unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", style:"top:50%;right:10px"}) : null);
     }) : [el("p",{class:"meta", style:"padding:8px 14px 10px;margin:0"}, emptyText)];
-    return el("div",{class:"pgroup"}, head, ...rows);
+    return el("div",{class:"pgroup " + (editable ? "own" : "other") + (r.status !== "open" ? " is-closed" : "")}, head, ...rows);
   }
 
   const TABS = [
