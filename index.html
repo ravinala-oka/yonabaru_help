@@ -112,7 +112,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .ph img{width:100%;height:100%;object-fit:cover}
 .kanji{font-size:2.6rem;font-weight:700;letter-spacing:.06em;color:rgba(15,104,120,.55)}
 .ph .flag{position:absolute;top:8px;left:8px}
-.c-cat{background:#f6ece2}.c-dog{background:#e9f0e2}.c-cleaning{background:#e3eff3}.c-childcare{background:#f5e6ea}.c-pickup{background:#ebe8f4}.c-other{background:#eeefe9}
+.c-cat{background:#f6ece2}.c-dog{background:#e9f0e2}.c-cleaning{background:#e3eff3}.c-childcare{background:#f5e6ea}.c-pickup{background:#ebe8f4}.c-other{background:#eeefe9}.c-help{background:#e6f2f4}.c-event{background:#fbeede}
 .cb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
 .ct{font-weight:700;font-size:.9rem;line-height:1.45}
 .rw{font-weight:700;font-size:.85rem;color:var(--sea);margin-top:auto;padding-top:4px}
@@ -182,6 +182,32 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .period{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
 .period input{padding:10px 8px}
 .amountbox{margin-top:10px;padding:12px;background:var(--mist);border-radius:12px}
+
+.pill.ng{background:#f1f1f1;color:#7a7a7a}
+.pill.xs{font-size:.62rem;padding:0 6px;line-height:1.5}
+.qa{padding:10px 0;border-top:1px solid var(--line)}
+.qa .q{font-size:.9rem;margin:0}
+.qa .a{font-size:.9rem;margin:6px 0 0;padding:8px 10px;background:var(--sea-l);border-radius:10px}
+
+/* カレンダー(期間選択) */
+.cal{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 8px 6px;user-select:none;-webkit-user-select:none}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.cal-head b{font-size:.95rem}
+.cal-head button{width:36px;height:36px;border:0;background:var(--mist);border-radius:50%;cursor:pointer;font:inherit;font-size:1.1rem;color:var(--ink)}
+.cal-head button:disabled{opacity:.3}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;touch-action:none}
+.cal-wd{text-align:center;font-size:.68rem;color:var(--sub);padding:2px 0 4px}
+.cal-grid .sun{color:#c94a4a}.cal-grid .sat{color:#3a6fc4}
+.cal-grid button.d{height:38px;border:0;background:none;font:inherit;font-size:.9rem;cursor:pointer;color:var(--ink);padding:0}
+.cal-grid button.d.sun{color:#c94a4a}.cal-grid button.d.sat{color:#3a6fc4}
+.cal-grid button.d.past{color:#c9d0d1;cursor:default}
+.cal-grid button.d.today{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.cal-grid button.d.in{background:var(--sea-l);color:var(--ink)}
+.cal-grid button.d.s,.cal-grid button.d.e{background:var(--sea);color:#fff;font-weight:700}
+.cal-grid button.d.s{border-radius:19px 0 0 19px}
+.cal-grid button.d.e{border-radius:0 19px 19px 0}
+.cal-grid button.d.s.e{border-radius:19px}
+.cal-out{font-weight:700;color:var(--sea);margin:6px 4px 0;font-size:.92rem}
 
 /* ✓で選ぶボタン */
 .ticks{display:flex;flex-wrap:wrap;gap:6px}
@@ -344,8 +370,8 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
 });
 
 /* ===== 定数 ===== */
-const CATS  = {cat:"猫の預かり",dog:"犬の散歩",cleaning:"部屋の掃除",childcare:"育児の協力",pickup:"子どものお迎え",other:"その他"};
-const KANJI = {cat:"猫",dog:"犬",cleaning:"掃除",childcare:"育児",pickup:"送迎",other:"助"};
+const CATS  = {help:"お手伝い",cleaning:"掃除",pickup:"お迎え",childcare:"育児",dog:"犬の散歩",cat:"猫の預かり",event:"イベント",other:"その他"};
+const KANJI = {help:"手伝",cat:"猫",dog:"犬",cleaning:"掃除",childcare:"育児",pickup:"送迎",event:"催",other:"他"};
 const CHILD = ["childcare","pickup"];
 const AREAS = ["与那原","上与那原","板良敷","大見武","東浜","町外(近隣)"];
 const ST    = {pending:"返事待ち",accepted:"成立",declined:"お断り"};
@@ -355,7 +381,9 @@ const TASKS = {
   cleaning:[{g:null,items:["掃除機がけ","水回り(キッチン・お風呂・トイレ)","窓拭き","片付け・整理","ゴミ出し","草取り・庭の手入れ"]}],
   childcare:[{g:null,items:["自宅での見守り","遊び相手","宿題を見る","食事の準備","寝かしつけ"]}],
   pickup:[{g:"お迎え先",items:["保育園・幼稚園","小学校","習い事"]},{g:"移動手段",items:["徒歩で付き添い","車で送迎"]}],
-  other:[{g:null,items:["買い物代行","荷物運び","電球交換などの簡単な作業","スマホ・パソコンの使い方","話し相手"]}]
+  help:[{g:null,items:["買い物代行","荷物運び","電球交換などの簡単な作業","スマホ・パソコンの使い方","話し相手"]}],
+  event:[{g:null,items:["準備・設営","受付","片付け","車での送迎","写真撮影"]}],
+  other:[]
 };
 const DAYS  = ["月","火","水","木","金","土","日","祝日"];
 const TIMES = ["朝(6〜9時)","午前(9〜12時)","午後(12〜17時)","夕方(17〜20時)","夜(20時以降)"];
@@ -394,6 +422,12 @@ function avatar(p, big){
 }
 const nameOf = p => (p && p.display_name) || "名無しさん";
 const verified = p => p && p.verified ? el("span",{class:"pill ok"},"本人確認済み") : null;
+const myIdText = p => p && p.member_no ? "Y" + String(p.member_no).padStart(6, "0") : "";
+const postIdText = r => r && r.post_no ? "P" + String(r.post_no).padStart(6, "0") : "";
+/* 本人確認 OK / NO(すべての投稿・人に表示) */
+const vPill = (p, small) => el("span",{class:"pill " + (p && p.verified ? "ok" : "ng") + (small ? " xs" : "")}, "本人確認" + (p && p.verified ? "OK" : "NO"));
+function fmtFull(ts){ const d = new Date(ts); const z = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "/" + z(d.getMonth() + 1) + "/" + z(d.getDate()) + " " + z(d.getHours()) + ":" + z(d.getMinutes()); }
 const TYPE_ICON = {
   individual:'<circle cx="12" cy="8.2" r="3.6"/><path d="M5 20c.7-4 3.6-6.3 7-6.3s6.3 2.3 7 6.3"/>',
   business:'<path d="M4.5 20.5V7.5l7-3.5v16.5M11.5 9.5h8v11M2.5 20.5h19M7.5 9.5v.01M7.5 13v.01M7.5 16.5v.01M14.5 13h2M14.5 16.5h2"/>'
@@ -452,7 +486,7 @@ function linkify(text){
 async function profilesById(ids){
   ids = [...new Set(ids.filter(Boolean))];
   if(!ids.length) return {};
-  const { data } = await sb.from("profiles").select("id,display_name,avatar_url,verified,area,account_type").in("id", ids);
+  const { data } = await sb.from("profiles").select("id,display_name,avatar_url,verified,area,account_type,member_no").in("id", ids);
   return Object.fromEntries((data || []).map(p => [p.id, p]));
 }
 function thumb(r){
@@ -533,7 +567,7 @@ async function refreshUnread(){
   const { data } = await sb.from("notifications").select("id,type,link").is("read_at", null).limit(200);
   unread = data || [];
   setB("bellBadge", unread.length);
-  setB("msgBadge", unread.filter(n => ["application","status","message"].includes(n.type)).length);
+  setB("msgBadge", unread.filter(n => ["application","status","message","question","answer","dm"].includes(n.type)).length);
   setB("frBadge", unread.filter(n => n.type === "friend").length);
 }
 async function markRead(filter){
@@ -548,14 +582,14 @@ setInterval(() => { if(me && !document.hidden) refreshUnread(); }, 30000);
 async function render(){
   clearInterval(pollTimer);
   const [page, arg] = (location.hash.slice(1) || "top").split("/");
-  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top" }[page] || page;
+  const navKey = { req:"top", msg:"message", user:"friend", terms:"info", facility:"top", dm:"message" }[page] || page;
   document.querySelectorAll("nav a, .mylink").forEach(a => a.classList.toggle("on", a.dataset.p === navKey));
   window.scrollTo(0,0);
   if(page === "info") return pageInfo();
   if(page === "terms") return pageTerms();
   if(page === "facility") return pageFacility(arg);
   if(!me) return pageLogin();
-  const pages = { consult:pageConsult, top:pageTop, req:pageRequest, post:pagePost, message:pageMessages, msg:pageThread, friend:pageFriends, mypage:pageMy, user:pageUser, notice:pageNotice, admin:pageAdmin };
+  const pages = { dm:pageDm, consult:pageConsult, top:pageTop, req:pageRequest, post:pagePost, message:pageMessages, msg:pageThread, friend:pageFriends, mypage:pageMy, user:pageUser, notice:pageNotice, admin:pageAdmin };
   try { await (pages[page] || pageTop)(arg); }
   catch(e){ show(el("div",{class:"empty"},"表示できませんでした: " + e.message)); }
 }
@@ -606,7 +640,8 @@ const CAT_ICON = {
   pickup:'<rect x="5" y="7.5" width="14" height="13" rx="3"/><path d="M9 7.5V6a3 3 0 016 0v1.5M5 13h14M11 13v2h2v-2"/>',
   other:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.2a4.3 4.3 0 017.5 2.6C19.5 15.4 12 20 12 20z"/>',
   offer:'<path d="M8.5 12.5V6.2a1.4 1.4 0 012.8 0v5M11.3 11V4.6a1.4 1.4 0 012.8 0V11M14.1 11V6.3a1.4 1.4 0 012.8 0v7.2c0 4-2.5 6.9-6 6.9-2.4 0-3.9-1.3-5.3-3.8l-1.7-3a1.4 1.4 0 012.3-1.5l2.3 2.3"/>',
-  info:'<path d="M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0113 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/>'
+  info:'<path d="M12 21s-6.5-5.6-6.5-11.2a6.5 6.5 0 0113 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/>',
+  event:'<path d="M5.5 21V3.8"/><path d="M5.5 4.5h11.5l-2.3 4.2 2.3 4.2H5.5"/>'
 };
 const QUICK = [
   ["new","新着","#f08a24",'<span>N</span>'],
@@ -675,8 +710,8 @@ async function pageTop(){
     const inArea = r => !topState.area || r.area === topState.area;
     // カテゴリー
     const items = [
-      ["offer","お手伝い",CAT_ICON.offer], ["cleaning","掃除",CAT_ICON.cleaning], ["pickup","お迎え",CAT_ICON.pickup], ["childcare","育児",CAT_ICON.childcare],
-      ["dog","犬の散歩",CAT_ICON.dog], ["cat","猫の預かり",CAT_ICON.cat], ["info","施設情報",CAT_ICON.info], ["other","その他",CAT_ICON.other]
+      ["help","お手伝い",CAT_ICON.offer], ["cleaning","掃除",CAT_ICON.cleaning], ["pickup","お迎え",CAT_ICON.pickup], ["childcare","育児",CAT_ICON.childcare],
+      ["dog","犬の散歩",CAT_ICON.dog], ["cat","猫の預かり",CAT_ICON.cat], ["event","イベント",CAT_ICON.event], ["other","その他",CAT_ICON.other]
     ];
     grid.replaceChildren(...items.map(([k, label, icon]) => {
       const on = k === "offer" ? topState.kind === "offer" : topState.cat === k;
@@ -721,8 +756,8 @@ async function pageTop(){
         el("p",{class:"rtitle clamp2"}, typeIcon(ps[r.requester_id]), " ", r.title),
         el("p",{class:"rprice"}, rewardText(r)),
         el("p",{class:"meta ellipsis"}, r.kind === "offer" ? (r.avail_days && r.avail_days.length ? "可能日 " + r.avail_days.join("・") : "") : (periodText(r) ? "希望日 " + periodText(r) : "")),
-        el("div",{class:"rfoot"}, el("span",{class:"meta ellipsis"}, r.area || "与那原町"),
-          el("span",{class:"row", style:"gap:2px;flex-wrap:nowrap"}, el("span",{class:"meta"}, md(r.created_at)), r.requester_id === me.id ? null : star(r)))))))
+        el("div",{class:"rfoot"}, el("span",{class:"meta ellipsis"}, nameOf(ps[r.requester_id]), " ", vPill(ps[r.requester_id], true), " ", r.area || "与那原町"),
+          el("span",{class:"row", style:"gap:2px;flex-wrap:nowrap"}, el("span",{class:"meta"}, md(r.created_at) + " " + new Date(r.created_at).toTimeString().slice(0,5)), r.requester_id === me.id ? null : star(r)))))))
       : el("div",{class:"empty"}, all.length ? "条件に合う投稿はありません。" : "まだ投稿はありません。",
           el("div",{style:"margin-top:14px"}, el("a",{class:"btn sm", href:"#post"},"投稿する"))));
   }
@@ -742,7 +777,10 @@ async function pageRequest(id){
     sb.from("favorites").select("request_id").eq("request_id", id).maybeSingle()
   ]);
   if(error) throw error;
-  const p = (await profilesById([r.requester_id]))[r.requester_id] || { id:r.requester_id }, mineReq = r.requester_id === me.id, offer = r.kind === "offer";
+  markRead({ link:"#req/" + id });
+  const { data:qs } = await sb.from("post_questions").select("*").eq("request_id", id).order("created_at");
+  const pmap = await profilesById([r.requester_id, ...(qs || []).map(q => q.asker_id), ...(apps || []).map(a => a.helper_id)]);
+  const p = pmap[r.requester_id] || { id:r.requester_id }, mineReq = r.requester_id === me.id, offer = r.kind === "offer";
 
   let isFav = !!fav;
   const heart = el("button",{class:"heart" + (isFav ? " on" : ""), "aria-label":"お気に入り", "aria-pressed":String(isFav), onclick: async () => {
@@ -757,7 +795,8 @@ async function pageRequest(id){
       el("div",{class:"row"}, el("span",{class:"pill" + (offer ? " sea" : "")}, offer ? "お手伝い" : "お願い"), el("span",{class:"pill"}, CATS[r.category]),
         r.status !== "open" ? el("span",{class:"pill hib"},"募集終了") : null),
       mineReq ? null : heart),
-    el("h2",{style:"margin:8px 0 2px;line-height:1.5"}, typeIcon(p), " ", offer ? CATS[r.category] + "、お手伝いできます" : r.title),
+    el("p",{class:"meta", style:"margin-top:6px"}, "投稿ID " + postIdText(r) + " ・ 投稿日時 " + fmtFull(r.created_at)),
+    el("h2",{style:"margin:4px 0 2px;line-height:1.5"}, typeIcon(p), " ", offer ? (r.category === "help" ? "お手伝いできます" : CATS[r.category] + "、お手伝いできます") : r.title),
     el("p",{style:"font-size:1.1rem;font-weight:700;color:var(--sea)"}, "お礼: ", rewardText(r)),
     offer ? el("div",{style:"margin-top:14px"}, el("p",{class:"meta"},"できること"),
       el("div",{class:"row", style:"gap:6px;margin-top:4px"}, [...(r.tasks || []), r.task_other].filter(Boolean).map(t => el("span",{class:"pill sea", style:"font-size:.8rem;padding:3px 10px"}, "✓ " + t)))) : null,
@@ -768,22 +807,54 @@ async function pageRequest(id){
             : [el("dt",{},"希望期間"), el("dd",{}, periodText(r) || "相談して決める"),
                el("dt",{},"時間帯"), el("dd",{}, r.time_note || "相談して決める")],
       el("dt",{},"面談"), el("dd",{}, ivText(r)),
-      el("dt",{},"投稿日"), el("dd",{}, fmt(r.created_at))),
+      el("dt",{},"投稿日時"), el("dd",{}, fmtFull(r.created_at))),
     !offer && (r.wanted_from || r.wanted_date) ? el("a",{class:"btn line sm", style:"margin-top:12px", target:"_blank", rel:"noopener",
       href: gcalUrl("【与那原お助け】" + r.title, (r.time_note ? "時間帯: " + r.time_note + "\n" : "") + location.href, r.area, r.wanted_from || r.wanted_date, r.wanted_date)},"📅 Googleカレンダーに追加") : null,
     r.description ? el("p",{style:"white-space:pre-wrap;margin-top:16px;font-size:.93rem"}, r.description) : null);
 
   const poster = el("div",{class:"box row between", style:"padding:8px 8px 8px 16px"},
     el("a",{class:"who", href:"#user/" + p.id, style:"flex:1;min-width:0"}, avatar(p),
-      el("div",{style:"min-width:0"}, el("b",{}, nameOf(p)), el("div",{class:"meta"}, verified(p) || "本人確認前", " ", p.area || ""))),
+      el("div",{style:"min-width:0"}, el("p",{class:"meta", style:"margin:0"},"投稿者"), el("b",{}, nameOf(p), " ", typeIcon(p)),
+        el("div",{class:"meta"}, vPill(p), " ", myIdText(p) ? "myID " + myIdText(p) : "", " ", p.area || ""))),
     mineReq ? null : moreBtn(() => userMenu(p.id, r.id)));
+
+  /* 質問(みんなに公開) */
+  const qa = el("div",{class:"box"},
+    el("h3",{},"質問 " + (qs || []).length + "件"),
+    el("p",{class:"meta"},"質問と回答はみんなに公開されます。条件の相談などはDMでどうぞ。"));
+  (qs || []).forEach(q => {
+    const block = el("div",{class:"qa"},
+      el("p",{class:"q"}, el("b",{},"Q. "), q.body),
+      el("p",{class:"meta"}, nameOf(pmap[q.asker_id]) + " ・ " + fmt(q.created_at)));
+    if(q.answer) block.append(el("p",{class:"a"}, el("b",{},"A. "), q.answer));
+    else if(mineReq){
+      const ans = el("input",{placeholder:"回答を入力", "aria-label":"回答"});
+      block.append(el("div",{class:"toprow", style:"margin:6px 0 0"}, ans, el("button",{class:"btn sm", style:"min-height:42px", onclick: async () => {
+        const t = ans.value.trim(); if(!t) return say("回答を入力してください。");
+        const { error } = await sb.from("post_questions").update({ answer:t, answered_at:new Date().toISOString() }).eq("id", q.id);
+        if(error) return say("回答できませんでした: " + error.message);
+        say("回答しました。"); render();
+      }},"回答する")));
+    } else block.append(el("p",{class:"meta"},"回答待ち"));
+    qa.append(block);
+  });
+  if(!mineReq && r.status === "open"){
+    const qIn = el("textarea",{id:"qBody", placeholder:"例: 散歩の時間はどのくらいですか?", style:"min-height:64px"});
+    qa.append(el("label",{for:"qBody"},"質問する"), qIn,
+      el("button",{class:"btn line full", style:"margin-top:8px", onclick: async () => {
+        const t = qIn.value.trim(); if(!t) return say("質問を入力してください。");
+        const { error } = await sb.from("post_questions").insert({ request_id:r.id, asker_id:me.id, body:t });
+        if(error) return say("送れませんでした: " + error.message);
+        say("質問しました。"); render();
+      }},"質問を送る"));
+  }
 
   const action = el("div",{class:"box"});
   if(mineReq){
-    action.append(el("h3",{}, (offer ? "届いたお願い " : "届いた申し出 ") + (apps || []).length + "件"));
+    action.append(el("h3",{}, "DM(" + (offer ? "届いたお願い " : "届いた申し出 ") + (apps || []).length + "件)"));
     if(!apps || !apps.length) action.append(el("p",{class:"meta"},"まだ届いていません。"));
     else {
-      const ps = await profilesById(apps.map(a => a.helper_id));
+      const ps = pmap;
       action.append(el("div",{class:"list", style:"margin-top:8px"}, apps.map(a => el("a",{class:"li", href:"#msg/" + a.id, style:"background:var(--mist)"},
         avatar(ps[a.helper_id]),
         el("div",{class:"body"}, el("div",{class:"row"}, el("b",{}, nameOf(ps[a.helper_id])), el("span",{class:"pill" + (a.status === "accepted" ? " ok" : "")}, ST[a.status])),
@@ -809,7 +880,8 @@ async function pageRequest(id){
         el("a",{class:"btn full", style:"margin-top:12px", href:"#mypage"},"本人確認をする"));
     } else {
       const msg = el("textarea",{id:"applyMsg", placeholder: offer ? "例: 来週の土曜日にお願いしたいです。" : "例: 土曜の朝なら大丈夫です。犬の散歩に慣れています。"});
-      action.append(el("h3",{}, offer ? "この人にお願いする" : "このお願いを手伝う"),
+      action.append(el("h3",{}, "DMでやり取りする"),
+        el("p",{class:"meta"}, offer ? "この人にお願いしたいときは、ひとこと添えて送ってください。" : "手伝えるときは、ひとこと添えて送ってください。投稿者とだけのやり取りになります。"),
         el("label",{for:"applyMsg"},"ひとこと"), msg,
         el("button",{class:"btn full", style:"margin-top:12px", onclick: async e => {
           const b = e.currentTarget; b.disabled = true;
@@ -820,7 +892,86 @@ async function pageRequest(id){
         }}, offer ? "お願いしたい" : "手伝えます"));
     }
   }
-  show(el("a",{class:"back", href:"#top"},"← 一覧"), gallery, main, poster, action);
+  show(el("a",{class:"back", href: mineReq ? "#message" : "#top"}, mineReq ? "← メッセージ" : "← 一覧"), gallery, main, poster, qa, action);
+}
+
+/* ===== カレンダーで期間を選ぶ =====
+   押したまま終わりの日までなぞる → 期間。1回タップ → その日だけ。続けて別の日をタップ → 期間。 */
+function rangePicker(onChange){
+  const today = todayJST();
+  let view = today.slice(0, 7);
+  let start = null, end = null;
+  let anchor = null, moved = false, dragging = false, before = null;
+  const head = el("div",{class:"cal-head"});
+  const grid = el("div",{class:"cal-grid", role:"group", "aria-label":"希望期間のカレンダー"});
+  const out = el("p",{class:"cal-out"});
+  const z = n => String(n).padStart(2, "0");
+  const lo = (a, b) => a < b ? a : b, hi = (a, b) => a > b ? a : b;
+  function cellAt(x, y){ const t = document.elementFromPoint(x, y); return t && t.closest ? t.closest("button.d:not(.past)") : null; }
+  function paint(){
+    grid.querySelectorAll("button.d").forEach(b => {
+      const d = b.dataset.d;
+      b.classList.toggle("s", !!start && d === start);
+      b.classList.toggle("e", !!end && d === end);
+      b.classList.toggle("in", !!start && !!end && d > start && d < end);
+      b.setAttribute("aria-pressed", String(!!start && !!end && d >= start && d <= end));
+    });
+    out.textContent = !start ? "未選択(相談して決める)"
+      : start === end ? dateJa(start) + "(1日)"
+      : dateJa(start) + " 〜 " + dateJa(end) + "(" + (Math.round((new Date(end) - new Date(start)) / 864e5) + 1) + "日間)";
+  }
+  function draw(){
+    const [y, m] = view.split("-").map(Number);
+    const first = new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
+    const days = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const move = n => { const d = new Date(Date.UTC(y, m - 1 + n, 1)); view = d.getUTCFullYear() + "-" + z(d.getUTCMonth() + 1); draw(); };
+    head.replaceChildren(
+      el("button",{type:"button", "aria-label":"前の月", disabled: view <= today.slice(0, 7), onclick: () => move(-1)},"‹"),
+      el("b",{}, y + "年" + m + "月"),
+      el("button",{type:"button", "aria-label":"次の月", onclick: () => move(1)},"›"));
+    const cells = ["日","月","火","水","木","金","土"].map((w, i) => el("span",{class:"cal-wd" + (i === 0 ? " sun" : i === 6 ? " sat" : "")}, w));
+    for(let i = 0; i < first; i++) cells.push(el("span"));
+    for(let d = 1; d <= days; d++){
+      const ds = y + "-" + z(m) + "-" + z(d), wd = (first + d - 1) % 7;
+      cells.push(el("button",{type:"button", class:"d" + (ds < today ? " past" : "") + (ds === today ? " today" : "") + (wd === 0 ? " sun" : wd === 6 ? " sat" : ""), "data-d":ds, disabled: ds < today}, d));
+    }
+    grid.replaceChildren(...cells);
+    paint();
+  }
+  grid.addEventListener("pointerdown", e => {
+    const b = e.target.closest && e.target.closest("button.d:not(.past)");
+    if(!b) return;
+    e.preventDefault();
+    try { grid.setPointerCapture(e.pointerId); } catch(_){}
+    before = { start, end };
+    anchor = b.dataset.d; moved = false; dragging = true;
+    start = end = anchor; paint();
+  });
+  grid.addEventListener("pointermove", e => {
+    if(!dragging) return;
+    const b = cellAt(e.clientX, e.clientY);
+    if(!b) return;
+    const d = b.dataset.d;
+    if(d !== anchor) moved = true;
+    start = lo(anchor, d); end = hi(anchor, d); paint();
+  });
+  const finish = () => {
+    if(!dragging) return;
+    dragging = false;
+    // なぞらずにタップ: 直前が1日だけの選択なら、そこからこの日までを期間にする
+    if(!moved && before && before.start && before.start === before.end && before.start !== anchor){
+      start = lo(before.start, anchor); end = hi(before.start, anchor);
+    }
+    paint(); onChange(start, end);
+  };
+  grid.addEventListener("pointerup", finish);
+  grid.addEventListener("pointercancel", finish);
+  const wrap = el("div",{class:"cal"}, head, grid, out,
+    el("div",{class:"row between", style:"margin-top:2px"},
+      el("p",{class:"meta", style:"margin:0;flex:1"},"押したまま終わりの日までなぞると期間を選べます。"),
+      el("button",{type:"button", class:"btn ghost sm", onclick: () => { start = end = null; paint(); onChange(null, null); }},"クリア")));
+  draw();
+  return wrap;
 }
 
 /* ===== 投稿する ===== */
@@ -845,14 +996,13 @@ function pagePost(){
 
   // お願い用
   const title = el("input",{id:"title", maxlength:"60", placeholder:"例: 土曜の朝、犬の散歩をお願いしたい"});
-  const dFrom = el("input",{id:"wFrom", type:"date", min:todayJST(), "aria-label":"希望期間の開始日"});
-  const dTo = el("input",{id:"wTo", type:"date", min:todayJST(), "aria-label":"希望期間の終了日"});
-  dFrom.onchange = () => { dTo.min = dFrom.value || todayJST(); if(!dTo.value || dTo.value < dFrom.value) dTo.value = dFrom.value; };
+  const dFrom = { value:"" }, dTo = { value:"" };
+  const picker = rangePicker((f, t) => { dFrom.value = f || ""; dTo.value = t || ""; });
   const tNote = el("input",{id:"tNote", maxlength:"60", placeholder:"例: 10:00〜13:00"});
   const askOnly = el("div",{}, el("label",{for:"title"},"タイトル"), title);
   const askDate = el("div",{},
-    el("label",{for:"wFrom"},"希望期間(任意・終わりの日を過ぎると自動で締め切り)"),
-    el("div",{class:"period"}, dFrom, el("span",{},"〜"), dTo),
+    el("label",{},"希望期間(任意・終わりの日を過ぎると自動で締め切り)"),
+    picker,
     el("label",{for:"tNote"},"希望時間帯(メモ)"), tNote);
 
   // お手伝い用
@@ -1003,50 +1153,118 @@ function pagePost(){
 }
 
 /* ===== メッセージ一覧 ===== */
-let msgTab = "nego";
+let msgTab = "mine";
 async function pageMessages(){
   loading();
-  const { data:apps, error } = await sb.from("applications")
-    .select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,kind,category)")
-    .order("created_at",{ ascending:false });
-  if(error) throw error;
-  const partnerOf = a => a.helper_id === me.id ? a.requests.requester_id : a.helper_id;
-  // 手伝う側: お願い投稿なら申し出た人、お手伝い投稿なら投稿者
-  const helperOf = a => a.requests.kind === "offer" ? a.requests.requester_id : a.helper_id;
-  const tabOf = a => a.status !== "accepted" ? "nego" : (helperOf(a) === me.id ? "help" : "ask");
-  const [ps, { data:msgs }] = await Promise.all([
-    profilesById(apps.map(partnerOf)),
-    apps.length ? sb.from("messages").select("application_id,body,created_at").in("application_id", apps.map(a => a.id)).order("created_at") : { data:[] }
+  const [{ data:apps, error }, { data:myReqs }, { data:frs }, { data:dms }] = await Promise.all([
+    sb.from("applications").select("id,request_id,helper_id,message,status,created_at,requests(id,title,requester_id,kind,category)").order("created_at",{ ascending:false }),
+    sb.from("requests").select("id,post_no,title,kind,category,status,photos,created_at").eq("requester_id", me.id).order("created_at",{ ascending:false }),
+    sb.from("friendships").select("*").eq("status","accepted"),
+    sb.from("direct_messages").select("sender_id,recipient_id,body,created_at").order("created_at",{ ascending:false }).limit(500)
   ]);
-  const last = {}; (msgs || []).forEach(m => last[m.application_id] = m);
+  if(error) throw error;
+  const reqIds = (myReqs || []).map(r => r.id);
+  const { data:qs } = reqIds.length ? await sb.from("post_questions").select("request_id,answer").in("request_id", reqIds) : { data:[] };
   const unreadLinks = new Set(unread.map(n => n.link));
-  const time = a => new Date((last[a.id] || a).created_at);
-  apps.sort((x, y) => (x.status === "declined") - (y.status === "declined") || time(y) - time(x));
-  const TABS = [["nego","交渉中"],["ask","お願い"],["help","手伝い"]];
+
+  // 自身の投稿
+  const appsByReq = {}; (apps || []).forEach(a => { if(a.requests.requester_id === me.id) (appsByReq[a.request_id] = appsByReq[a.request_id] || []).push(a); });
+  const qByReq = {}; (qs || []).forEach(q => (qByReq[q.request_id] = qByReq[q.request_id] || []).push(q));
+  // 交渉中(自分が他の人の投稿に送ったDM)
+  const nego = (apps || []).filter(a => a.helper_id === me.id);
+  // 友達
+  const friendIds = (frs || []).map(f => f.requester_id === me.id ? f.addressee_id : f.requester_id);
+  const lastDm = {};
+  (dms || []).forEach(m => { const o = m.sender_id === me.id ? m.recipient_id : m.sender_id; if(!lastDm[o]) lastDm[o] = m; });
+  friendIds.sort((a, b) => ((lastDm[b] || {}).created_at || "").localeCompare((lastDm[a] || {}).created_at || ""));
+  const ps = await profilesById([...nego.map(a => a.requests.requester_id), ...friendIds]);
+
+  const TABS = [
+    ["mine","自身の投稿", (myReqs || []).length, (myReqs || []).some(r => unreadLinks.has("#req/" + r.id) || (appsByReq[r.id] || []).some(a => unreadLinks.has("#msg/" + a.id)))],
+    ["nego","交渉中", nego.length, nego.some(a => unreadLinks.has("#msg/" + a.id))],
+    ["friend","友達", friendIds.length, friendIds.some(id => unreadLinks.has("#dm/" + id))]
+  ];
   const tabs = el("div",{class:"tabs", role:"tablist"});
   const list = el("div");
+  const dot = () => el("span",{class:"dot", "aria-label":"未読"});
   function draw(){
-    tabs.replaceChildren(...TABS.map(([k,v]) => {
-      const n = apps.filter(a => tabOf(a) === k);
-      const dot = n.some(a => unreadLinks.has("#msg/" + a.id));
-      return el("button",{class: msgTab === k ? "on" : "", role:"tab", "aria-selected":String(msgTab === k), onclick: () => { msgTab = k; draw(); }},
-        v, el("small",{}, n.length), dot ? el("span",{class:"dot", style:"top:10px;right:2px;width:7px;height:7px"}) : null);
-    }));
-    const rows = apps.filter(a => tabOf(a) === msgTab);
-    const emptyText = { nego:"交渉中のやり取りはありません。", ask:"お願いが成立した相手はまだいません。", help:"お手伝いが成立した相手はまだいません。" }[msgTab];
-    list.replaceChildren(rows.length ? el("div",{class:"list"}, rows.map(a => {
-      const p = ps[partnerOf(a)], l = last[a.id];
-      return el("a",{class:"li", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
-        avatar(p),
-        el("div",{class:"body"},
-          el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(p)), el("span",{class:"meta"}, fmt((l || a).created_at))),
-          el("div",{class:"meta ellipsis"}, a.status === "declined" ? el("span",{class:"pill hib"},"お断り") : null, " ", a.requests.title),
-          el("div",{class:"ellipsis", style:"font-size:.88rem"}, l ? l.body.split("\n")[0] : (a.message || "(ひとことなし)"))),
-        unreadLinks.has("#msg/" + a.id) ? el("span",{class:"dot", "aria-label":"未読"}) : null);
-    })) : el("div",{class:"empty"}, emptyText));
+    tabs.replaceChildren(...TABS.map(([k, v, n, d]) =>
+      el("button",{class: msgTab === k ? "on" : "", role:"tab", "aria-selected":String(msgTab === k), onclick: () => { msgTab = k; draw(); }},
+        v, el("small",{}, n), d ? el("span",{class:"dot", style:"top:10px;right:2px;width:7px;height:7px"}) : null)));
+    if(msgTab === "mine"){
+      list.replaceChildren((myReqs || []).length ? el("div",{class:"list"}, myReqs.map(r => {
+        const as = appsByReq[r.id] || [], q = qByReq[r.id] || [];
+        const waitA = as.filter(a => a.status === "pending").length, waitQ = q.filter(x => !x.answer).length;
+        const isUnread = unreadLinks.has("#req/" + r.id) || as.some(a => unreadLinks.has("#msg/" + a.id));
+        return el("a",{class:"li", href:"#req/" + r.id},
+          (() => { const t = el("div",{class:"rthumb c-" + r.category, style:"width:52px;height:52px"});
+            t.append(r.photos && r.photos[0] ? el("img",{src:r.photos[0], alt:""}) : el("span",{class:"kanji", style:"font-size:1.1rem"}, KANJI[r.category])); return t; })(),
+          el("div",{class:"body"},
+            el("div",{class:"meta"}, "投稿ID " + postIdText(r), " ", r.status === "open" ? el("span",{class:"pill sea xs"},"募集中") : el("span",{class:"pill xs"},"終了")),
+            el("b",{class:"ellipsis", style:"display:block;padding-right:14px"}, r.title),
+            el("div",{class:"meta"}, "DM " + as.length + "件" + (waitA ? "(返事待ち" + waitA + ")" : ""), " ・ 質問 " + q.length + "件" + (waitQ ? "(未回答" + waitQ + ")" : ""))),
+          isUnread ? dot() : null);
+      })) : el("div",{class:"empty"},"まだ投稿していません。", el("div",{style:"margin-top:12px"}, el("a",{class:"btn sm", href:"#post"},"投稿する"))));
+    } else if(msgTab === "nego"){
+      list.replaceChildren(nego.length ? el("div",{class:"list"}, nego.map(a => {
+        const pp = ps[a.requests.requester_id];
+        return el("a",{class:"li", href:"#msg/" + a.id, style: a.status === "declined" ? "opacity:.6" : null},
+          avatar(pp),
+          el("div",{class:"body"},
+            el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(pp)), el("span",{class:"meta"}, fmt(a.created_at))),
+            el("div",{class:"meta ellipsis"}, el("span",{class:"pill xs" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status]), " ", a.requests.title),
+            el("div",{class:"ellipsis", style:"font-size:.85rem"}, a.message || "(ひとことなし)")),
+          unreadLinks.has("#msg/" + a.id) ? dot() : null);
+      })) : el("div",{class:"empty"},"交渉中のやり取りはありません。", el("br"), "気になる投稿から「DMでやり取りする」を送ると、ここに表示されます。"));
+    } else {
+      list.replaceChildren(friendIds.length ? el("div",{class:"list"}, friendIds.map(id => {
+        const pp = ps[id], l = lastDm[id];
+        return el("a",{class:"li", href:"#dm/" + id},
+          avatar(pp),
+          el("div",{class:"body"},
+            el("div",{class:"row between", style:"padding-right:14px"}, el("b",{class:"ellipsis", style:"max-width:60%"}, nameOf(pp), " ", typeIcon(pp)), el("span",{class:"meta"}, l ? fmt(l.created_at) : "")),
+            el("div",{class:"ellipsis", style:"font-size:.85rem;color:var(--sub)"}, l ? (l.sender_id === me.id ? "あなた: " : "") + l.body : "メッセージを送ってみましょう")),
+          unreadLinks.has("#dm/" + id) ? dot() : null);
+      })) : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "友達になると、ここからメッセージを送れます。"));
+    }
   }
   show(el("h2",{},"メッセージ"), tabs, list);
   draw();
+}
+
+/* ===== 友達とのメッセージ ===== */
+async function pageDm(uid){
+  loading();
+  markRead({ link:"#dm/" + uid });
+  const p = (await profilesById([uid]))[uid];
+  if(!p) throw new Error("相手が見つかりません");
+  const thread = el("div",{class:"thread"});
+  const pair = `and(sender_id.eq.${me.id},recipient_id.eq.${uid}),and(sender_id.eq.${uid},recipient_id.eq.${me.id})`;
+  async function load(){
+    const { data } = await sb.from("direct_messages").select("*").or(pair).order("created_at").limit(300);
+    thread.replaceChildren(...((data || []).length ? data.map(m =>
+      el("div",{class:"bubble" + (m.sender_id === me.id ? " mine" : "")}, el("span",{class:"meta"}, fmt(m.created_at)), linkify(m.body)))
+      : [el("p",{class:"meta", style:"text-align:center"},"まだメッセージはありません。")]));
+  }
+  const body = el("textarea",{placeholder:"メッセージを入力", "aria-label":"メッセージ", rows:"1"});
+  body.oninput = () => { body.style.height = "auto"; body.style.height = Math.min(body.scrollHeight, 120) + "px"; };
+  const send = el("button",{class:"btn", onclick: async () => {
+    const t = body.value.trim(); if(!t) return;
+    send.disabled = true;
+    const { error } = await sb.from("direct_messages").insert({ sender_id:me.id, recipient_id:uid, body:t });
+    send.disabled = false;
+    if(error) return say("送れませんでした。友達どうしのときだけ送れます。");
+    body.value = ""; body.style.height = ""; await load(); thread.lastElementChild.scrollIntoView({ block:"end" });
+  }},"送信");
+  show(el("a",{class:"back", href:"#message"},"← メッセージ"),
+    el("div",{class:"box row between", style:"padding:8px 8px 8px 14px"},
+      el("a",{class:"who", href:"#user/" + uid, style:"flex:1;min-width:0"}, avatar(p),
+        el("div",{style:"min-width:0"}, el("b",{}, nameOf(p), " ", typeIcon(p)), el("div",{class:"meta"}, vPill(p, true), " ", myIdText(p) ? "myID " + myIdText(p) : ""))),
+      moreBtn(() => userMenu(uid, null))),
+    thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, body, send)));
+  await load();
+  thread.lastElementChild.scrollIntoView({ block:"end" });
+  pollTimer = setInterval(load, 15000);
 }
 
 /* ===== やり取り ===== */
@@ -1249,7 +1467,7 @@ async function pageFriends(){
       body.replaceChildren(
         incoming.length ? el("div",{style:"margin-bottom:18px"}, el("h3",{},"届いた申請"), el("div",{class:"list"}, incoming.map(f =>
           person(other(f), null, el("button",{class:"btn sm", onclick:act(f,true)},"承認"), el("button",{class:"btn ghost sm", onclick:act(f,false)},"削除"))))) : "",
-        friends.length ? el("div",{class:"list"}, friends.map(f => person(other(f))))
+        friends.length ? el("div",{class:"list"}, friends.map(f => person(other(f), null, el("a",{class:"btn line sm", href:"#dm/" + other(f)},"メッセージ"))))
           : el("div",{class:"empty"},"まだ友達はいません。", el("br"), "「知り合い」から友達申請ができます。"),
         sent.length ? el("div",{style:"margin-top:18px"}, el("h3",{},"申請中"), el("div",{class:"list"}, sent.map(f =>
           person(other(f), null, el("button",{class:"btn ghost sm", onclick:act(f,false)},"取り消す"))))) : "");
@@ -1294,7 +1512,7 @@ async function profileView(uid, isMe){
   const head = el("div",{class:"row", style:"gap:16px;flex-wrap:nowrap"}, avatar(p, true),
     el("div",{style:"min-width:0"},
       el("h2",{style:"margin:0"}, nameOf(p)),
-      el("div",{class:"meta"}, p.area || "地区未設定"),
+      el("div",{class:"meta"}, p.area || "地区未設定", myIdText(p) ? " ・ myID " + myIdText(p) : ""),
       el("div",{class:"row", style:"margin-top:6px;gap:6px"}, typeIcon(p, true), p.verified ? el("span",{class:"pill ok"},"本人確認 OK") : el("span",{class:"pill"},"本人確認 NO"))));
   const card = el("div",{class:"box"}, head,
     el("div",{class:"stats"},
@@ -1644,6 +1862,7 @@ function pageInfo(){
         el("ul",{class:"newsl"}, t.blog.map(b => el("li",{}, el("p",{class:"meta"}, b.date), el("a",{href:b.url, target:"_blank", rel:"noopener"}, b.title))))] : null,
       el("a",{class:"btn line sm", style:"margin-top:12px", href:"https://ty-gakushin.jpn.org/tsunahiki/index.php", target:"_blank", rel:"noopener"},"大綱曳資料館のサイトを見る ↗")),
     el("div",{class:"links", style:"margin-bottom:12px"},
+      el("a",{href:"#facility"}, el("b",{},"施設情報(地図で探す)"), el("div",{class:"meta"},"病院・動物病院・スーパーなど、町内の施設をGoogleマップで検索")),
       el("a",{href:"https://www.town.yonabaru.okinawa.jp/", target:"_blank", rel:"noopener"},
         el("b",{},"与那原町 公式ホームページ ↗"), el("div",{class:"meta"},"役場の手続き、ごみの出し方、子育て支援、防災情報など")),
       el("div",{class:"calls"},
