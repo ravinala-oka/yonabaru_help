@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>与那原お助け</title>
+<title>与那原助け合い（βテスト）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -30,6 +30,7 @@ p{margin:.25em 0}
 .site-in{max-width:var(--w);margin:0 auto}
 .bar{display:flex;align-items:center;height:48px;padding:0 8px 0 14px}
 .logo{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.98rem;letter-spacing:.06em;flex:none;white-space:nowrap}
+.logo .beta{font-size:.6rem;font-weight:700;color:var(--sea);background:var(--sea-l);border-radius:999px;padding:1px 6px;letter-spacing:0}
 .logo i{width:22px;height:22px;border-radius:7px;background:var(--sea);display:inline-flex;align-items:center;justify-content:center}
 .logo i svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round}
 .iconbtn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ink);text-decoration:none;border-radius:50%}
@@ -335,7 +336,7 @@ textarea{min-height:88px}
 <header class="site">
   <div class="site-in">
     <div class="bar">
-      <a class="logo" href="#top"><i><svg viewBox="0 0 16 16"><path d="M1.5 9c2-2 3.5-2 5.5 0s3.5 2 5.5 0"/><path d="M1.5 5.5c2-2 3.5-2 5.5 0s3.5 2 5.5 0" opacity=".55"/></svg></i>与那原お助け</a>
+      <a class="logo" href="#top"><i><svg viewBox="0 0 16 16"><path d="M1.5 9c2-2 3.5-2 5.5 0s3.5 2 5.5 0"/><path d="M1.5 5.5c2-2 3.5-2 5.5 0s3.5 2 5.5 0" opacity=".55"/></svg></i>与那原助け合い<small class="beta">βテスト</small></a>
       <div class="today"><a href="#info" id="todayDay"></a><span id="counter"></span></div>
       <a class="iconbtn" id="adminLink" href="#admin" aria-label="運営メニュー" hidden><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg></a>
       <a class="iconbtn" href="#notice" aria-label="お知らせ"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1112 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg><span class="badge" id="bellBadge" hidden></span></a>
@@ -809,7 +810,7 @@ async function pageRequest(id){
       el("dt",{},"面談"), el("dd",{}, ivText(r)),
       el("dt",{},"投稿日時"), el("dd",{}, fmtFull(r.created_at))),
     !offer && (r.wanted_from || r.wanted_date) ? el("a",{class:"btn line sm", style:"margin-top:12px", target:"_blank", rel:"noopener",
-      href: gcalUrl("【与那原お助け】" + r.title, (r.time_note ? "時間帯: " + r.time_note + "\n" : "") + location.href, r.area, r.wanted_from || r.wanted_date, r.wanted_date)},"📅 Googleカレンダーに追加") : null,
+      href: gcalUrl("【与那原助け合い】" + r.title, (r.time_note ? "時間帯: " + r.time_note + "\n" : "") + location.href, r.area, r.wanted_from || r.wanted_date, r.wanted_date)},"📅 Googleカレンダーに追加") : null,
     r.description ? el("p",{style:"white-space:pre-wrap;margin-top:16px;font-size:.93rem"}, r.description) : null);
 
   const poster = el("div",{class:"box row between", style:"padding:8px 8px 8px 16px"},
@@ -1295,7 +1296,7 @@ async function pageThread(appId){
         el("button",{class:"btn", onclick: () => decide("accepted")}, offer ? "引き受ける" : "お願いする"),
         el("button",{class:"btn line", onclick: () => decide("declined")},"お断りする")));
   } else status.append(el("div",{class:"row between"}, el("div",{class:"row"}, el("span",{class:"meta"},"状態"), el("span",{class:"pill" + (a.status === "accepted" ? " ok" : a.status === "declined" ? " hib" : "")}, ST[a.status])),
-    a.status === "accepted" && a.requests.kind === "ask" && (a.requests.wanted_from || a.requests.wanted_date) ? el("a",{class:"btn line sm", target:"_blank", rel:"noopener", href: gcalUrl("【与那原お助け】" + a.requests.title, (a.requests.time_note ? "時間帯: " + a.requests.time_note : ""), a.requests.area, a.requests.wanted_from || a.requests.wanted_date, a.requests.wanted_date)},"📅 カレンダーに追加") : null));
+    a.status === "accepted" && a.requests.kind === "ask" && (a.requests.wanted_from || a.requests.wanted_date) ? el("a",{class:"btn line sm", target:"_blank", rel:"noopener", href: gcalUrl("【与那原助け合い】" + a.requests.title, (a.requests.time_note ? "時間帯: " + a.requests.time_note : ""), a.requests.area, a.requests.wanted_from || a.requests.wanted_date, a.requests.wanted_date)},"📅 カレンダーに追加") : null));
   async function decide(s){
     const { error } = await sb.from("applications").update({ status:s }).eq("id", a.id);
     if(error) return say("更新できませんでした: " + error.message);
@@ -1328,13 +1329,58 @@ async function pageThread(appId){
         moreBtn(() => userMenu(pid, a.requests.id))),
       el("p",{class:"meta ellipsis", style:"margin-top:6px"}, "投稿: ", el("a",{href:"#req/" + a.requests.id}, a.requests.title)),
       el("p",{class:"meta"},"電話番号や住所は、信頼できると感じてから伝えましょう。")),
-    status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, meetBtn, body, sendBtn)));
+    a.status === "declined" ? null : meetBox(a, sendText), status, extra, thread, el("div",{class:"dock"}, el("div",{class:"dock-in"}, meetBtn, body, sendBtn)));
   await loadMsgs();
   thread.lastElementChild.scrollIntoView({ block:"end" });
   pollTimer = setInterval(loadMsgs, 15000);
 }
 
 /* 面談: 今すぐビデオ / 日時を提案 */
+/* 面談の選択(ビデオ / 対面 / 無) — やり取り画面の上に表示 */
+function meetMessage(a, v, date, time, note){
+  const room = "https://meet.jit.si/YonabaruOtasuke-" + a.id.replace(/-/g,"").slice(0, 20);
+  const lines = ["📅 面談日時のお知らせ", "日時: " + dateJa(date) + " " + time, "方法: " + (v === "video" ? "ビデオ面談" : "対面")];
+  if(note) lines.push((v === "video" ? "メモ: " : "場所: ") + note);
+  if(v === "video") lines.push(room);
+  lines.push(gcalUrl("【与那原助け合い】面談(" + a.requests.title + ")", (v === "video" ? "ビデオ面談: " + room : "対面") + (note ? "\n" + note : ""), v === "video" ? "" : note, date, null, time));
+  return lines.join("\n");
+}
+function meetBox(a, sendText){
+  const box = el("div",{class:"box"});
+  const date = el("input",{type:"date", id:"ivDate", min:todayJST()});
+  const time = el("input",{type:"time", id:"ivTime", step:"900"});
+  const note = el("input",{id:"ivNote", maxlength:"60"});
+  const noteLabel = el("label",{for:"ivNote"});
+  const detail = el("div",{hidden:true},
+    el("div",{class:"period", style:"grid-template-columns:1fr 1fr;margin-top:10px"},
+      el("div",{}, el("label",{for:"ivDate", style:"margin-top:0"},"面談日"), date),
+      el("div",{}, el("label",{for:"ivTime", style:"margin-top:0"},"時間"), time)),
+    noteLabel, note);
+  const sendBtn = el("button",{class:"btn full", style:"margin-top:12px", hidden:true});
+  const how = ticks("ivHow", [["video","ビデオ"],["in_person","対面"],["none","無"]], [], () => {
+    const v = how.values()[0];
+    detail.hidden = v === "none";
+    noteLabel.textContent = v === "video" ? "メモ(任意)" : "待ち合わせ場所(任意)";
+    note.placeholder = v === "video" ? "例: 5分前に入室します" : "例: 与那原町役場の駐車場";
+    sendBtn.hidden = false;
+    sendBtn.textContent = v === "none" ? "「面談無」を送る" : "面談日時を送る";
+  }, "radio");
+  sendBtn.onclick = async () => {
+    const v = how.values()[0];
+    if(!v) return;
+    if(v === "none"){ if(await sendText("🙅 面談無で進めます")) say("送りました。"); return; }
+    if(!date.value || !time.value) return say("面談日と時間を選んでください。");
+    sendBtn.disabled = true;
+    const ok = await sendText(meetMessage(a, v, date.value, time.value, note.value.trim()));
+    sendBtn.disabled = false;
+    if(ok){ say("面談日時を送りました。"); date.value = time.value = note.value = ""; }
+  };
+  box.append(el("h3",{},"面談"),
+    el("p",{class:"meta"},"方法を選ぶと、面談日時をメッセージで相手に送れます。ビデオは送ったメッセージからそのまま参加できます。"),
+    el("div",{style:"margin-top:8px"}, how), detail, sendBtn);
+  return box;
+}
+
 function meetSheet(a, sendText){
   const room = "https://meet.jit.si/YonabaruOtasuke-" + a.id.replace(/-/g,"").slice(0, 20);
   sheet(close => {
@@ -1356,12 +1402,7 @@ function meetSheet(a, sendText){
       el("label",{for:"mtNote"},"メモ(任意)"), note,
       el("button",{class:"btn line full", style:"margin-top:16px", onclick: async () => {
         if(!d.value || !t.value) return say("日にちと時間を選んでください。");
-        const v = how.values()[0];
-        const lines = ["📅 面談の提案", "日時: " + dateJa(d.value) + " " + t.value, "方法: " + (v === "video" ? "ビデオ面談" : "対面")];
-        if(note.value.trim()) lines.push("メモ: " + note.value.trim());
-        if(v === "video") lines.push(room);
-        lines.push(gcalUrl("【与那原お助け】面談", (v === "video" ? "ビデオ面談: " + room : "対面") + (note.value.trim() ? "\n" + note.value.trim() : ""), v === "video" ? "" : note.value.trim(), d.value, null, t.value));
-        close(); await sendText(lines.join("\n"));
+        close(); await sendText(meetMessage(a, how.values()[0], d.value, t.value, note.value.trim()));
       }},"提案を送る"),
       el("button",{class:"btn ghost full", onclick:close},"閉じる")];
   });
@@ -1894,7 +1935,7 @@ function pageTerms(){
     el("div",{class:"box terms"},
       el("h2",{},"利用規約"),
       el("p",{class:"meta"},"最終更新日: 2026年10月4日"),
-      sec("1. このサービスについて","「与那原お助け」(以下「本サービス」)は、与那原町とその周辺に住む人どうしが、日常のちょっとした困りごとを手伝い合うための掲示板です。運営者は、利用者どうしのやり取りの場を提供するもので、お手伝いの当事者にはなりません。"),
+      sec("1. このサービスについて","「与那原助け合い」(以下「本サービス」)は、与那原町とその周辺に住む人どうしが、日常のちょっとした困りごとを手伝い合うための掲示板です。運営者は、利用者どうしのやり取りの場を提供するもので、お手伝いの当事者にはなりません。"),
       sec("2. 利用できる人","18歳以上で、本規約に同意した方が会員登録して利用できます。1人1アカウントとします。"),
       sec("3. 利用者の責任","お手伝いの内容、日時、お礼の有無や金額は、利用者どうしが話し合って決めてください。お手伝い中に起きた事故・けが・物の破損・金銭トラブルなどは、当事者間で解決するものとし、運営者は責任を負いません。"),
       sec("4. 禁止していること", el("ol",{class:"steps"},
